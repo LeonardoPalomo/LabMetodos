@@ -1,3 +1,5 @@
+package Modelo;
+
 /***********************************************************************
  * Module:  Asignatura.java
  * Author:  MoisésJoshua

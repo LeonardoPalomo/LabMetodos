@@ -1,11 +1,12 @@
+package Modelo;
+
 /***********************************************************************
- * Module:  Arquero.java
+ * Module:  Guerrero.java
  * Author:  MoisésJoshua
- * Purpose: Defines the Class Arquero
+ * Purpose: Defines the Class Guerrero
  ***********************************************************************/
 
 import java.util.*;
 
-public class Arquero extends Personaje{
-    
+public class Guerrero extends Personaje{
 }

@@ -1,3 +1,5 @@
+package Modelo;
+
 /***********************************************************************
  * Module:  Ninja.java
  * Author:  MoisésJoshua

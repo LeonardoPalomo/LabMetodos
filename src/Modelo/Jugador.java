@@ -1,3 +1,5 @@
+package Modelo;
+
 /***********************************************************************
  * Module:  Jugador.java
  * Author:  MoisésJoshua

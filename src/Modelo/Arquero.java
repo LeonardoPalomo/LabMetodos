@@ -1,15 +1,13 @@
+package Modelo;
+
 /***********************************************************************
- * Module:  Mago.java
+ * Module:  Arquero.java
  * Author:  MoisésJoshua
- * Purpose: Defines the Class Mago
+ * Purpose: Defines the Class Arquero
  ***********************************************************************/
 
 import java.util.*;
 
-public class Mago extends Personaje{
-
-   public int usarMagia(int id) {
-      return 0;
-   }
-
+public class Arquero extends Personaje{
+    
 }

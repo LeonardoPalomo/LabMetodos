@@ -1,3 +1,5 @@
+package Modelo;
+
 /***********************************************************************
  * Module:  Equipamiento.java
  * Author:  MoisésJoshua
