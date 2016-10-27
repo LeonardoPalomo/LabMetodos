@@ -11,5 +11,6 @@
 public class main {
     public static void main(String [] args){
         System.out.println("aslbgajbsg");
+        System.out.println("oveja ql beeeh");
     }
 }
