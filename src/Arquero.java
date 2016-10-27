@@ -7,4 +7,5 @@
 import java.util.*;
 
 public class Arquero extends Personaje{
+    
 }
