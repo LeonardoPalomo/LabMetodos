@@ -43,9 +43,8 @@ public class VistaLogin extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(255, 153, 153));
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 2, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(204, 0, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\MoisésJoshua\\Pictures\\27-harambe-gorilla-heaven.w710.h473.2x.jpg")); // NOI18N
         jLabel1.setText("Juego :3");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 

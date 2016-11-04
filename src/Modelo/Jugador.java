@@ -18,6 +18,8 @@ public class Jugador {
    private int[] asigAprobadas;
    private Personaje[] personajes;
    private Item[] inventario;
+   private boolean tipo;
+   
    
 
    public boolean existeUsuario(String username) {

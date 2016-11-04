@@ -1,5 +1,6 @@
 package Modelo;
 
+import Controladores.ControladorBatalla;
 import Vista.VistaLogin;
 
 /*
@@ -19,7 +20,9 @@ public class Main {
     public static void main(String [] args){
         System.out.println("aslbgajbsg");
         System.out.println("oveja ql beeeh");
-        VistaLogin vl = new VistaLogin();
-        vl.setVisible(true);
+        //VistaLogin vl = new VistaLogin();
+        //vl.setVisible(true);
+        ControladorBatalla cb = new ControladorBatalla();
+        
     }
 }

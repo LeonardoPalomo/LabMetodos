@@ -5,7 +5,7 @@ package Modelo;
 public class Escenario {
 
    private Asignatura asignatura;
-   private Terreno[][] terrenos;
+   private Tablero[][] terrenos;
    
 
    public void generarMapa(Asignatura asignatura) {}
