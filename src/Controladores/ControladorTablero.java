@@ -1,4 +1,5 @@
-package Modelo;
+package Controladores;
+import Modelo.Casilla;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
@@ -6,12 +7,12 @@ import javax.swing.JPanel;
 
 
 
-public class Tablero extends JPanel{
+public class ControladorTablero extends JPanel{
     
    public Casilla[][] terreno = new Casilla[25][25];
    
    // Constructor
-   public Tablero(JPanel panel, ActionListener a){
+   public ControladorTablero(JPanel panel, ActionListener a){
        panel.setLayout(new GridLayout(25,25));
        for (int i = 0; i<25; i++){
            //Ese print se ocupa para msotrar el tablero en caso de que haya un

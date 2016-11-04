@@ -15,7 +15,7 @@ public class Batalla {
    private Personaje[] pjsJugador;
    private Personaje[] pjsCpu;
    
-   public void cambiarTurno() {}
+   public void terminarTurno() {}
    
    public int verificarGanador(Personaje[] pjsJugador, Personaje[] pjsCpu) {
       return 0;

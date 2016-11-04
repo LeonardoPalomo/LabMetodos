@@ -1,7 +1,6 @@
 
 package Controladores;
 
-import Modelo.Tablero;
 import Vista.VistaBatalla;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -9,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class ControladorBatalla implements ActionListener {
     private VistaBatalla vb;
-    public Tablero t;
+    public ControladorTablero t;
     
     
     //Constructor
@@ -17,7 +16,7 @@ public class ControladorBatalla implements ActionListener {
         vb = new VistaBatalla();
         vb.setVisible(true);
         vb.setListener(this);
-        t = new Tablero(vb.getPanel(),this);
+        t = new ControladorTablero(vb.getPanel(),this);
     }
 
     @Override
@@ -27,6 +26,18 @@ public class ControladorBatalla implements ActionListener {
         }
         else if(e.getActionCommand()=="Aceptar"){
             System.out.println("Accion aceptar");
+        }
+        else if(e.getActionCommand()=="Atacar"){
+            System.out.println("Accion atacar");
+        }
+        else if(e.getActionCommand()=="Mover"){
+            System.out.println("Accion mover");
+        }
+        else if(e.getActionCommand()=="Usar"){
+            System.out.println("Accion usar");
+        }
+        else if(e.getActionCommand()=="Finalizar turno"){
+            System.out.println("Accion terminar turno");
         }
         for(int i=0;i<25;i++){
             for(int j=0; j<25;j++)
