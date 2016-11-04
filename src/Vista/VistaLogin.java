@@ -26,6 +26,7 @@ public class VistaLogin extends javax.swing.JFrame {
         contraseña = new javax.swing.JLabel();
         contraseñaField = new javax.swing.JPasswordField();
         registrar = new javax.swing.JButton();
+        backdoor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,6 +56,8 @@ public class VistaLogin extends javax.swing.JFrame {
         registrar.setText("Registrate");
         registrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        backdoor.setText("Entrar sin usuario >:D");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -74,12 +77,17 @@ public class VistaLogin extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(ingresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(registrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(250, 250, 250))))
+                        .addGap(250, 250, 250))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(backdoor)
+                        .addGap(38, 38, 38))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(63, 63, 63)
+                .addGap(22, 22, 22)
+                .addComponent(backdoor)
+                .addGap(18, 18, 18)
                 .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(nombreUsuario)
@@ -126,6 +134,7 @@ public class VistaLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backdoor;
     private javax.swing.JLabel contraseña;
     private javax.swing.JPasswordField contraseñaField;
     private javax.swing.JButton ingresar;
@@ -148,9 +157,13 @@ public class VistaLogin extends javax.swing.JFrame {
     public JButton getButtonRegistrarse(){
         return this.registrar;
     }
+    public JButton getButtonBackdoor(){
+        return this.backdoor;
+    }
     public void agregarListener(ActionListener al){
         this.ingresar.addActionListener(al);
         this.registrar.addActionListener(al);
+        this.backdoor.addActionListener(al);
     }
     public void agregarKeyListener(KeyListener kl){
         this.usuarioField.addKeyListener(kl);

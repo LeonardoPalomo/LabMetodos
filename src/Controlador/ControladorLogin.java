@@ -67,6 +67,10 @@ public class ControladorLogin implements ActionListener,KeyListener{
                 ControladorRegistro cr = new ControladorRegistro(this);
                 vl.setVisible(false);
             }
+            if(vl.getButtonBackdoor()==e.getSource()){
+                vl.dispose();
+                ControladorVistaPrincipal cvp = new ControladorVistaPrincipal();
+            }
     }
     public void setVista(boolean b){
         this.vl.setVisible(b);
