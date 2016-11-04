@@ -1,6 +1,6 @@
 package Modelo;
 
-import Controladores.ControladorTablero;
+import Controlador.ControladorTablero;
 
 
 

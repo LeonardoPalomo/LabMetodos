@@ -1,4 +1,4 @@
-package Controladores;
+package Controlador;
 import Modelo.Casilla;
 import java.awt.Color;
 import java.awt.GridLayout;

@@ -1,5 +1,5 @@
 
-package Controladores;
+package Controlador;
 
 import Vista.VistaBatalla;
 import java.awt.Color;
