@@ -1,10 +1,13 @@
 
 package Controlador;
 
+
 import Vista.VistaBatalla;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 public class ControladorBatalla implements ActionListener {
     private VistaBatalla vb;
@@ -16,13 +19,14 @@ public class ControladorBatalla implements ActionListener {
         vb = new VistaBatalla();
         vb.setVisible(true);
         vb.setListener(this);
-        t = new ControladorTablero(vb.getPanel(),this);
+        t = new ControladorTablero(vb.getPanelVacio(),this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand()=="Cancelar"){
             System.out.println("Accion cancelar");
+            //JOptionPane.showMessageDialog(vb,"WENAAA");
         }
         else if(e.getActionCommand()=="Aceptar"){
             System.out.println("Accion aceptar");

@@ -12,11 +12,11 @@ public class Jugador {
    private String contrasena;
    private int oro;
    private Malla malla;
-   private int tipoMalla;
+   private int tipoMalla;//no va
    private int[] asigAprobadas;
    private Personaje[] personajes;
    private Item[] inventario;
-   private boolean tipo;
+   private boolean tipo;//no va
    private String pjPrincipal;
    private int rolPjPrincipal;
    private String pjSecundario;
