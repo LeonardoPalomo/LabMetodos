@@ -5,24 +5,24 @@
  */
 package Vista;
 
+import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
-
 
 /**
  *
  * @author Usuario
  */
 public class VistaBatalla extends javax.swing.JFrame {
-
+    private JButton[][] tablero;
     /**
      * Creates new form VistaBatalla
      */
     public VistaBatalla() {
         initComponents();
+        construirTablero();
     }
 
     /**
@@ -139,6 +139,11 @@ public class VistaBatalla extends javax.swing.JFrame {
        btnMover.addActionListener(a);
        btnUsar.addActionListener(a);
        btnEnd.addActionListener(a);
+       for(int i=0;i<25;i++){
+            for(int j=0; j<25;j++){
+                tablero[i][j].addActionListener(a);
+            }
+        }
    }
    
    public JButton getbtnAceptar(){
@@ -151,6 +156,10 @@ public class VistaBatalla extends javax.swing.JFrame {
    public JPanel getPanelVacio() {
         return panelVacio;
     }
+   public JButton[][] getTablero() {
+        return tablero;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnAtacar;
@@ -161,5 +170,16 @@ public class VistaBatalla extends javax.swing.JFrame {
     private javax.swing.JPanel panelVacio;
     // End of variables declaration//GEN-END:variables
 
-    
+    public void construirTablero(){
+        tablero = new JButton[25][25];
+        this.panelVacio.setLayout(new GridLayout(25,25));
+        for(int i=0; i<25; i++){
+            for(int j=0; j<25; j++){
+                tablero[i][j] = new JButton();
+                tablero[i][j].setBorderPainted(true);
+                panelVacio.add(tablero[i][j]);
+            }
+        }
+        //return tablero;
+    }
 }

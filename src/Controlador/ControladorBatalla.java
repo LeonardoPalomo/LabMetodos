@@ -2,24 +2,30 @@
 package Controlador;
 
 
+import Modelo.Batalla;
+import Modelo.Casilla;
 import Vista.VistaBatalla;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import java.util.Random;
 
 public class ControladorBatalla implements ActionListener {
     private VistaBatalla vb;
-    public ControladorTablero t;
-    
+    private Batalla b;
+    Random distribAltura = new Random();
     
     //Constructor
     public ControladorBatalla(){
         vb = new VistaBatalla();
         vb.setVisible(true);
         vb.setListener(this);
-        t = new ControladorTablero(vb.getPanelVacio(),this);
+        b = new Batalla();
+        do{
+            b.asignarAlturas(distribAltura);//Se le atribuyen alturas a cada casilla(del tablero logico)
+        } while(!b.revisarAlturas());//Mientras La comprobacion del terreno de un resultado "falso", se inicializa el proceso de distibucion de alturas
     }
 
     @Override
@@ -46,9 +52,9 @@ public class ControladorBatalla implements ActionListener {
         for(int i=0;i<25;i++){
             for(int j=0; j<25;j++)
             {
-                if(e.getSource() == t.terreno[i][j]){
-                    System.out.println(i+","+j);
-                    t.terreno[i][j].setBackground(Color.red);
+                if(e.getSource() == vb.getTablero()[i][j]){
+                    System.out.println("Posición ["+i+"], ["+j+"]");
+                    //vb.getTablero()[i][j].setBackground(Color.red);
                 }
             }
         }

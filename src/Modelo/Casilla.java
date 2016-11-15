@@ -1,13 +1,10 @@
 
 package Modelo;
-
-import javax.swing.JButton;
-
 /**
  *
  * @author Usuario
  */
-public class Casilla extends JButton{
+public class Casilla{
     private int tipo;
     private int altura;
     private boolean caminable;
@@ -25,11 +22,12 @@ public class Casilla extends JButton{
         this.disponible = disponibleC;
         this.altura = alturaC;
         this.caminable = caminableC;
-        this.tipo = tipoC;
-                
-                
-                
-        
+        this.tipo = tipoC;     
     }
-    
+    public void setAltura(int altura){
+        this.altura = altura;
+    }
+    public int getAltura(){
+        return this.altura;
+    }
 }
