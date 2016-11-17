@@ -14,6 +14,7 @@ public class ControladorVistaPrincipal implements ActionListener{
         vp.setVisible(true);
         
     }
+    @Override
     public void actionPerformed(ActionEvent e){
         if (vp.getButtonCerrarSesion()==e.getSource()){
             String sesionCerrada = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha cerrado sesión.";
@@ -27,6 +28,12 @@ public class ControladorVistaPrincipal implements ActionListener{
             vp.setVisible(false);
             ControladorBatalla cb = new ControladorBatalla();
         }
+        else if(vp.getButtonBibliotecaCentral()==e.getSource()){
+            String biblioteca = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha accedido a biblioteca central";
+            ControladorPrincipal.registrarAccion(biblioteca);
+            vp.setVisible(false);
+            ControladorBibliotecaCentral cbc = new ControladorBibliotecaCentral();
+        }
         else if(vp.getButtonSalir()==e.getSource()){
             String salidaUsuario = "El usuario "+ Controlador.ControladorLogin.usuarioActivo +" ha salido del programa.";
             ControladorPrincipal.registrarAccion(salidaUsuario);
@@ -34,7 +41,5 @@ public class ControladorVistaPrincipal implements ActionListener{
         }
      
     }
-    public void setVista(boolean b){
-        this.vp.setVisible(b);
-    }
+
 }
