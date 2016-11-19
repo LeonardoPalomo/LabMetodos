@@ -3,3 +3,9 @@
 2016/11/17 :: 15:59:19 = Se ha abierto el juego. 
 2016/11/17 :: 15:59:21 = El usuario null ha accedido a biblioteca central
 2016/11/17 :: 15:59:23 = El usuario null ha iniciado misión extra ahorcado
+2016/11/18 :: 23:53:42 = Se ha abierto el juego. 
+2016/11/18 :: 23:53:48 = El usuario null ha iniciado una batalla.
+2016/11/19 :: 00:09:15 = Se ha abierto el juego. 
+2016/11/19 :: 00:09:17 = El usuario null ha iniciado una batalla.
+2016/11/19 :: 00:14:32 = Se ha abierto el juego. 
+2016/11/19 :: 00:14:36 = El usuario null ha iniciado una batalla.

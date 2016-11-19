@@ -26,6 +26,8 @@ public class ControladorBatalla implements ActionListener {
         do{
             b.asignarAlturas(distribAltura);//Se le atribuyen alturas a cada casilla(del tablero logico)
         } while(!b.revisarAlturas());//Mientras La comprobacion del terreno de un resultado "falso", se inicializa el proceso de distibucion de alturas
+        System.out.println(vb.getTablero()[0][0].getSize()); //Cada botón del tablero mide 25x25
+        
     }
 
     @Override

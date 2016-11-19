@@ -125,7 +125,6 @@ public class VistaBatalla extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this,"WENAAA");
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
