@@ -203,52 +203,52 @@ public class Batalla {
         String ruta = "";
         if(tablero[i][j].getTerreno() == 1){//Tierra
             if(tablero[i][j].getAltura() == 0 || tablero[i][j].getAltura() == 1){
-                ruta = "/Imagen/Tierra01.png";
+                ruta = "src/Imagen/Tierra01.png";
             }
             else if(tablero[i][j].getAltura() == 2 || tablero[i][j].getAltura() == 3){
-                ruta = "/Imagen/Tierra23.png";
+                ruta = "src/Imagen/Tierra23.png";
             }
             else if(tablero[i][j].getAltura() == 4 || tablero[i][j].getAltura() == 5){
-                ruta = "/Imagen/Tierra45.png";
+                ruta = "src/Imagen/Tierra45.png";
             }
         }
         else if(tablero[i][j].getTerreno() == 2){//Río
             if(tablero[i][j].getAltura() <= 5){
-                ruta = "/src/Imagen/Rio05.png";
+                ruta = "src/Imagen/Rio05.png";
             }
             else if(tablero[i][j].getAltura() > 6){
-                ruta = "/src/Imagen/Rio610.png";
+                ruta = "src/Imagen/Rio610.png";
             }
         }
         else if(tablero[i][j].getTerreno() == 3){//Bosque
             if(tablero[i][j].getAltura() == 0 || tablero[i][j].getAltura() == 1){
-                ruta = "/src/Imagen/Bosque01.png";
+                ruta = "src/Imagen/Bosque01.png";
             }
             else if(tablero[i][j].getAltura() == 2 || tablero[i][j].getAltura() == 3){
-                ruta = "/src/Imagen/Bosque23.png";
+                ruta = "src/Imagen/Bosque23.png";
             }
             else if(tablero[i][j].getAltura() == 4 || tablero[i][j].getAltura() == 5){
-                ruta = "/src/Imagen/Bosque45.png";
+                ruta = "src/Imagen/Bosque45.png";
             }
             else if(tablero[i][j].getAltura() == 6 || tablero[i][j].getAltura() == 7){
-                ruta = "/src/Imagen/Bosque67.png";
+                ruta = "src/Imagen/Bosque67.png";
             }
             else if(tablero[i][j].getAltura() == 8 || tablero[i][j].getAltura() == 9){
-                ruta = "/src/Imagen/Bosque89.png";
+                ruta = "src/Imagen/Bosque89.png";
             }
             else if(tablero[i][j].getAltura() == 10){
-                ruta = "/src/Imagen/Bosque10.png";
+                ruta = "src/Imagen/Bosque10.png";
             }
         }
         else if(tablero[i][j].getTerreno() == 4){ //Montaña
             if(tablero[i][j].getAltura() == 6 || tablero[i][j].getAltura() == 7){
-                ruta = "/src/Imagen/Montaña67.png";
+                ruta = "src/Imagen/Montaña67.png";
             }
             else if(tablero[i][j].getAltura() == 8 || tablero[i][j].getAltura() == 9){
-                ruta = "/src/Imagen/Montaña89.png";
+                ruta = "src/Imagen/Montaña89.png";
             }
             else if(tablero[i][j].getAltura() == 10){
-                ruta = "/src/Imagen/Montaña10.png";
+                ruta = "src/Imagen/Montaña10.png";
             }
         }
         return ruta;
