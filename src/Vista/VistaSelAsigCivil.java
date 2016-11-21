@@ -1,12 +1,12 @@
 
 package Vista;
 
-public class VistaSeleccionAsignatura extends javax.swing.JFrame {
+public class VistaSelAsigCivil extends javax.swing.JFrame {
 
-    public VistaSeleccionAsignatura() {
+    public VistaSelAsigCivil() {
         initComponents();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -21,7 +21,7 @@ public class VistaSeleccionAsignatura extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
 
         pack();
@@ -29,5 +29,4 @@ public class VistaSeleccionAsignatura extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
 }

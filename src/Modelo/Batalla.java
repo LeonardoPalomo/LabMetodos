@@ -85,58 +85,74 @@ public class Batalla {
         for(int i=0; i<25; i++){
             for(int j=0; j<25; j++){
                 riosCerca = 0;
-                    if(tablero[i][j].getTerreno() == 2){
-                        try{
-                            if(tablero[i][j-1].getTerreno() == 2){
-                                riosCerca++;
-                            }
-                        }
-                        catch(ArrayIndexOutOfBoundsException e){
-                        }
-                        try{
-                            if(tablero[i][j+1].getTerreno() == 2){
-                                riosCerca++;
-                            }
-                        }
-                        catch(ArrayIndexOutOfBoundsException e){
-                        }
-                        try{
-                            if(tablero[i-1][j].getTerreno() == 2){
-                                riosCerca++;
-                            }
-                        }
-                        catch(ArrayIndexOutOfBoundsException e){
-                        }
-                        try{
-                            if(tablero[i+1][j].getTerreno() == 2){
-                                riosCerca++;
-                            }
-                        }
-                        catch(ArrayIndexOutOfBoundsException e){
-                        }
-                        if(riosCerca == 0){
-                            cntRio--;
-                            tablero[i][j].setTerreno(1);
-                            cntTierra++;
-                        }
-                    }
-                    if(tablero[i][j].getTerreno() == 1 && cntTierra != 0){
+                if(tablero[i][j].getTerreno() == 2){
+                    try{
                         if(tablero[i][j-1].getTerreno() == 2){
                             riosCerca++;
+                            }
                         }
+                    catch(ArrayIndexOutOfBoundsException e){
+                    }
+                    try{
                         if(tablero[i][j+1].getTerreno() == 2){
                             riosCerca++;
                         }
+                    }
+                    catch(ArrayIndexOutOfBoundsException e){
+                    }
+                    try{
                         if(tablero[i-1][j].getTerreno() == 2){
                             riosCerca++;
                         }
+                    }
+                    catch(ArrayIndexOutOfBoundsException e){
+                    }
+                    try{
                         if(tablero[i+1][j].getTerreno() == 2){
                             riosCerca++;
                         }
-                        if(riosCerca > 0){
-                            tablero[i][j].setTerreno(2);
-                            cntTierra--;
-                            cntRio++;
+                    }
+                    catch(ArrayIndexOutOfBoundsException e){
+                    }
+                    if(riosCerca == 0){
+                        cntRio--;
+                        tablero[i][j].setTerreno(1);
+                        cntTierra++;
+                    }
+                }
+                if(tablero[i][j].getTerreno() == 1 && cntTierra != 0){
+                    try{
+                        if(tablero[i][j-1].getTerreno() == 2){
+                            riosCerca++;
+                        }
+                    }
+                    catch(ArrayIndexOutOfBoundsException e){
+                    }
+                    try{
+                        if(tablero[i][j+1].getTerreno() == 2){
+                            riosCerca++;
+                        }
+                    }
+                    catch(ArrayIndexOutOfBoundsException e){
+                    }
+                    try{
+                        if(tablero[i-1][j].getTerreno() == 2){
+                            riosCerca++;
+                        }
+                    }
+                    catch(ArrayIndexOutOfBoundsException e){
+                    }
+                    try{
+                        if(tablero[i+1][j].getTerreno() == 2){
+                            riosCerca++;
+                        }
+                    }
+                    catch(ArrayIndexOutOfBoundsException e){
+                    }
+                    if(riosCerca > 0){
+                        tablero[i][j].setTerreno(2);
+                        cntTierra--;
+                        cntRio++;
                     }
                 }
             }

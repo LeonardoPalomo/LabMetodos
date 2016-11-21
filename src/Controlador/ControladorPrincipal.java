@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ControladorPrincipal {
-    public static String titulo = "Juego";
+    public static String titulo = "DIINF Tactics Advance";
     public static void main(String[] args){
         registrarAccion("Se ha abierto el juego. ");
         ControladorLogin cl = new ControladorLogin();
