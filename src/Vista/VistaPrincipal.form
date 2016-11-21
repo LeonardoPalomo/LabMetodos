@@ -34,8 +34,8 @@
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="Batalla" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="110" max="32767" attributes="0"/>
+                      <Component id="Jugar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="116" max="32767" attributes="0"/>
                       <Component id="bibliotecaCentral" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                   </Group>
@@ -55,7 +55,7 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="110" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="Batalla" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Jugar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="bibliotecaCentral" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -78,9 +78,9 @@
         <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="Batalla">
+    <Component class="javax.swing.JButton" name="Jugar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Batalla"/>
+        <Property name="text" type="java.lang.String" value="Jugar"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="CerrarSesion">

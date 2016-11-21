@@ -22,9 +22,9 @@ public class ControladorVistaPrincipal implements ActionListener{
             vp.dispose();
             ControladorLogin cl = new ControladorLogin();
         }
-        else if(vp.getButtonBatalla()==e.getSource()){
-            String batallaIniciada = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha iniciado una batalla.";
-            ControladorPrincipal.registrarAccion(batallaIniciada);
+        else if(vp.getButtonJugar()==e.getSource()){
+            String seleccionAsignatura = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" va a seleccionar una asignatura.";
+            ControladorPrincipal.registrarAccion(seleccionAsignatura);
             vp.setVisible(false);
             ControladorBatalla cb = new ControladorBatalla();
         }

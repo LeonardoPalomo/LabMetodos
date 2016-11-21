@@ -5,8 +5,10 @@
  */
 package Vista;
 
+import Controlador.ControladorPrincipal;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -22,6 +24,8 @@ public class VistaBatalla extends javax.swing.JFrame {
      */
     public VistaBatalla() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle(ControladorPrincipal.titulo);
         construirTablero();
     }
 
@@ -43,6 +47,7 @@ public class VistaBatalla extends javax.swing.JFrame {
         btnEnd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         panelVacio.setPreferredSize(new java.awt.Dimension(625, 625));
 
@@ -175,10 +180,17 @@ public class VistaBatalla extends javax.swing.JFrame {
         for(int i=0; i<25; i++){
             for(int j=0; j<25; j++){
                 tablero[i][j] = new JButton();
-                tablero[i][j].setBorderPainted(true);
+                //tablero[i][j].setBorderPainted(true);        
+                tablero[i][j].setHorizontalTextPosition(JButton.CENTER);
+                tablero[i][j].setVerticalTextPosition(JButton.CENTER);
                 panelVacio.add(tablero[i][j]);
             }
         }
         //return tablero;
+    }
+    
+    public void ponerImagenesTerrenoVista(String ruta, int i, int j){
+        ImageIcon imagen = new ImageIcon(ruta);
+        tablero[i][j].setIcon(imagen);
     }
 }

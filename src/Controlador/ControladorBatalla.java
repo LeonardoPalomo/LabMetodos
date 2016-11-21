@@ -15,7 +15,8 @@ import java.util.Random;
 public class ControladorBatalla implements ActionListener {
     private VistaBatalla vb;
     private Batalla b;
-    Random distribAltura = new Random();
+    private Random distribAltura;
+    private int areaAsignatura = 3;
     
     //Constructor
     public ControladorBatalla(){
@@ -23,11 +24,18 @@ public class ControladorBatalla implements ActionListener {
         vb.setVisible(true);
         vb.setListener(this);
         b = new Batalla();
+        b.asignarTerrenos(areaAsignatura, distribAltura); //Asigna los terrenos en función del área de la asignatura.
+        //Por ahora, el área está fija en 3.
+        b.corregirRios(); //Corrige los ríos que están solos, para que siempre haya al menos dos juntos.
         do{
             b.asignarAlturas(distribAltura);//Se le atribuyen alturas a cada casilla(del tablero logico)
         } while(!b.revisarAlturas());//Mientras La comprobacion del terreno de un resultado "falso", se inicializa el proceso de distibucion de alturas
-        System.out.println(vb.getTablero()[0][0].getSize()); //Cada botón del tablero mide 25x25
-        
+        for(int i=0; i<25; i++){
+            for(int j=0; j<25; j++){
+                String ruta = b.ponerRutaImagenesTerreno(i, j);
+                vb.ponerImagenesTerrenoVista(ruta, i, j);
+            }
+        }
     }
 
     @Override
@@ -55,7 +63,26 @@ public class ControladorBatalla implements ActionListener {
             for(int j=0; j<25;j++)
             {
                 if(e.getSource() == vb.getTablero()[i][j]){
-                    System.out.println("Posición ["+i+"], ["+j+"]");
+                    int terreno = b.getTablero(i,j).getTerreno();
+                    String nombreTerreno = "nada prro :v";
+                    switch(terreno){
+                        case 1:
+                            if(b.getTablero(i,j).getAltura() <= 5){
+                                nombreTerreno = "Tierra";
+                                break;
+                            }
+                            else if(b.getTablero(i,j).getAltura() > 5){
+                                nombreTerreno = "Montaña";
+                                break;
+                            }
+                        case 2:
+                            nombreTerreno = "Río";
+                            break;
+                        case 3:
+                            nombreTerreno = "Bosque";
+                            break;
+                    }
+                    System.out.println("Posición ["+i+"], ["+j+"]. Su terreno es "+nombreTerreno+", y su altura es "+b.getTablero(i,j).getAltura()+".");
                     //vb.getTablero()[i][j].setBackground(Color.red);
                 }
             }
