@@ -1,11 +1,5 @@
 package Modelo;
 
-/***********************************************************************
- * Module:  Batalla.java
- * Author:  Leo
- * Purpose: Defines the Class Batalla
- ***********************************************************************/
-
 import java.util.*;
 
 public class Batalla {
@@ -83,7 +77,7 @@ public class Batalla {
             }
         }
     }
-    
+
     public void corregirRios(){
         int riosCerca;
         int cntTierra = 0;
@@ -91,19 +85,34 @@ public class Batalla {
         for(int i=0; i<25; i++){
             for(int j=0; j<25; j++){
                 riosCerca = 0;
-                try{
                     if(tablero[i][j].getTerreno() == 2){
-                        if(tablero[i][j-1].getTerreno() == 2){
-                            riosCerca++;
+                        try{
+                            if(tablero[i][j-1].getTerreno() == 2){
+                                riosCerca++;
+                            }
                         }
-                        if(tablero[i][j+1].getTerreno() == 2){
-                            riosCerca++;
+                        catch(ArrayIndexOutOfBoundsException e){
                         }
-                        if(tablero[i-1][j].getTerreno() == 2){
-                            riosCerca++;
+                        try{
+                            if(tablero[i][j+1].getTerreno() == 2){
+                                riosCerca++;
+                            }
                         }
-                        if(tablero[i+1][j].getTerreno() == 2){
-                            riosCerca++;
+                        catch(ArrayIndexOutOfBoundsException e){
+                        }
+                        try{
+                            if(tablero[i-1][j].getTerreno() == 2){
+                                riosCerca++;
+                            }
+                        }
+                        catch(ArrayIndexOutOfBoundsException e){
+                        }
+                        try{
+                            if(tablero[i+1][j].getTerreno() == 2){
+                                riosCerca++;
+                            }
+                        }
+                        catch(ArrayIndexOutOfBoundsException e){
                         }
                         if(riosCerca == 0){
                             cntRio--;
@@ -128,15 +137,12 @@ public class Batalla {
                             tablero[i][j].setTerreno(2);
                             cntTierra--;
                             cntRio++;
-                        }
                     }
-                }
-                catch(ArrayIndexOutOfBoundsException e){
                 }
             }
         }
     }
-   
+    
     public void asignarAlturas(Random distribAltura){
         distribAltura = new Random();
         for(int i=0; i<25; i++){
@@ -211,12 +217,24 @@ public class Batalla {
             else if(tablero[i][j].getAltura() == 4 || tablero[i][j].getAltura() == 5){
                 ruta = "src/Imagen/Tierra45.png";
             }
+            else if(tablero[i][j].getAltura() == 6 || tablero[i][j].getAltura() == 7){
+                tablero[i][j].setTerreno(4); //Montaña
+                ruta = "src/Imagen/Montania67.png";
+            }
+            else if(tablero[i][j].getAltura() == 8 || tablero[i][j].getAltura() == 9){
+                tablero[i][j].setTerreno(4); //Montaña
+                ruta = "src/Imagen/Montania89.png";
+            }
+            else if(tablero[i][j].getAltura() == 10){
+                tablero[i][j].setTerreno(4); //Montaña
+                ruta = "src/Imagen/Montania10.png";
+            }
         }
         else if(tablero[i][j].getTerreno() == 2){//Río
             if(tablero[i][j].getAltura() <= 5){
                 ruta = "src/Imagen/Rio05.png";
             }
-            else if(tablero[i][j].getAltura() > 6){
+            else if(tablero[i][j].getAltura() >= 6){
                 ruta = "src/Imagen/Rio610.png";
             }
         }
@@ -238,17 +256,6 @@ public class Batalla {
             }
             else if(tablero[i][j].getAltura() == 10){
                 ruta = "src/Imagen/Bosque10.png";
-            }
-        }
-        else if(tablero[i][j].getTerreno() == 4){ //Montaña
-            if(tablero[i][j].getAltura() == 6 || tablero[i][j].getAltura() == 7){
-                ruta = "src/Imagen/Montaña67.png";
-            }
-            else if(tablero[i][j].getAltura() == 8 || tablero[i][j].getAltura() == 9){
-                ruta = "src/Imagen/Montaña89.png";
-            }
-            else if(tablero[i][j].getAltura() == 10){
-                ruta = "src/Imagen/Montaña10.png";
             }
         }
         return ruta;

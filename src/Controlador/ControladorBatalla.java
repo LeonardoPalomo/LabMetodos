@@ -67,20 +67,16 @@ public class ControladorBatalla implements ActionListener {
                     String nombreTerreno = "nada prro :v";
                     switch(terreno){
                         case 1:
-                            if(b.getTablero(i,j).getAltura() <= 5){
-                                nombreTerreno = "Tierra";
-                                break;
-                            }
-                            else if(b.getTablero(i,j).getAltura() > 5){
-                                nombreTerreno = "Montaña";
-                                break;
-                            }
+                            nombreTerreno = "Tierra";
+                            break;
                         case 2:
                             nombreTerreno = "Río";
                             break;
                         case 3:
                             nombreTerreno = "Bosque";
                             break;
+                        case 4:
+                            nombreTerreno = "Montaña";
                     }
                     System.out.println("Posición ["+i+"], ["+j+"]. Su terreno es "+nombreTerreno+", y su altura es "+b.getTablero(i,j).getAltura()+".");
                     //vb.getTablero()[i][j].setBackground(Color.red);
