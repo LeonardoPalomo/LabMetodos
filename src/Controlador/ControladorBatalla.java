@@ -18,10 +18,11 @@ public class ControladorBatalla implements ActionListener, MouseListener {
     private VistaBatalla vb;
     private Batalla b;
     private Random distribAltura;
-    private int areaAsignatura = 3;
+    private int areaAsignatura;
     
     //Constructor
-    public ControladorBatalla(){
+    public ControladorBatalla(int areaAsignatura){
+        this.areaAsignatura = areaAsignatura;
         vb = new VistaBatalla();
         vb.setVisible(true);
         vb.setListener(this);
