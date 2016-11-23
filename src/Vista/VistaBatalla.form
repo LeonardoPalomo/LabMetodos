@@ -42,13 +42,13 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="btnMover" min="-2" pref="103" max="-2" attributes="0"/>
-                          <Component id="btnAtacar" min="-2" pref="103" max="-2" attributes="0"/>
-                          <Component id="btnUsar" alignment="1" min="-2" pref="103" max="-2" attributes="0"/>
-                          <Component id="btnEnd" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnAceptar" alignment="1" min="-2" pref="103" max="-2" attributes="0"/>
-                          <Component id="btnCancelar" alignment="1" min="-2" pref="103" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="btnMover" max="32767" attributes="0"/>
+                          <Component id="btnAceptar" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnCancelar" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnEnd" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnUsar" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnAtacar" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>

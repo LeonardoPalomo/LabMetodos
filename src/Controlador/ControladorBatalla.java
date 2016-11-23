@@ -40,6 +40,7 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                 vb.ponerImagenesTerrenoVista(ruta, i, j);
             }
         }
+        System.out.println(vb.getTablero()[0][0].getSize());
     }
 
     @Override

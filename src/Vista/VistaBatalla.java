@@ -2,11 +2,13 @@
 package Vista;
 
 import Controlador.ControladorPrincipal;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -165,13 +167,13 @@ public class VistaBatalla extends javax.swing.JFrame {
                                 .addContainerGap())))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(67, 67, 67)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnMover, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAtacar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnUsar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEnd)
-                            .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnMover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEnd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnUsar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAtacar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -228,8 +230,7 @@ public class VistaBatalla extends javax.swing.JFrame {
    }
    
    public JButton getbtnAceptar(){
-       return btnAceptar;
-       
+       return btnAceptar;    
     }
    public JButton getbtnCancelar(){
        return btnCancelar;
@@ -296,14 +297,12 @@ public class VistaBatalla extends javax.swing.JFrame {
         this.panelVacio.setLayout(new GridLayout(25,25));
         for(int i=0; i<25; i++){
             for(int j=0; j<25; j++){
-                tablero[i][j] = new JButton();
-                //tablero[i][j].setBorderPainted(true);        
+                tablero[i][j] = new JButton();  
                 tablero[i][j].setHorizontalTextPosition(JButton.CENTER);
                 tablero[i][j].setVerticalTextPosition(JButton.CENTER);
                 panelVacio.add(tablero[i][j]);
             }
         }
-        //return tablero;
     }
     
     public void ponerImagenesTerrenoVista(String ruta, int i, int j){
