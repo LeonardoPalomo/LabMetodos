@@ -247,3 +247,5 @@
 2016/11/23 :: 05:31:43 = El usuario null va a seleccionar una asignatura.
 2016/11/23 :: 05:48:49 = Se ha abierto el juego. 
 2016/11/23 :: 05:48:51 = El usuario null va a seleccionar una asignatura.
+2016/11/23 :: 03:31:31 = Se ha abierto el juego. 
+2016/11/23 :: 03:31:35 = El usuario null va a seleccionar una asignatura.
