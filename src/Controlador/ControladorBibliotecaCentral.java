@@ -29,7 +29,7 @@ public class ControladorBibliotecaCentral implements ActionListener{
             String ahorcadoIniciado = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha iniciado misión extra ahorcado";
             ControladorPrincipal.registrarAccion(ahorcadoIniciado);
             vbc.setVisible(false);
-            ControladorAhorcado ca = new ControladorAhorcado();
+            ControladorCategoria cc = new ControladorCategoria();
         }
      
     }
