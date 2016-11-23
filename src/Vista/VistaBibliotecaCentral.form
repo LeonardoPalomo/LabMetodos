@@ -25,35 +25,68 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="ButtonVolver" min="-2" max="-2" attributes="0"/>
-                  <Component id="ButtonAhorcado" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="botonAhorcado" max="32767" attributes="0"/>
+                  <Component id="botonBuscaminas" pref="120" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="269" max="32767" attributes="0"/>
+              <EmptySpace pref="58" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="botonTresEnRaya" max="32767" attributes="0"/>
+                  <Component id="botonAdivinaLaPalabra" pref="120" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
+              <Component id="botonVolver" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="141" max="32767" attributes="0"/>
-              <Component id="ButtonAhorcado" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-              <Component id="ButtonVolver" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="botonBuscaminas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonTresEnRaya" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="62" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="botonAhorcado" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonAdivinaLaPalabra" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+              <Component id="botonVolver" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="ButtonAhorcado">
+    <Component class="javax.swing.JButton" name="botonAhorcado">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ahorcado"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="ButtonVolver">
+    <Component class="javax.swing.JButton" name="botonVolver">
       <Properties>
         <Property name="text" type="java.lang.String" value="Volver"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonBuscaminas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Buscaminas"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonTresEnRaya">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tres en raya"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonAdivinaLaPalabra">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Adivina la palabra"/>
       </Properties>
     </Component>
   </SubComponents>
