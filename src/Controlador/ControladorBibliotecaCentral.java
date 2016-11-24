@@ -26,11 +26,28 @@ public class ControladorBibliotecaCentral implements ActionListener{
             ControladorVistaPrincipal cvp = new ControladorVistaPrincipal();
         }
         else if(vbc.getButtonAhorcado()==e.getSource()){
-            String ahorcadoIniciado = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha iniciado misión extra ahorcado";
-            ControladorPrincipal.registrarAccion(ahorcadoIniciado);
+            String iniciado = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha iniciado misión extra ahorcado";
+            ControladorPrincipal.registrarAccion(iniciado);
             vbc.setVisible(false);
-            ControladorAhorcado ca = new ControladorAhorcado();
+            ControladorCategoria cc = new ControladorCategoria();
         }
-     
+        else if(vbc.getBotonBuscaminas()==e.getSource()){
+            String iniciado = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha iniciado misión extra buscaminas";
+            ControladorPrincipal.registrarAccion(iniciado);
+            vbc.setVisible(false);
+            //AGREGAR CONTROLADOR RESPECTIVO
+        }
+        else if(vbc.getBotonAdivinaLaPalabra()==e.getSource()){
+            String iniciado = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha iniciado misión extra adivina la palabra";
+            ControladorPrincipal.registrarAccion(iniciado);
+            vbc.setVisible(false);
+            //AGREGAR CONTROLADOR RESPECTIVO
+        }
+        else if(vbc.getBotonTresEnRaya()==e.getSource()){
+            String iniciado = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha iniciado misión extra tres en raya";
+            ControladorPrincipal.registrarAccion(iniciado);
+            vbc.setVisible(false);
+            //AGREGAR CONTROLADOR RESPECTIVO
+        }
     }
 }

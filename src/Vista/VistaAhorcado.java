@@ -267,7 +267,6 @@ public class VistaAhorcado extends javax.swing.JFrame {
         Volver.addActionListener(al);
         Aceptar.addActionListener(al);
         pista.addActionListener(al);
-        Volver.addActionListener(al);
     }
 }
 

@@ -30,14 +30,23 @@ public class VistaBibliotecaCentral extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ButtonAhorcado = new javax.swing.JButton();
-        ButtonVolver = new javax.swing.JButton();
+        botonAhorcado = new javax.swing.JButton();
+        botonVolver = new javax.swing.JButton();
+        botonBuscaminas = new javax.swing.JButton();
+        botonTresEnRaya = new javax.swing.JButton();
+        botonAdivinaLaPalabra = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        ButtonAhorcado.setText("Ahorcado");
+        botonAhorcado.setText("Ahorcado");
 
-        ButtonVolver.setText("Volver");
+        botonVolver.setText("Volver");
+
+        botonBuscaminas.setText("Buscaminas");
+
+        botonTresEnRaya.setText("Tres en raya");
+
+        botonAdivinaLaPalabra.setText("Adivina la palabra");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -45,19 +54,33 @@ public class VistaBibliotecaCentral extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ButtonVolver)
-                    .addComponent(ButtonAhorcado))
-                .addContainerGap(269, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botonAhorcado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonBuscaminas, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botonTresEnRaya, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonAdivinaLaPalabra, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+                .addGap(86, 86, 86))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addComponent(botonVolver)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(141, Short.MAX_VALUE)
-                .addComponent(ButtonAhorcado)
-                .addGap(62, 62, 62)
-                .addComponent(ButtonVolver)
-                .addGap(51, 51, 51))
+                .addGap(56, 56, 56)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonBuscaminas)
+                    .addComponent(botonTresEnRaya))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonAhorcado)
+                    .addComponent(botonAdivinaLaPalabra))
+                .addGap(60, 60, 60)
+                .addComponent(botonVolver)
+                .addGap(53, 53, 53))
         );
 
         pack();
@@ -65,23 +88,40 @@ public class VistaBibliotecaCentral extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonAhorcado;
-    private javax.swing.JButton ButtonVolver;
+    private javax.swing.JButton botonAdivinaLaPalabra;
+    private javax.swing.JButton botonAhorcado;
+    private javax.swing.JButton botonBuscaminas;
+    private javax.swing.JButton botonTresEnRaya;
+    private javax.swing.JButton botonVolver;
     // End of variables declaration//GEN-END:variables
 
 //AGREGAR ACTION LISTENER PARA TODAS LAS FUNCIONALIDADES INDIVIDUALES, LUEGO LOS GETTERS.
     public void agregarListener(ActionListener al){
-        this.ButtonAhorcado.addActionListener(al);
-        this.ButtonVolver.addActionListener(al);
+        this.botonAhorcado.addActionListener(al);
+        this.botonBuscaminas.addActionListener(al);
+        this.botonAdivinaLaPalabra.addActionListener(al);
+        this.botonTresEnRaya.addActionListener(al);
+        this.botonVolver.addActionListener(al);
     }
 
     public JButton getButtonAhorcado() {
-        return ButtonAhorcado;
+        return botonAhorcado;
     }
 
     public JButton getButtonVolver() {
-        return ButtonVolver;
+        return botonVolver;
     }
-
+    
+    public JButton getBotonBuscaminas() {
+        return botonBuscaminas;
+    }
+    
+    public JButton getBotonAdivinaLaPalabra() {
+        return botonAdivinaLaPalabra;
+    }
+    
+    public JButton getBotonTresEnRaya() {
+        return botonTresEnRaya;
+    }
 
 }
