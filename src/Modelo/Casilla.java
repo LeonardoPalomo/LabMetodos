@@ -1,14 +1,12 @@
 
 package Modelo;
-/**
- *
- * @author Usuario
- */
+
 public class Casilla{
     private int tipo; //1 es tierra; 2 es rio; 3 es bosque; 4 es montaña.
     private int altura;
-    private boolean caminable;
-    private boolean disponible;
+    private boolean caminable; //false si es río
+    private boolean disponible; //false si hay un personaje en esta ubicación
+    private Personaje personaje; //el personaje ubicado en esta casilla
     
     //Constructor
     public Casilla(){
@@ -16,6 +14,7 @@ public class Casilla{
         this.altura = 0;
         this.caminable = true;
         this.tipo = 1;      
+        this.personaje = null;
     }
     //Sobrecarga constructor
     public Casilla(int tipoC, int alturaC, boolean caminableC, boolean disponibleC){
@@ -46,4 +45,18 @@ public class Casilla{
     public boolean getDisponible(){
         return this.disponible;
     }
+    public void setCaminable(boolean caminabilidad){
+        this.caminable = caminabilidad;
+    }
+    public boolean getCaminable(){
+        return this.caminable;
+    }
+    public void setPersonaje(Personaje personaje) {
+        this.personaje = personaje;
+        this.disponible = false;
+    }
+    public Personaje getPersonaje() {
+        return personaje;
+    }
+    
 }

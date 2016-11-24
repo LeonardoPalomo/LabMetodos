@@ -276,6 +276,105 @@ public class Batalla {
         }
         return ruta;
     }
+    
+    public String ponerRutaImagenPersonaje(int i, int j){
+        String ruta = "src/Imagen/";
+        int rol = tablero[i][j].getPersonaje().getRol();
+        switch(rol){
+            case 1:
+                ruta = ruta+"Guerrero/Guerrero ";
+                break;
+            case 2:
+                ruta = ruta+"Arquero/Arquero ";
+                break;
+            case 3:
+                ruta = ruta+"Ninja/Ninja ";
+                break;
+            case 4:
+                int subRol = tablero[i][j].getPersonaje().getSubRol();
+                String subRuta = "Mago ";
+                switch(subRol){
+                    case 1:
+                        subRuta = subRuta+"Humanista/MagoH ";
+                        break;
+                    case 2:
+                        subRuta = subRuta+"Tecnologo/MagoT ";
+                        break;
+                    case 3:
+                        subRuta = subRuta+"Medico/MagoM ";
+                        break;
+                }
+                ruta = ruta+"Mago/"+subRuta;
+                break;
+        }
+        int tipoTerreno = tablero[i][j].getTerreno();
+        int altura = tablero[i][j].getAltura();
+        switch(tipoTerreno){
+            case 1:
+                ruta = ruta+"Tierra";
+                if(altura == 0 || altura == 1){
+                    ruta = ruta+"01 ";
+                }
+                else if(altura == 2 || altura == 3){
+                    ruta = ruta+"23 ";
+                }
+                else if(altura == 4 || altura == 5){
+                    ruta = ruta+"45 ";
+                }
+                break;
+            case 2:
+                ruta = ruta+"Rio";
+                if(altura <= 5){
+                    ruta = ruta+"05 ";
+                }
+                else if(altura > 5){
+                    ruta = ruta+"610 ";
+                }
+                break;
+            case 3:
+                ruta = ruta+"Bosque";
+                if(altura == 0 || altura == 1){
+                    ruta = ruta+"01 ";
+                }
+                else if(altura == 2 || altura == 3){
+                    ruta = ruta+"23 ";
+                }
+                else if(altura == 4 || altura == 5){
+                    ruta = ruta+"45 ";
+                }
+                else if(altura == 6 || altura == 7){
+                    ruta = ruta+"67 ";
+                }
+                else if(altura == 8 || altura == 9){
+                    ruta = ruta+"89 ";
+                }
+                else if(altura == 10){
+                    ruta = ruta+"10 ";
+                }
+                break;
+            case 4:
+                ruta = ruta+"Montaña";
+                if(altura == 6 || altura == 7){
+                    ruta = ruta+"67 ";
+                }
+                else if(altura == 8 || altura == 9){
+                    ruta = ruta+"89 ";
+                }
+                else if(altura == 10){
+                    ruta = ruta+"10 ";
+                }
+                break;
+        }
+        boolean alineacion = tablero[i][j].getPersonaje().getEsCpu();
+        if(alineacion){
+            ruta = ruta+"CPU";
+        }
+        else{
+            ruta = ruta+"PJ";
+        }
+        ruta = ruta+".png";
+        return ruta;
+    }
 
     public Casilla getTablero(int i, int j) {
         return tablero[i][j];
@@ -283,6 +382,47 @@ public class Batalla {
 
     public void setTablero(Casilla[][] tablero) {
         this.tablero = tablero;
+    }
+    
+    public String ubicarPersonaje(Personaje personaje, int i, int j){
+        String ruta = "";
+        if(tablero[i][j].getCaminable() && tablero[i][j].getDisponible()){
+            tablero[i][j].setPersonaje(personaje);
+            ruta = ponerRutaImagenPersonaje(i,j);
+        }
+        return ruta;
+    }
+    
+    public String[] ubicarPersonajesCpu(Personaje[] personajesCpu){
+        String[] paramPonerImagen = new String[personajesCpu.length];
+        for(int i=0; i<personajesCpu.length; i++){
+            String ruta = "";
+            Random numero = new Random();
+            boolean comprobador = false;
+            int filaRandom;
+            int columnaRandom;
+            do{
+                filaRandom = numero.nextInt(25);
+                columnaRandom = numero.nextInt(4)+21;
+                if(tablero[filaRandom][columnaRandom].getDisponible() && tablero[filaRandom][columnaRandom].getCaminable()){
+                    comprobador = true;
+                }
+            }while(!comprobador);
+            ruta = ubicarPersonaje(personajesCpu[i], filaRandom, columnaRandom);
+            ruta = ruta+"-"+filaRandom+"-"+columnaRandom;
+            paramPonerImagen[i] = ruta;
+        }
+        return paramPonerImagen;
+    }
+    
+    public Personaje[] obtenerPersonajesCpu(/*Asignatura ramo*/){ //Método que obtiene los personajes del cpu según la asignatura
+        //Pendiente: Implementar método apropiadamente
+        Personaje[] personajesCpu;
+        personajesCpu = new Personaje[5];
+        for(int i=0; i<personajesCpu.length; i++){
+            personajesCpu[i] = new Personaje(i+1);
+        }
+        return personajesCpu;
     }
 
 }

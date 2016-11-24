@@ -37,10 +37,21 @@ public class ControladorBatalla implements ActionListener, MouseListener {
         for(int i=0; i<25; i++){
             for(int j=0; j<25; j++){
                 String ruta = b.ponerRutaImagenesTerreno(i, j);
-                vb.ponerImagenesTerrenoVista(ruta, i, j);
+                vb.ponerImagenTablero(ruta, i, j);
             }
         }
-        System.out.println(vb.getTablero()[0][0].getSize());
+        String[] rutas = b.ubicarPersonajesCpu(b.obtenerPersonajesCpu());
+        for(int k=0; k<rutas.length; k++){
+            String rutaYCoord = rutas[k];
+            String[] rutaYCoordSeparados = rutaYCoord.split("-");
+            String ruta = rutaYCoordSeparados[0];
+            System.out.println(ruta);
+            int fila = Integer.parseInt(rutaYCoordSeparados[1]);
+            System.out.println(fila);
+            int columna = Integer.parseInt(rutaYCoordSeparados[2]);
+            System.out.println(columna);
+            vb.ponerImagenTablero(ruta, fila, columna);
+        }
     }
 
     @Override
@@ -83,7 +94,6 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                             nombreTerreno = "Montaña";
                     }
                     System.out.println("Posición ["+i+"], ["+j+"]. Su terreno es "+nombreTerreno+", y su altura es "+b.getTablero(i,j).getAltura()+".");
-                    //vb.getTablero()[i][j].setBackground(Color.red);
                 }
             }
         }
@@ -129,7 +139,9 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                     vb.setLabelPosicion(i, j);
                     vb.setLabelTerreno(nombreTerreno);
                     vb.setLabelAltura(b.getTablero(i,j).getAltura());
-                    //vb.setLabelPersonaje(); Implementar
+                    if(b.getTablero(i, j).getPersonaje()!=null){
+                        vb.setLabelPersonaje(b.getTablero(i, j).getPersonaje().getNombre());
+                    }
                 }
             }
         }
@@ -144,7 +156,7 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                     vb.setLabelPosicion();
                     vb.setLabelTerreno();
                     vb.setLabelAltura();
-                    //vb.setLabelPersonaje(); Implementar
+                    vb.setLabelPersonaje();
                 }
             }
         }

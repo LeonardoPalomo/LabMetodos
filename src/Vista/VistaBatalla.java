@@ -253,8 +253,8 @@ public class VistaBatalla extends javax.swing.JFrame {
    public void setLabelTerreno(String terreno){
        this.labelTerreno.setText(terreno);
    }
-   public void setLabelPersonaje(){
-       //Por implementar
+   public void setLabelPersonaje(String nombre){
+       this.labelPersonaje.setText(nombre);
    }
    
    //Sobrecarga
@@ -267,10 +267,10 @@ public class VistaBatalla extends javax.swing.JFrame {
    public void setLabelTerreno(){
        this.labelTerreno.setText("");
    }
-   /*public void setLabelPersonaje(){
-       //Por implementar
+   public void setLabelPersonaje(){
+       this.labelPersonaje.setText("");
    }
-   */
+   
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
@@ -305,8 +305,9 @@ public class VistaBatalla extends javax.swing.JFrame {
         }
     }
     
-    public void ponerImagenesTerrenoVista(String ruta, int i, int j){
+    public void ponerImagenTablero(String ruta, int i, int j){
         ImageIcon imagen = new ImageIcon(ruta);
         tablero[i][j].setIcon(imagen);
     }
+    
 }
