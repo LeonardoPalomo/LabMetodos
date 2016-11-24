@@ -1,5 +1,13 @@
 package Modelo;
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
+import static java.lang.Math.abs;
 import java.util.*;
 
 public class Personaje {
@@ -27,6 +35,7 @@ public class Personaje {
    private int[] stock = new int[4]; //Array de ints: [0] atkBajo, [1] atkMedio, [2] atkAlto, [3] especial
    private int precio;
    private String dueno;
+   private int[] posicion;
    private boolean esCpu; //true es cpu, false es del jugador
 
    //Constructor provisorios
@@ -59,6 +68,15 @@ public class Personaje {
        this.dueno = "CPU PAPUH :V";
        this.esCpu = true;
    }
+   
+   /**public Personaje(int hp, int mana, int atkCerca, int atkLejos, int def){
+       this.hpTotal = hp;
+       this.manaTotal = mana;
+       this.atkCerca = atkCerca;
+       this.atkLejos = atkLejos;
+       this.def = def;
+   }**/
+
    
     public String getNombre() {
         return nombre;
@@ -159,11 +177,38 @@ public class Personaje {
     public boolean getEsCpu() {
         return esCpu;
     }
-    
+
    
    public void atacarCerca(int[] posObjetivo) {}
    
-   public void atacarLejos(int[] posObjetivo) {}
+   /**
+    * Funcion que verifica si es posible el ataque a larga distancia
+    * @param posObjetivo arreglo que indica la posicion del objetivo
+     * @return true si se puede o false si no se puede
+    */
+   public boolean verificarAtacarLejos(int[] posObjetivo) {
+       int difFila; //diferencia de fila
+       int difColumna; //diferencia de columna
+       int suma;
+       difFila = abs(posicion[1] - posObjetivo[1]);
+       difColumna = abs(posicion[0] - posObjetivo[0]);
+       suma = difFila + difColumna;
+       return suma == 5 || suma == 6;
+   }
+   
+   /**
+    * Funcion que realiza el ataque lejos
+    * @param def la defensa del personaje objetivo
+    * @return el daño realizado (restar despues con el hp)
+    */
+   public int atacarLejos(int def){
+       int damage;
+       damage = this.atkLejos - def;
+       if (damage < 0){
+           damage = 0;
+       }
+       return damage;
+   }
   
    public void mover(int[] posInicial, int[] posFinal) {}
    
