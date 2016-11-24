@@ -86,7 +86,7 @@ public class ControladorAhorcado implements ActionListener{
 
                     va.setSituacion("Has perdido...");
                     int opcion = JOptionPane.showOptionDialog(null,
-                    "Has perdido... \n ¿Quieres jugar otra partida?",
+                    "Has perdido... La palabra era: "+ palabra +"\n ¿Quieres jugar otra partida?",
                     "Derrota",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
                     null, options, options[0]);
@@ -111,23 +111,22 @@ public class ControladorAhorcado implements ActionListener{
         else if (va.getPista()==e.getSource()){
             
             if(ahorcado.getRecompensa() > 0){
-                String cerrado = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha pedido una pista";
-                ControladorPrincipal.registrarAccion(cerrado);
+                String pista = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha pedido una pista";
+                ControladorPrincipal.registrarAccion(pista);
+                ahorcado.setRecompensa(250);
                 va.setRecompensa(ahorcado.getRecompensa());
-                
-                ArrayList<String> usadosaux = new ArrayList(Arrays.asList(ahorcado.getUsados().split("")));
 
-                if (!usadosaux.contains(letra)){
-                    ahorcado.setRecompensa(250); //cantidad a restar de la recompensa actual
-                    String elegido = ahorcado.seleccionarLetra(mayor);
-                    va.setSituacion("Letra recomendada: " + elegido);
-                }
-                else{
-                    mayor[ahorcado.posicion(letra)] = 0;
-                    String elegido = ahorcado.seleccionarLetra(mayor);
-                    va.setSituacion("Letra recomendada: " + elegido);
+                ArrayList<String> usadosaux = new ArrayList(Arrays.asList(ahorcado.getUsados().split("")));
+                String elegido = ahorcado.seleccionarLetra(mayor);
+                
+                mayor[ahorcado.posicion(elegido)] = 0;
+                
+                while(usadosaux.contains(elegido)){
+                    elegido = ahorcado.seleccionarLetra(mayor);
+                    mayor[ahorcado.posicion(elegido)] = 0;
                 }
                 
+                va.setSituacion("Letra recomendada: " + elegido);
             }
             else {
                 va.setSituacion("No puedes pedir más pistas");  

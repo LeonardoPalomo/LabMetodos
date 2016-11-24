@@ -234,26 +234,24 @@ public class Ahorcado {
         return abecedario[posicion];
     }
     
-    /**
+    /**VER DESPUES SI SE BORRA
      * funcion que retorna la posicion de una letra en el arreglo
      * @param letra
      * @return posicion
      */
     public int posicion(String letra){
         int i;
-        int posicion = 0;
-        int mayor = 0;
         String letras = "abcdefghijklmnopqrstuvwxyz";
         String[] abecedario = letras.split("");
         for(i=0;i<abecedario.length;i++){
-            if (abecedario.equals(letra)){
+            if (abecedario[i].equals(letra)){
                 return i;
             }
         }
         return 0;
     }
     
-    /**
+    /**VER DESPUES SI SE BORRA
      * Funcion que retorna las posiciones en que esta la letra en la palabra
      * @param letra
      * @param palabra
