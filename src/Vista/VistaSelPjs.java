@@ -1,9 +1,13 @@
 
 package Vista;
 
+import Modelo.Personaje;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.ListModel;
 
 public class VistaSelPjs extends javax.swing.JFrame {
 
@@ -244,10 +248,10 @@ public class VistaSelPjs extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane2)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(108, 108, 108)
                 .addComponent(quitar)
-                .addGap(47, 47, 47))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,11 +266,6 @@ public class VistaSelPjs extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         pjsDisponibles.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        pjsDisponibles.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "PJ 1", "PJ 2", "PJ 3", "PJ 4", "PJ 5", "PJ 6" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(pjsDisponibles);
 
         agregar.setText("Agregar");
@@ -280,9 +279,9 @@ public class VistaSelPjs extends javax.swing.JFrame {
                 .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(102, 102, 102)
                 .addComponent(agregar)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,9 +307,9 @@ public class VistaSelPjs extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
+                        .addGap(162, 162, 162)
                         .addComponent(jLabel1)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,12 +376,21 @@ public class VistaSelPjs extends javax.swing.JFrame {
         return listo;
     }
 
-    public JList getPjsDisponibles() {
-        return pjsDisponibles;
+    public String getPjAgregar() {
+        String seleccionado = pjsDisponibles.getSelectedValue().toString();
+        return seleccionado;
     }
 
-    public JList getPjsSeleccionados() {
-        return pjsSeleccionados;
+    public Personaje[] getPjsSeleccionados() {
+        Personaje[] pjsSel;
+        ListModel listaPjsSel = this.pjsSeleccionados.getModel();
+        int largoListaPjsSel;
+        largoListaPjsSel = listaPjsSel.getSize();
+        pjsSel = new Personaje[largoListaPjsSel];
+        for(int i=0; i<largoListaPjsSel; i++){
+            pjsSel[i] = (Personaje)listaPjsSel.getElementAt(i);
+        }
+        return pjsSel;
     }
 
     public JButton getQuitar() {
@@ -441,8 +449,12 @@ public class VistaSelPjs extends javax.swing.JFrame {
         this.labelXp.setText(xp);
     }
 
-    public void setPjsDisponibles() {
-        this.pjsDisponibles = pjsDisponibles;
+    public void setPjsDisponibles(ArrayList<Personaje> pjsDispon) {
+         DefaultListModel listModel = new DefaultListModel();
+         for(Personaje pj:pjsDispon){
+             listModel.addElement(pj);
+         }
+         this.pjsDisponibles.setModel(listModel);
     }
 
     public void setPjsSeleccionados(JList pjsSeleccionados) {

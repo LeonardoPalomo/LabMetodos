@@ -31,14 +31,6 @@ public class ControladorSelAsig implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         //throw new UnsupportedOperationException("Not supported yet.");
-        
-        try{
-            if(e.getSource() != vsac.getAtras() || e.getSource() != vsae.getAtras()){
-                ControladorSelPjs csp = new ControladorSelPjs();
-            }
-        }
-        catch(NullPointerException n){
-        }
         try{
             if(vsac.getAtras()==e.getSource()){
                 vsac.dispose();
@@ -52,6 +44,18 @@ public class ControladorSelAsig implements ActionListener{
                 ControladorVistaPrincipal cvp = new ControladorVistaPrincipal();
             }
         } catch (NullPointerException n) {
+        }
+        try{
+            if(e.getSource() != vsac.getAtras()){
+                ControladorSelPjs csp = new ControladorSelPjs();
+            }
+        }catch(NullPointerException n){
+        }
+        try{
+            if(e.getSource() != vsae.getAtras()){
+                ControladorSelPjs csp = new ControladorSelPjs();
+            }
+        }catch(NullPointerException n){
         }
         try {
             if (vsac.getAdminProySoft() == e.getSource()) {
@@ -98,6 +102,7 @@ public class ControladorSelAsig implements ActionListener{
         try {
             if (vsac.getCalculo1() == e.getSource()) {
                 vsac.dispose();
+                ControladorBatalla.areaAsignatura = 1;
                 //ControladorBatalla cb = new ControladorBatalla(1);
             }
         } catch (NullPointerException n) {
@@ -129,6 +134,7 @@ public class ControladorSelAsig implements ActionListener{
         try {
             if (vsac.getEcono() == e.getSource()) {
                 vsac.dispose();
+                ControladorBatalla.areaAsignatura = 2;
                 //ControladorBatalla cb = new ControladorBatalla(2);
             }
         } catch (NullPointerException n) {
@@ -281,6 +287,7 @@ public class ControladorSelAsig implements ActionListener{
             if (vsac.getMetodosProgra() == e.getSource()) {
                 //Momentáneo~
                 vsac.dispose();
+                ControladorBatalla.areaAsignatura = 3;
                 //ControladorBatalla cb = new ControladorBatalla(3);
             }
         } catch (NullPointerException n) {
@@ -463,6 +470,7 @@ public class ControladorSelAsig implements ActionListener{
         try {
             if (vsae.getCalculo1() == e.getSource()) {
                 vsac.dispose();
+                ControladorBatalla.areaAsignatura = 1;
                 //ControladorBatalla cb = new ControladorBatalla(1);
             }
         } catch (NullPointerException n) {
@@ -482,6 +490,7 @@ public class ControladorSelAsig implements ActionListener{
         try {
             if (vsae.getEcono() == e.getSource()) {
                 vsac.dispose();
+                ControladorBatalla.areaAsignatura = 2;
                 //ControladorBatalla cb = new ControladorBatalla(2);
             }
         } catch (NullPointerException n) {
@@ -597,6 +606,7 @@ public class ControladorSelAsig implements ActionListener{
         try {
             if (vsae.getMetProgra() == e.getSource()) {
                 vsae.dispose();
+                ControladorBatalla.areaAsignatura = 3;
                 //ControladorBatalla cb = new ControladorBatalla(3);
             }
         } catch (NullPointerException n) {

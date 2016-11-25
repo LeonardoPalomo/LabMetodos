@@ -57,6 +57,82 @@ public class Personaje {
                this.stock[3] = 1;
                this.esCpu = false;
                this.setDueño(ControladorLogin.usuarioActivo);
+               break;
+           case 2:
+               this.hpTotal = 80;
+               this.manaTotal = 0;
+               this.atkCerca = 5;
+               this.atkLejos = 20;
+               this.def = 6;
+               this.spDef = 5;
+               this.nivel = 1;
+               this.movTotal = 8;
+               this.velocidad = 11;
+               this.tipo = 1;
+               this.rol = rol;
+               this.subRol = 0;
+               this.stock[0] = 3;
+               this.stock[1] = 3;
+               this.stock[2] = 3;
+               this.stock[3] = 1;
+               this.esCpu = false;
+               this.setDueño(ControladorLogin.usuarioActivo);
+               break;
+           case 3:
+               this.hpTotal = 90;
+               this.manaTotal = 10;
+               this.atkCerca = 15;
+               this.atkLejos = 8;
+               this.spAtkCerca = 10;
+               this.spAtkLejos = 6;
+               this.def = 7;
+               this.spDef = 6;
+               this.nivel = 1;
+               this.movTotal = 10;
+               this.velocidad = 12;
+               this.tipo = 1;
+               this.rol = rol;
+               this.subRol = 0;
+               this.stock[0] = 3;
+               this.stock[1] = 3;
+               this.stock[2] = 3;
+               this.stock[3] = 1;
+               this.esCpu = false;
+               this.setDueño(ControladorLogin.usuarioActivo);
+               break;
+           case 4:
+               this.hpTotal = 70;
+               this.manaTotal = 30;
+               this.atkCerca = 5;
+               this.atkLejos = 5;
+               this.def = 5;
+               this.spDef = 8;
+               this.nivel = 1;
+               this.movTotal = 6;
+               this.velocidad = 9;
+               this.tipo = 1;
+               this.rol = rol;
+               switch(subRol){
+                   case 1:
+                       this.spAtkCerca = 20;
+                       this.spAtkLejos = 10;
+                       break;
+                   case 2:
+                       this.spAtkCerca = 10;
+                       this.spAtkLejos = 20;
+                       break;
+                   case 3:
+                       this.spAtkCerca = 10;
+                       this.spAtkLejos = 10;
+               }
+               this.subRol = subRol;
+               this.stock[0] = 3;
+               this.stock[1] = 3;
+               this.stock[2] = 3;
+               this.stock[3] = 1;
+               this.esCpu = false;
+               this.setDueño(ControladorLogin.usuarioActivo);
+               break;
        }
        
    }
