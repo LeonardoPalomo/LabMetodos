@@ -47,6 +47,7 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                 vb.ponerImagenTablero(ruta, i, j);
             }
         }
+        //aqui se colocan pjs de la cpu en el tablero
         String[] rutas = b.ubicarPersonajesCpu(b.obtenerPersonajesCpu());
         for(int k=0; k<rutas.length; k++){
             String rutaYCoord = rutas[k];

@@ -184,37 +184,52 @@ public class Personaje {
         this.dueno = "CPU";
     }
     
-   public void atacarCerca(int[] posObjetivo) {}
+    public void atacarCerca(int[] posObjetivo) {}
    
    /**
     * Funcion que verifica si es posible el ataque a larga distancia
     * @param posObjetivo arreglo que indica la posicion del objetivo
      * @return true si se puede o false si no se puede
     */
-   public boolean verificarAtacarLejos(int[] posObjetivo) {
+    public boolean verificarAtacarLejos(int[] posObjetivo) {
        int difFila; //diferencia de fila
        int difColumna; //diferencia de columna
        int suma;
-       difFila = abs(posicion[1] - posObjetivo[1]);
+       difFila = abs(posicion[1] - posObjetivo[1]); //no estoy seguro si es this.posicion
        difColumna = abs(posicion[0] - posObjetivo[0]);
        suma = difFila + difColumna;
        return suma == 5 || suma == 6;
-   }
+    }
+   
+   /**
+    * Funcion que verifica si es posible el ataque a corto alcance
+    * @param posObjetivo arreglo que indica la posicion del objetivo
+    * @return 
+    */
+    public boolean verificarAtacarCorto(int[] posObjetivo) {
+       int difFila; //diferencia de fila
+       int difColumna; //diferencia de columna
+       int suma;
+       difFila = abs(posicion[1] - posObjetivo[1]); //no estoy seguro si es this.posicion
+       difColumna = abs(posicion[0] - posObjetivo[0]);
+       suma = difFila + difColumna;
+       return suma == 1 || suma == 2;
+    }
    
    /**
     * Funcion que realiza el ataque lejos
     * @param def la defensa del personaje objetivo
     * @return el daño realizado (restar despues con el hp)
     */
-   public int atacarLejos(int def){
+    public int atacarLejos(int def){
        int damage;
        damage = this.atkLejos - def;
        if (damage < 0){
            damage = 0;
        }
        return damage;
-   }
+    }
   
-   public void mover(int[] posInicial, int[] posFinal) {}
-   
+    public void mover(int[] posInicial, int[] posFinal) {}
+    //public boolean posibleMover(int[] posInicial, int[] posFinal)
 }
