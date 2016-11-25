@@ -418,7 +418,7 @@ public class Batalla {
     public Personaje[] obtenerPersonajesCpu(/*Asignatura ramo*/){ //Método que obtiene los personajes del cpu según la asignatura
         //Pendiente: Implementar método apropiadamente
         Personaje[] personajesCpu;
-        personajesCpu = new Personaje[5];
+        personajesCpu = new Personaje[6];
         for(int i=0; i<personajesCpu.length; i++){
             personajesCpu[i] = new Personaje(i+1);
         }

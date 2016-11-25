@@ -276,8 +276,8 @@ public class Ahorcado {
      */
     public String arraylisttostring(ArrayList<String> arreglo){
         String palabra = "";
-        for(int i=1; i <= arreglo.size(); i++){
-            palabra = palabra + arreglo.get(i-1);
+        for(int i=0; i < arreglo.size(); i++){
+            palabra = palabra + arreglo.get(i);
         
         }
         return palabra;
