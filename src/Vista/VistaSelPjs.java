@@ -1,6 +1,10 @@
 
 package Vista;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JList;
+
 public class VistaSelPjs extends javax.swing.JFrame {
 
     public VistaSelPjs() {
@@ -13,8 +17,8 @@ public class VistaSelPjs extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        listo = new javax.swing.JButton();
+        volver = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -27,6 +31,18 @@ public class VistaSelPjs extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        labelNombre = new javax.swing.JLabel();
+        labelLvl = new javax.swing.JLabel();
+        labelXp = new javax.swing.JLabel();
+        labelTipo = new javax.swing.JLabel();
+        labelRol = new javax.swing.JLabel();
+        labelHp = new javax.swing.JLabel();
+        labelMana = new javax.swing.JLabel();
+        labelAtkCercaLejos = new javax.swing.JLabel();
+        labelSpAtkCercaLejos = new javax.swing.JLabel();
+        labelDef = new javax.swing.JLabel();
+        labelSpDef = new javax.swing.JLabel();
+        labelVelocidad = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         pjsSeleccionados = new javax.swing.JList();
@@ -38,7 +54,6 @@ public class VistaSelPjs extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(502, 452));
-        setPreferredSize(new java.awt.Dimension(502, 452));
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -47,15 +62,15 @@ public class VistaSelPjs extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setPreferredSize(new java.awt.Dimension(185, 345));
 
-        jButton1.setText("¡Listo!");
-        jButton1.setMaximumSize(new java.awt.Dimension(85, 23));
-        jButton1.setMinimumSize(new java.awt.Dimension(85, 23));
-        jButton1.setPreferredSize(new java.awt.Dimension(85, 23));
+        listo.setText("¡Listo!");
+        listo.setMaximumSize(new java.awt.Dimension(85, 23));
+        listo.setMinimumSize(new java.awt.Dimension(85, 23));
+        listo.setPreferredSize(new java.awt.Dimension(85, 23));
 
-        jButton2.setText("Volver");
-        jButton2.setMaximumSize(new java.awt.Dimension(85, 23));
-        jButton2.setMinimumSize(new java.awt.Dimension(85, 23));
-        jButton2.setPreferredSize(new java.awt.Dimension(85, 23));
+        volver.setText("Volver");
+        volver.setMaximumSize(new java.awt.Dimension(85, 23));
+        volver.setMinimumSize(new java.awt.Dimension(85, 23));
+        volver.setPreferredSize(new java.awt.Dimension(85, 23));
 
         jLabel2.setText("Nombre");
 
@@ -65,7 +80,7 @@ public class VistaSelPjs extends javax.swing.JFrame {
 
         jLabel5.setText("Puntos de Vida");
 
-        jLabel6.setText("Puntos de Mana");
+        jLabel6.setText("Puntos de Magia");
 
         jLabel7.setText("Ataque (Cerca/Lejos)");
 
@@ -81,6 +96,30 @@ public class VistaSelPjs extends javax.swing.JFrame {
 
         jLabel13.setText("Experiencia");
 
+        labelNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        labelLvl.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        labelXp.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        labelTipo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        labelRol.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        labelHp.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        labelMana.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        labelAtkCercaLejos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        labelSpAtkCercaLejos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        labelDef.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        labelSpDef.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        labelVelocidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -88,65 +127,100 @@ public class VistaSelPjs extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 47, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel13))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLvl, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelXp, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelTipo, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelRol, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelHp, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelMana, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelAtkCercaLejos, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelSpAtkCercaLejos, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelDef, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelSpDef, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelVelocidad, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(listo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(volver, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {labelAtkCercaLejos, labelDef, labelHp, labelLvl, labelMana, labelNombre, labelRol, labelSpAtkCercaLejos, labelSpDef, labelTipo, labelVelocidad, labelXp});
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel10, jLabel11, jLabel12, jLabel13, jLabel2, jLabel3, jLabel4, jLabel5, jLabel6, jLabel7, jLabel8, jLabel9});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelLvl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel13)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelXp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelTipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelRol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelHp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelMana, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelAtkCercaLejos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelSpAtkCercaLejos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelDef, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelSpDef, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel9)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(labelVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(listo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(volver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -258,8 +332,6 @@ public class VistaSelPjs extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -278,10 +350,104 @@ public class VistaSelPjs extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelAtkCercaLejos;
+    private javax.swing.JLabel labelDef;
+    private javax.swing.JLabel labelHp;
+    private javax.swing.JLabel labelLvl;
+    private javax.swing.JLabel labelMana;
+    private javax.swing.JLabel labelNombre;
+    private javax.swing.JLabel labelRol;
+    private javax.swing.JLabel labelSpAtkCercaLejos;
+    private javax.swing.JLabel labelSpDef;
+    private javax.swing.JLabel labelTipo;
+    private javax.swing.JLabel labelVelocidad;
+    private javax.swing.JLabel labelXp;
+    private javax.swing.JButton listo;
     private javax.swing.JList pjsDisponibles;
     private javax.swing.JList pjsSeleccionados;
     private javax.swing.JButton quitar;
+    private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getAgregar() {
+        return agregar;
+    }
+
+    public JButton getListo() {
+        return listo;
+    }
+
+    public JList getPjsDisponibles() {
+        return pjsDisponibles;
+    }
+
+    public JList getPjsSeleccionados() {
+        return pjsSeleccionados;
+    }
+
+    public JButton getQuitar() {
+        return quitar;
+    }
+
+    public JButton getVolver() {
+        return volver;
+    }
+
+    public void setLabelAtkCercaLejos(String atkCercaLejos) {
+        this.labelAtkCercaLejos.setText(atkCercaLejos);
+    }
+
+    public void setLabelDef(String def) {
+        this.labelDef.setText(def);
+    }
+
+    public void setLabelHp(String hp) {
+        this.labelHp.setText(hp);
+    }
+
+    public void setLabelLvl(String lvl) {
+        this.labelLvl.setText(lvl);
+    }
+
+    public void setLabelMana(String mana) {
+        this.labelMana.setText(mana);
+    }
+
+    public void setLabelNombre(String nombre) {
+        this.labelNombre.setText(nombre);
+    }
+
+    public void setLabelRol(String rol) {
+        this.labelRol.setText(rol);
+    }
+
+    public void setLabelSpAtkCercaLejos(String spAtkCercaLejos) {
+        this.labelSpAtkCercaLejos.setText(spAtkCercaLejos);
+    }
+
+    public void setLabelSpDef(String spDef) {
+        this.labelSpDef.setText(spDef);
+    }
+
+    public void setLabelTipo(String tipo) {
+        this.labelTipo.setText(tipo);
+    }
+
+    public void setLabelVelocidad(String velocidad) {
+        this.labelVelocidad.setText(velocidad);
+    }
+
+    public void setLabelXp(String xp) {
+        this.labelXp.setText(xp);
+    }
+
+    public void setPjsDisponibles() {
+        this.pjsDisponibles = pjsDisponibles;
+    }
+
+    public void setPjsSeleccionados(JList pjsSeleccionados) {
+        this.pjsSeleccionados = pjsSeleccionados;
+    }
 
     
 

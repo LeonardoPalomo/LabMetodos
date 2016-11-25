@@ -1,10 +1,13 @@
 package Controlador;
 
+import Modelo.Personaje;
 import Vista.VistaPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class ControladorVistaPrincipal implements ActionListener{
+    private ArrayList<Personaje> pjsJugador;
     private VistaPrincipal vp;
 
     public ControladorVistaPrincipal(){
@@ -12,6 +15,8 @@ public class ControladorVistaPrincipal implements ActionListener{
         vp.setLocationRelativeTo(null);
         vp.agregarListener(this);
         vp.setVisible(true);
+        //Se crea ArrayList de pjs provisorio, a futuro recibirá los pjs desde la BDD
+        
         
     }
     @Override

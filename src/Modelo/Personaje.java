@@ -1,5 +1,6 @@
 package Modelo;
 
+import Controlador.ControladorLogin;
 import static java.lang.Math.abs;
 import java.util.*;
 
@@ -33,6 +34,32 @@ public class Personaje {
 
    //Constructor provisorios
    public Personaje(){}
+   
+   public Personaje(String nombre, int rol, int subRol){
+       this.nombre = nombre;
+       switch(rol){
+           case 1:
+               this.hpTotal = 100;
+               this.manaTotal = 0;
+               this.atkCerca = 20;
+               this.atkLejos = 5;
+               this.def = 8;
+               this.spDef = 6;
+               this.nivel = 1;
+               this.movTotal = 8;
+               this.velocidad = 10;
+               this.tipo = 1;
+               this.rol = rol;
+               this.subRol = 0;
+               this.stock[0] = 3;
+               this.stock[1] = 3;
+               this.stock[2] = 3;
+               this.stock[3] = 1;
+               this.esCpu = false;
+               this.setDueño(ControladorLogin.usuarioActivo);
+       }
+       
+   }
    
    public Personaje(int i){
        this.nombre = "Genérico "+i;

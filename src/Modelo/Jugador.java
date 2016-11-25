@@ -14,7 +14,7 @@ public class Jugador {
    private Malla malla;
    private int tipoMalla;//no va
    private int[] asigAprobadas;
-   private Personaje[] personajes;
+   private ArrayList<Personaje> personajes;
    private Item[] inventario;
    private boolean tipo;//no va
    private String pjPrincipal;
@@ -61,7 +61,7 @@ public class Jugador {
         return asigAprobadas;
     }
 
-    public Personaje[] getPersonajes() {
+    public ArrayList<Personaje> getPersonajes() {
         return personajes;
     }
 
