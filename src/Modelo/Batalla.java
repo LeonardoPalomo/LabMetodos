@@ -10,21 +10,21 @@ public class Batalla {
    private Personaje[] pjsCpu;
    private Casilla[][] tablero;
    
-   public Batalla(){
-       tablero = new Casilla[25][25];
-       for(int i=0;i<25;i++){
-           for(int j=0;j<25;j++){
-               tablero[i][j] = new Casilla();
-           }
-       }
-   }
+    public Batalla(){
+        tablero = new Casilla[25][25];
+        for(int i=0;i<25;i++){
+            for(int j=0;j<25;j++){
+                tablero[i][j] = new Casilla();
+            }
+        }
+    }
    
-   public void terminarTurno() {}
-   
-   public int verificarGanador(Personaje[] pjsJugador, Personaje[] pjsCpu) {
-      return 0;
-   }
-   
+    public void terminarTurno() {}
+
+    public int verificarGanador(Personaje[] pjsJugador, Personaje[] pjsCpu) {
+       return 0;
+    }
+
     public void asignarTerrenos(int areaAsignatura, Random numeroRandom){
         numeroRandom = new Random();
         int cntSuelo = 0;

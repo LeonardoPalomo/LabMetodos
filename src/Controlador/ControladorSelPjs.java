@@ -6,6 +6,8 @@ import Vista.VistaSelPjs;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class ControladorSelPjs implements ActionListener, ListSelectionListener{
     
@@ -18,13 +20,13 @@ public class ControladorSelPjs implements ActionListener, ListSelectionListener{
         pjsDisponibles = ControladorVistaPrincipal.pjsJugador;
         pjsSeleccionados = new ArrayList();
         vsp = new VistaSelPjs();
-        vsp.agregarListener(this);
         vsp.setVisible(true);
         vsp.setLocationRelativeTo(null);
         vsp.setPjsDisponibles(pjsDisponibles);
         vsp.getQuitar().setEnabled(false);
         vsp.getListo().setEnabled(false);
-        
+        vsp.agregarListener(this);
+        vsp.agregarListListener(this);
     }
 
     @Override
@@ -75,6 +77,30 @@ public class ControladorSelPjs implements ActionListener, ListSelectionListener{
         if(vsp.getVolver() == e.getSource()){
             vsp.dispose();
             ControladorSelAsig csa = new ControladorSelAsig(ControladorLogin.malla);
+        }
+    }
+    
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        if (!e.getValueIsAdjusting()) {
+            if(e.getSource() == vsp.getListaPjsDisponibles()){
+                if(vsp.getListaPjsDisponibles().getSelectedValue() != null){
+                    Personaje pj;
+                    int index = vsp.getListaPjsDisponibles().getSelectedIndex();
+                    pj = pjsDisponibles.get(index);
+                    vsp.getListaPjsSeleccionados().clearSelection();
+                    vsp.setLabels(pj.getDatosSelPj());
+                }
+            }
+            if(e.getSource() == vsp.getListaPjsSeleccionados()){
+                if(vsp.getListaPjsSeleccionados().getSelectedValue() != null){
+                    Personaje pj;
+                    int index = vsp.getListaPjsSeleccionados().getSelectedIndex();
+                    pj = pjsSeleccionados.get(index);
+                    vsp.getListaPjsDisponibles().clearSelection();
+                    vsp.setLabels(pj.getDatosSelPj());
+                }
+            }
         }
     }
     

@@ -23,6 +23,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         bibliotecaCentral = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Menú principal");
 

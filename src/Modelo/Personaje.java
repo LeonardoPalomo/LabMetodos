@@ -173,6 +173,67 @@ public class Personaje {
        this.def = def;
    }**/
 
+    public String[] getDatosSelPj(){
+        String[] datos = new String[15];
+        datos[0] = this.getNombre();
+        datos[1] = String.valueOf(this.getNivel());
+        datos[2] = String.valueOf(this.getExperiencia());
+        String tipo = "";
+        switch(this.getTipo()){
+            case 1:
+                tipo = "Alumno";
+                break;
+            case 2:
+                tipo = "Ayudante";
+                break;
+            case 3:
+                tipo = "Profesor";
+                break;
+        }
+        datos[3] = tipo;
+        String rol = "";
+        switch(this.getRol()){
+            case 1:
+                rol = "Guerrero";
+                break;
+            case 2:
+                rol = "Arquero";
+                break;
+            case 3:
+                rol = "Ninja";
+                break;
+            case 4:
+                rol = "Mago";
+                break;
+        }
+        datos[4] = rol;
+        String subRol = "";
+        switch(this.getSubRol()){
+            case 1:
+                subRol = "Humanista";
+                break;
+            case 2:
+                subRol = "Tecnólogo";
+                break;
+            case 3:
+                subRol = "Médico";
+                break;
+            case 0:
+                subRol = "";
+                break;
+        }
+        datos[5] = subRol;
+        datos[6] = String.valueOf(this.getHpTotal());
+        datos[7] = String.valueOf(this.getManaTotal());
+        datos[8] = String.valueOf(this.getAtkCerca());
+        datos[9] = String.valueOf(this.getAtkLejos());
+        datos[10] = String.valueOf(this.getSpAtkCerca());
+        datos[11] = String.valueOf(this.getSpAtkLejos());
+        datos[12] = String.valueOf(this.getDef());
+        datos[13] = String.valueOf(this.getSpDef());
+        datos[14] = String.valueOf(this.getVelocidad());
+        return datos;
+    }
    
     public String getNombre() {
         return nombre;
