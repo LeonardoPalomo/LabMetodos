@@ -543,6 +543,10 @@ public class Batalla {
         return paramPonerImagen;
     }
     
+    public void ubicarPersonajesJugador(){
+        
+    }
+    
     public Personaje[] obtenerPersonajesCpu(/*Asignatura ramo*/){ //Método que obtiene los personajes del cpu según la asignatura
         //Pendiente: Implementar método apropiadamente
         Personaje[] personajesCpu;
