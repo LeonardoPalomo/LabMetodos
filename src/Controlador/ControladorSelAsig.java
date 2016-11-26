@@ -89,7 +89,8 @@ public class ControladorSelAsig implements ActionListener{
         }
         try {
             if (vsac.getCalculo1() == e.getSource()) {
-                
+                vsac.dispose();
+                ControladorBatalla cb = new ControladorBatalla(1);
             }
         } catch (NullPointerException n) {
         }
@@ -119,7 +120,8 @@ public class ControladorSelAsig implements ActionListener{
         }
         try {
             if (vsac.getEcono() == e.getSource()) {
-                
+                vsac.dispose();
+                ControladorBatalla cb = new ControladorBatalla(2);
             }
         } catch (NullPointerException n) {
         }
@@ -419,6 +421,19 @@ public class ControladorSelAsig implements ActionListener{
             }
         } catch (NullPointerException n) {
         }
+        /**
+         * 
+         * 
+         * 
+         * 
+         * 
+         * Fin Civil
+         * 
+         * 
+         * 
+         * 
+         * 
+         */
         try {
             if (vsae.getAdminGestInfo() == e.getSource()) {
                 
@@ -439,7 +454,8 @@ public class ControladorSelAsig implements ActionListener{
         }
         try {
             if (vsae.getCalculo1() == e.getSource()) {
-                
+                vsac.dispose();
+                ControladorBatalla cb = new ControladorBatalla(1);
             }
         } catch (NullPointerException n) {
         }
@@ -457,7 +473,8 @@ public class ControladorSelAsig implements ActionListener{
         }
         try {
             if (vsae.getEcono() == e.getSource()) {
-                
+                vsac.dispose();
+                ControladorBatalla cb = new ControladorBatalla(2);
             }
         } catch (NullPointerException n) {
         }
@@ -571,7 +588,8 @@ public class ControladorSelAsig implements ActionListener{
         }
         try {
             if (vsae.getMetProgra() == e.getSource()) {
-                
+                vsae.dispose();
+                ControladorBatalla cb = new ControladorBatalla(3);
             }
         } catch (NullPointerException n) {
         }

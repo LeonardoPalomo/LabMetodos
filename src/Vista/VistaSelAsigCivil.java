@@ -28,12 +28,12 @@ public class VistaSelAsigCivil extends javax.swing.JFrame {
         sem1 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         asig1 = new javax.swing.JPanel();
+        tdp = new javax.swing.JButton();
         calculo1 = new javax.swing.JButton();
         algebra1 = new javax.swing.JButton();
         fisica1 = new javax.swing.JButton();
         introIng = new javax.swing.JButton();
         metEstudio = new javax.swing.JButton();
-        tdp = new javax.swing.JButton();
         sem2 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         asig2 = new javax.swing.JPanel();
@@ -182,36 +182,55 @@ public class VistaSelAsigCivil extends javax.swing.JFrame {
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Semestre 1");
 
+        tdp.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        tdp.setText("<html><center>Taller de <br><center>Desarrollo <br><center>Personal e <br><center>Integral");
+        tdp.setAlignmentX(0.5F);
+        tdp.setMargin(new java.awt.Insets(2, 8, 2, 8));
+
         calculo1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         calculo1.setText("<html>Cálculo I para <br><center>Ingeniería");
+        calculo1.setAlignmentX(0.5F);
         calculo1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        calculo1.setMargin(new java.awt.Insets(2, 8, 2, 8));
+        calculo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calculo1ActionPerformed(evt);
+            }
+        });
 
         algebra1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         algebra1.setText("<html>Álgebra I para <br><center>Ingeniería");
-        algebra1.setMargin(new java.awt.Insets(2, 0, 2, 0));
+        algebra1.setAlignmentX(0.5F);
+        algebra1.setMargin(new java.awt.Insets(2, 8, 2, 8));
 
         fisica1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         fisica1.setText("<html>Física I para <br><center>Ingeniería");
+        fisica1.setAlignmentX(0.5F);
+        fisica1.setMargin(new java.awt.Insets(2, 8, 2, 8));
 
         introIng.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         introIng.setText("<html>Introducción <br><center>a la <br><center>Ingeniería");
+        introIng.setAlignmentX(0.5F);
+        introIng.setMargin(new java.awt.Insets(2, 8, 2, 8));
 
         metEstudio.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         metEstudio.setText("<html>Métodos de <br><center>Estudio");
-
-        tdp.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        tdp.setText("<html><center>Taller de <br><center>Desarrollo <br><center>Personal e <br><center>Integral");
+        metEstudio.setAlignmentX(0.5F);
+        metEstudio.setMargin(new java.awt.Insets(2, 8, 2, 8));
 
         javax.swing.GroupLayout asig1Layout = new javax.swing.GroupLayout(asig1);
         asig1.setLayout(asig1Layout);
         asig1Layout.setHorizontalGroup(
             asig1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(calculo1)
-            .addComponent(algebra1)
-            .addComponent(fisica1)
-            .addComponent(introIng)
-            .addComponent(metEstudio)
-            .addComponent(tdp)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, asig1Layout.createSequentialGroup()
+                .addGroup(asig1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(calculo1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(algebra1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tdp, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(introIng, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(metEstudio, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(fisica1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(1, 1, 1))
         );
         asig1Layout.setVerticalGroup(
             asig1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,7 +246,7 @@ public class VistaSelAsigCivil extends javax.swing.JFrame {
                 .addComponent(metEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tdp, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 64, Short.MAX_VALUE))
+                .addGap(0, 72, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout sem1Layout = new javax.swing.GroupLayout(sem1);
@@ -236,10 +255,9 @@ public class VistaSelAsigCivil extends javax.swing.JFrame {
             sem1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sem1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(sem1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(asig1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(asig1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         sem1Layout.setVerticalGroup(
             sem1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -324,14 +342,17 @@ public class VistaSelAsigCivil extends javax.swing.JFrame {
         sem1y2Layout.setHorizontalGroup(
             sem1y2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sem1y2Layout.createSequentialGroup()
-                .addComponent(sem1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sem1, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(sem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         sem1y2Layout.setVerticalGroup(
             sem1y2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(sem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(sem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(sem1y2Layout.createSequentialGroup()
+                .addGroup(sem1y2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sem1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14))
         );
 
         javax.swing.GroupLayout año1Layout = new javax.swing.GroupLayout(año1);
@@ -381,6 +402,11 @@ public class VistaSelAsigCivil extends javax.swing.JFrame {
 
         metodosProgra.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         metodosProgra.setText("<html><center>Métodos de <br><center>Programación");
+        metodosProgra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                metodosPrograActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout asig3Layout = new javax.swing.GroupLayout(asig3);
         asig3.setLayout(asig3Layout);
@@ -1121,7 +1147,7 @@ public class VistaSelAsigCivil extends javax.swing.JFrame {
                 .addGroup(sem11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(asig11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
         sem11Layout.setVerticalGroup(
             sem11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1184,7 +1210,7 @@ public class VistaSelAsigCivil extends javax.swing.JFrame {
         sem11y12Layout.setHorizontalGroup(
             sem11y12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sem11y12Layout.createSequentialGroup()
-                .addComponent(sem11, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sem11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(sem12, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1254,7 +1280,7 @@ public class VistaSelAsigCivil extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(458, 458, 458)
                         .addComponent(jLabel1)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1275,7 +1301,7 @@ public class VistaSelAsigCivil extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -1304,6 +1330,14 @@ public class VistaSelAsigCivil extends javax.swing.JFrame {
     private void redesCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redesCompActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_redesCompActionPerformed
+
+    private void calculo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_calculo1ActionPerformed
+
+    private void metodosPrograActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_metodosPrograActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_metodosPrograActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adminProySoft;

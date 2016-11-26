@@ -77,96 +77,178 @@ public class Batalla {
             }
         }
     }
+    
+    public void corregirTerrenosTodos(){
+        this.corregirTerrenos(2);
+        this.corregirTerrenos(3);
+    }
 
-    public void corregirRios(){
-        int riosCerca;
+    public void corregirTerrenos(int terreno){ //Para rios y bosques
+        int terrenoCorregirCerca;
         int cntTierra = 0;
-        int cntRio = 0;
+        int cntTerrenoCorregir = 0;
         for(int i=0; i<25; i++){
             for(int j=0; j<25; j++){
-                riosCerca = 0;
-                if(tablero[i][j].getTerreno() == 2){
+                terrenoCorregirCerca = 0;
+                if(tablero[i][j].getTerreno() == terreno){
                     try{
-                        if(tablero[i][j-1].getTerreno() == 2){
-                            riosCerca++;
+                        if(tablero[i][j-1].getTerreno() == terreno){
+                            terrenoCorregirCerca++;
                             }
                         }
                     catch(ArrayIndexOutOfBoundsException e){
                     }
                     try{
-                        if(tablero[i][j+1].getTerreno() == 2){
-                            riosCerca++;
+                        if(tablero[i][j+1].getTerreno() == terreno){
+                            terrenoCorregirCerca++;
                         }
                     }
                     catch(ArrayIndexOutOfBoundsException e){
                     }
                     try{
-                        if(tablero[i-1][j].getTerreno() == 2){
-                            riosCerca++;
+                        if(tablero[i-1][j].getTerreno() == terreno){
+                            terrenoCorregirCerca++;
                         }
                     }
                     catch(ArrayIndexOutOfBoundsException e){
                     }
                     try{
-                        if(tablero[i+1][j].getTerreno() == 2){
-                            riosCerca++;
+                        if(tablero[i+1][j].getTerreno() == terreno){
+                            terrenoCorregirCerca++;
                         }
                     }
                     catch(ArrayIndexOutOfBoundsException e){
                     }
-                    if(riosCerca == 0){
-                        cntRio--;
+                    if(terrenoCorregirCerca == 0){
+                        cntTerrenoCorregir--;
                         tablero[i][j].setTerreno(1);
                         cntTierra++;
                     }
                 }
                 if(tablero[i][j].getTerreno() == 1 && cntTierra != 0){
                     try{
-                        if(tablero[i][j-1].getTerreno() == 2){
-                            riosCerca++;
+                        if(tablero[i][j-1].getTerreno() == terreno){
+                            terrenoCorregirCerca++;
                         }
                     }
                     catch(ArrayIndexOutOfBoundsException e){
                     }
                     try{
-                        if(tablero[i][j+1].getTerreno() == 2){
-                            riosCerca++;
+                        if(tablero[i][j+1].getTerreno() == terreno){
+                            terrenoCorregirCerca++;
                         }
                     }
                     catch(ArrayIndexOutOfBoundsException e){
                     }
                     try{
-                        if(tablero[i-1][j].getTerreno() == 2){
-                            riosCerca++;
+                        if(tablero[i-1][j].getTerreno() == terreno){
+                            terrenoCorregirCerca++;
                         }
                     }
                     catch(ArrayIndexOutOfBoundsException e){
                     }
                     try{
-                        if(tablero[i+1][j].getTerreno() == 2){
-                            riosCerca++;
+                        if(tablero[i+1][j].getTerreno() == terreno){
+                            terrenoCorregirCerca++;
                         }
                     }
                     catch(ArrayIndexOutOfBoundsException e){
                     }
-                    if(riosCerca > 0){
-                        tablero[i][j].setTerreno(2);
+                    if(terrenoCorregirCerca > 0){
+                        tablero[i][j].setTerreno(terreno);
                         cntTierra--;
-                        cntRio++;
+                        cntTerrenoCorregir++;
                     }
                 }
             }
         }
     }
     
-    public void asignarAlturas(Random distribAltura){
+    public void corregirMontañas(int[] terrenosTotales, int areaAsignatura){
+        Random numero = new Random();
+        int maxMontañas = 0;
+        int cntMontaña = terrenosTotales[3];
+        switch(areaAsignatura){
+            case 1:
+                maxMontañas = 0;
+                break;
+            case 2:
+                maxMontañas = 89;
+                break;
+            case 3:
+                maxMontañas = 62;
+                break;
+        }       
+        while(cntMontaña > maxMontañas){
+            int filaRandom = numero.nextInt(25);
+            int columnaRandom = numero.nextInt(25);
+            Casilla casillaMontaña = this.tablero[filaRandom][columnaRandom];
+            if(casillaMontaña.getTerreno() == 4){
+                casillaMontaña.setAltura(this.tablero[filaRandom][columnaRandom].getAltura() - 1);
+                if(casillaMontaña.getAltura() < 6){
+                    casillaMontaña.setTerreno(1);                
+                    cntMontaña--;
+                }
+            }
+        }
+    }
+    
+    public int[] contarTerrenos(){
+        int[] terrenosTotales = new int[4];
+        int cntTierra = 0;
+        int cntRio = 0;
+        int cntBosque = 0;
+        int cntMontaña = 0;
+        for(int i=0; i<25; i++){
+            for(int j=0; j<25; j++){
+                int terreno = this.tablero[i][j].getTerreno();
+                switch(terreno){
+                    case 1:
+                        cntTierra++;
+                        break;
+                    case 2:
+                        cntRio++;
+                        break;
+                    case 3:
+                        cntBosque++;
+                        break;
+                    case 4:
+                        cntMontaña++;
+                        break;
+                }
+            }
+        }
+        System.out.println("Tierras: "+cntTierra+"; Rios: "+cntRio+"; Bosques: "+cntBosque+"; Montaña: "+cntMontaña);
+        terrenosTotales[0] = cntTierra;
+        terrenosTotales[1] = cntRio;
+        terrenosTotales[2] = cntBosque;
+        terrenosTotales[3] = cntMontaña;
+        return terrenosTotales;
+    }
+    
+    public void asignarAlturas(Random distribAltura, int areaAsignatura){
         distribAltura = new Random();
         for(int i=0; i<25; i++){
             for(int j=0; j<25; j++){
                 int altura=0;
+                boolean comprobador = true;
                 do{
                     altura = (int)Math.round(distribAltura.nextGaussian()*1+5);
-                }while(altura<0||altura>10);
+                    if(this.tablero[i][j].getTerreno() == 1 && areaAsignatura == 1){
+                        if(altura <= 5 && altura >= 0){
+                            comprobador = false;
+                        }
+                        else{
+                            comprobador = true;
+                        }
+                    }
+                    else if(altura<0 || altura>10){
+                        comprobador = true;
+                    }
+                    else{
+                        comprobador = false;
+                    }
+                }while(comprobador);
                 this.getTablero(i,j).setAltura(altura);
             }
         }
@@ -179,42 +261,74 @@ public class Batalla {
                 break;
             }
             for(int j=0; j<25; j++){
+                if(!comprobador){
+                    break;
+                }
                 int contador = 0;
-                try{
-                    if(Math.abs(tablero[i][j-1].getAltura() - tablero[i][j].getAltura())>2){//Si la casilla a la izquierda tiene una diferencia de altura mayor o igual a 2
-                        contador++;
-                        if(contador>=4){//Si ninguna casilla adyacente cumple con la condicion
-                            comprobador = false;
-                            System.out.println("Generando otra vez...");
-                            break;
+                int contadorTope = 4;
+                try {
+                    if (Math.abs(tablero[i][j - 1].getAltura() - tablero[i][j].getAltura()) > 2) {//Si la casilla a la izquierda tiene una diferencia de altura mayor o igual a 2
+                        if (tablero[i][j - 1].getTerreno() == 2) {
+                            contadorTope--;
+                        } else {
+                            contador++;
                         }
-                    }
-                    else if(Math.abs(tablero[i][j+1].getAltura() - tablero[i][j].getAltura())>2){
-                        contador++;
-                        if(contador>=4){
-                            comprobador = false;
-                            System.out.println("Generando otra vez...");
-                            break;
-                        }
-                    }
-                    else if(Math.abs(tablero[i+1][j].getAltura() - tablero[i][j].getAltura())>2){
-                        contador++;
-                        if(contador>=4){
-                            comprobador = false;
-                            System.out.println("Generando otra vez...");
-                            break;
-                        }
-                    }
-                    else if(Math.abs(tablero[i-1][j].getAltura() - tablero[i][j].getAltura())>2){
-                        contador++;
-                        if(contador>=4){
+                        if (contador >= contadorTope) {//Si ninguna casilla adyacente cumple con la condicion
                             comprobador = false;
                             System.out.println("Generando otra vez...");
                             break;
                         }
                     }
                 }
-                catch(ArrayIndexOutOfBoundsException e){//Atrapa el error de rango
+                catch (ArrayIndexOutOfBoundsException e) {
+                }
+                try {
+                    if (Math.abs(tablero[i][j + 1].getAltura() - tablero[i][j].getAltura()) > 2) {
+                        if (tablero[i][j + 1].getTerreno() == 2) {
+                            contadorTope--;
+                        } else {
+                            contador++;
+                        }
+                        if (contador >= contadorTope) {
+                            comprobador = false;
+                            System.out.println("Generando otra vez...");
+                            break;
+                        }
+                    }
+                }
+                catch (Exception e) {
+                }
+                try {
+                    if (Math.abs(tablero[i + 1][j].getAltura() - tablero[i][j].getAltura()) > 2) {
+                        if (tablero[i + 1][j].getTerreno() == 2) {
+                            contadorTope--;
+                        } else {
+                            contador++;
+                        }
+                        if (contador >= contadorTope) {
+                            comprobador = false;
+                            System.out.println("Generando otra vez...");
+                            break;
+                        }
+                    }
+                }
+                catch (Exception e) {
+                }
+                try {
+                    if (Math.abs(tablero[i - 1][j].getAltura() - tablero[i][j].getAltura()) > 2) {
+                        if (tablero[i - 1][j].getTerreno() != 2) {
+                            contadorTope--;
+                        } else {
+                            contador++;
+                        }
+                        if (contador >= contadorTope) {
+                            comprobador = false;
+                            System.out.println("Generando otra vez...");
+                            break;
+                        }
+                    }
+                }
+                catch (Exception e) {
                 }
             }
         }
@@ -272,6 +386,20 @@ public class Batalla {
             }
             else if(tablero[i][j].getAltura() == 10){
                 ruta = "src/Imagen/Bosque10.png";
+            }
+        }
+        else if(tablero[i][j].getTerreno() == 4){//Montaña
+            if(tablero[i][j].getAltura() == 6 || tablero[i][j].getAltura() == 7){
+                tablero[i][j].setTerreno(4); //Montaña
+                ruta = "src/Imagen/Montania67.png";
+            }
+            else if(tablero[i][j].getAltura() == 8 || tablero[i][j].getAltura() == 9){
+                tablero[i][j].setTerreno(4); //Montaña
+                ruta = "src/Imagen/Montania89.png";
+            }
+            else if(tablero[i][j].getAltura() == 10){
+                tablero[i][j].setTerreno(4); //Montaña
+                ruta = "src/Imagen/Montania10.png";
             }
         }
         return ruta;
@@ -424,5 +552,5 @@ public class Batalla {
         }
         return personajesCpu;
     }
-
+    
 }

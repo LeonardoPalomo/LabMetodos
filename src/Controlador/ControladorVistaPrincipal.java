@@ -27,7 +27,6 @@ public class ControladorVistaPrincipal implements ActionListener{
             ControladorPrincipal.registrarAccion(seleccionAsignatura);
             vp.setVisible(false);
             ControladorSelAsig csa = new ControladorSelAsig(1); //1 civil, 2 ejecu
-            //ControladorBatalla cb = new ControladorBatalla();
         }
         else if(vp.getButtonBibliotecaCentral()==e.getSource()){
             String biblioteca = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha accedido a biblioteca central";

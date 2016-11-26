@@ -29,11 +29,18 @@ public class ControladorBatalla implements ActionListener, MouseListener {
         vb.setMouseListener(this);
         b = new Batalla();
         b.asignarTerrenos(areaAsignatura, distribAltura); //Asigna los terrenos en función del área de la asignatura.
-        //Por ahora, el área está fija en 3.
-        b.corregirRios(); //Corrige los ríos que están solos, para que siempre haya al menos dos juntos.
+        //Por ahora, el área está fija en 3. 1 es plan común, 2 es economía, 3 es especialidad.
+        b.corregirTerrenosTodos(); //Corrige los ríos que están solos, para que siempre haya al menos dos juntos.
         do{
-            b.asignarAlturas(distribAltura);//Se le atribuyen alturas a cada casilla(del tablero logico)
+            b.asignarAlturas(distribAltura, areaAsignatura);//Se le atribuyen alturas a cada casilla(del tablero logico)
         } while(!b.revisarAlturas());//Mientras La comprobacion del terreno de un resultado "falso", se inicializa el proceso de distibucion de alturas
+        for(int i=0; i<25; i++){
+            for(int j=0; j<25; j++){
+                String ruta = b.ponerRutaImagenesTerreno(i, j);
+                vb.ponerImagenTablero(ruta, i, j);
+            }
+        }
+        b.corregirMontañas(b.contarTerrenos(), areaAsignatura);
         for(int i=0; i<25; i++){
             for(int j=0; j<25; j++){
                 String ruta = b.ponerRutaImagenesTerreno(i, j);
@@ -45,13 +52,12 @@ public class ControladorBatalla implements ActionListener, MouseListener {
             String rutaYCoord = rutas[k];
             String[] rutaYCoordSeparados = rutaYCoord.split("-");
             String ruta = rutaYCoordSeparados[0];
-            System.out.println(ruta);
             int fila = Integer.parseInt(rutaYCoordSeparados[1]);
-            System.out.println(fila);
             int columna = Integer.parseInt(rutaYCoordSeparados[2]);
-            System.out.println(columna);
             vb.ponerImagenTablero(ruta, fila, columna);
         }
+        b.contarTerrenos();
+        System.out.println(b.revisarAlturas());
     }
 
     @Override
@@ -141,6 +147,54 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                     vb.setLabelAltura(b.getTablero(i,j).getAltura());
                     if(b.getTablero(i, j).getPersonaje()!=null){
                         vb.setLabelPersonaje(b.getTablero(i, j).getPersonaje().getNombre());
+                        vb.setLabelDueño(b.getTablero(i, j).getPersonaje().getDueno());
+                        int tipo = b.getTablero(i, j).getPersonaje().getTipo();
+                        String tipoTexto = "";
+                        switch(tipo){
+                            case 1:
+                                tipoTexto = "Alumno";
+                                break;
+                            case 2:
+                                tipoTexto = "Ayudante";
+                                break;
+                            case 3:
+                                tipoTexto = "Profesor";
+                                break;
+                        }
+                        vb.setLabelTipo(tipoTexto);
+                        int rol = b.getTablero(i,j).getPersonaje().getRol();
+                        int subRol = b.getTablero(i,j).getPersonaje().getSubRol();
+                        String rolTexto = "";
+                        String subRolTexto = "";
+                        switch(rol){
+                            case 1:
+                                rolTexto = "Guerrero";
+                                break;
+                            case 2:
+                                rolTexto = "Arquero";
+                                break;
+                            case 3:
+                                rolTexto = "Ninja";
+                                break;
+                            case 4:
+                                rolTexto = "Mago";
+                                break;
+                        }
+                        switch(subRol){
+                            case 0:
+                                subRolTexto = "";
+                                break;
+                            case 1:
+                                subRolTexto = " Humanista";
+                                break;
+                            case 2:
+                                subRolTexto = " Tecnólogo";
+                                break;
+                            case 3:
+                                subRolTexto = " Médico";
+                                break;
+                        }
+                        vb.setLabelRol(rolTexto+subRolTexto);
                     }
                 }
             }
@@ -157,6 +211,9 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                     vb.setLabelTerreno();
                     vb.setLabelAltura();
                     vb.setLabelPersonaje();
+                    vb.setLabelDueño();
+                    vb.setLabelTipo();
+                    vb.setLabelRol();
                 }
             }
         }

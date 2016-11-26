@@ -65,8 +65,8 @@ public class Personaje {
        this.stock[1] = 3;
        this.stock[2] = 3;
        this.stock[3] = 1;
-       this.dueno = "CPU PAPUH :V";
        this.esCpu = true;
+       setDueño();
    }
    
    /**public Personaje(int hp, int mana, int atkCerca, int atkLejos, int def){
@@ -177,8 +177,20 @@ public class Personaje {
     public boolean getEsCpu() {
         return esCpu;
     }
-
-   
+    
+    public void setDueño(String dueño){
+        if(this.esCpu){
+            this.dueno = "CPU";
+        }
+        else{
+            this.dueno = dueño;
+        }
+    }
+    //Sobrecarga
+    public void setDueño(){
+        this.dueno = "CPU";
+    }
+    
    public void atacarCerca(int[] posObjetivo) {}
    
    /**
