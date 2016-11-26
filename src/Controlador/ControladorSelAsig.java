@@ -1,10 +1,12 @@
 
 package Controlador;
 
+import Modelo.Personaje;
 import Vista.VistaSelAsigCivil;
 import Vista.VistaSelAsigEjecu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class ControladorSelAsig implements ActionListener{
     

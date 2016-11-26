@@ -7,18 +7,30 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class ControladorVistaPrincipal implements ActionListener{
-    private ArrayList<Personaje> pjsJugador;
+    public static ArrayList<Personaje> pjsJugador;
     private VistaPrincipal vp;
 
     public ControladorVistaPrincipal(){
+        pjsJugador = new ArrayList();
         this.vp = new VistaPrincipal();
         vp.setLocationRelativeTo(null);
         vp.agregarListener(this);
         vp.setVisible(true);
         //Se crea ArrayList de pjs provisorio, a futuro recibirá los pjs desde la BDD
-        
-        
+        Personaje pj1 = new Personaje("PJ 1",1,0);
+        Personaje pj2 = new Personaje("PJ 2",2,0);
+        Personaje pj3 = new Personaje("PJ 3",3,0);
+        Personaje pj4 = new Personaje("PJ 4",4,1);
+        Personaje pj5 = new Personaje("PJ 5",4,2);
+        Personaje pj6 = new Personaje("PJ 6",4,3);
+        pjsJugador.add(pj1);
+        pjsJugador.add(pj2);
+        pjsJugador.add(pj3);
+        pjsJugador.add(pj4);
+        pjsJugador.add(pj5);
+        pjsJugador.add(pj6);
     }
+    
     @Override
     public void actionPerformed(ActionEvent e){
         if (vp.getButtonCerrarSesion()==e.getSource()){
@@ -31,7 +43,7 @@ public class ControladorVistaPrincipal implements ActionListener{
             String seleccionAsignatura = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" va a seleccionar una asignatura.";
             ControladorPrincipal.registrarAccion(seleccionAsignatura);
             vp.setVisible(false);
-            ControladorSelAsig csa = new ControladorSelAsig(1); //1 civil, 2 ejecu
+            ControladorSelAsig csa = new ControladorSelAsig(ControladorLogin.malla); //1 civil, 2 ejecu
         }
         else if(vp.getButtonBibliotecaCentral()==e.getSource()){
             String biblioteca = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha accedido a biblioteca central";

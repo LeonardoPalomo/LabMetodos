@@ -16,6 +16,8 @@ public class ControladorLogin implements ActionListener,KeyListener{
     private Jugador jugadorPrueba;
     private VistaLogin vl;
     public static String usuarioActivo;
+    public static int malla;
+    
     public ControladorLogin(){
             vl = new VistaLogin();
             vl.setVisible(true);
@@ -36,6 +38,8 @@ public class ControladorLogin implements ActionListener,KeyListener{
                             if(jugadorPrueba.verificarDatos(usuario,password)){
                                 usuarioActivo = usuario;
                                 String inicioSesion = "El usuario "+usuarioActivo+" ha iniciado sesión.";
+                                //Malla se obtiene de BDD, por ahora es 1 (civil)
+                                malla = 1;
                                 ControladorPrincipal.registrarAccion(inicioSesion);
                                 vl.dispose();
                                 ControladorVistaPrincipal cvp = new ControladorVistaPrincipal();
@@ -69,6 +73,8 @@ public class ControladorLogin implements ActionListener,KeyListener{
             }
             if(vl.getButtonBackdoor()==e.getSource()){
                 vl.dispose();
+                malla = 1;
+                usuarioActivo = "Admin";
                 ControladorVistaPrincipal cvp = new ControladorVistaPrincipal();
             }
     }
