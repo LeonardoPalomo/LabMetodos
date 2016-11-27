@@ -29,24 +29,50 @@ public class Personaje {
    private int[] stock = new int[4]; //Array de ints: [0] atkBajo, [1] atkMedio, [2] atkAlto, [3] especial
    private int precio;
    private String dueno;
-   private int[] posicion;
+   private int[] posicion = new int[2];
    private boolean esCpu; //true es cpu, false es del jugador
 
    //Constructor provisorios
-   public Personaje(){}
+   public Personaje(){
+       this.nombre = "null";
+       this.hpTotal = 0;
+       this.hpActual = hpTotal;
+       this.manaTotal = 0;
+       this.manaActual = manaTotal;
+       this.atkCerca = 0;
+       this.atkLejos = 0;
+       this.spAtkCerca = 0;
+       this.spAtkLejos = 0;
+       this.def = 0;
+       this.spDef = 0;
+       this.experiencia = 0;
+       this.nivel = 0;
+       this.movTotal = 0;
+       this.movActual = movTotal;
+       this.ptsTraicion = 0;
+       this.velocidad = 0;
+       this.tipo = 0;
+       this.rol = 0;
+       this.subRol = 0;
+       this.dueno = "null";
+       this.esCpu = true;
+   }
    
    public Personaje(String nombre, int rol, int subRol){
        this.nombre = nombre;
        switch(rol){
            case 1:
                this.hpTotal = 100;
+               this.hpActual = hpTotal;
                this.manaTotal = 0;
+               this.manaActual = manaTotal;
                this.atkCerca = 20;
                this.atkLejos = 5;
                this.def = 8;
                this.spDef = 6;
                this.nivel = 1;
                this.movTotal = 8;
+               this.movActual = movTotal;
                this.velocidad = 10;
                this.tipo = 1;
                this.rol = rol;
@@ -60,13 +86,16 @@ public class Personaje {
                break;
            case 2:
                this.hpTotal = 80;
+               this.hpActual = hpTotal;
                this.manaTotal = 0;
+               this.manaActual = manaTotal;
                this.atkCerca = 5;
                this.atkLejos = 20;
                this.def = 6;
                this.spDef = 5;
                this.nivel = 1;
                this.movTotal = 8;
+               this.movActual = movTotal;
                this.velocidad = 11;
                this.tipo = 1;
                this.rol = rol;
@@ -80,7 +109,9 @@ public class Personaje {
                break;
            case 3:
                this.hpTotal = 90;
+               this.hpActual = hpTotal;
                this.manaTotal = 10;
+               this.manaActual = manaTotal;
                this.atkCerca = 15;
                this.atkLejos = 8;
                this.spAtkCerca = 10;
@@ -89,6 +120,7 @@ public class Personaje {
                this.spDef = 6;
                this.nivel = 1;
                this.movTotal = 10;
+               this.movActual = movTotal;
                this.velocidad = 12;
                this.tipo = 1;
                this.rol = rol;
@@ -102,13 +134,16 @@ public class Personaje {
                break;
            case 4:
                this.hpTotal = 70;
+               this.hpActual = hpTotal;
                this.manaTotal = 30;
+               this.manaActual = manaTotal;
                this.atkCerca = 5;
                this.atkLejos = 5;
                this.def = 5;
                this.spDef = 8;
                this.nivel = 1;
                this.movTotal = 6;
+               this.movActual = movTotal;
                this.velocidad = 9;
                this.tipo = 1;
                this.rol = rol;
@@ -335,6 +370,10 @@ public class Personaje {
         return esCpu;
     }
     
+    public int[] getPosicion(){
+        return posicion;
+    }
+    
     public void setDueño(String dueño){
         if(this.esCpu){
             this.dueno = "CPU";
@@ -346,6 +385,15 @@ public class Personaje {
     //Sobrecarga
     public void setDueño(){
         this.dueno = "CPU";
+    }
+    
+    public void setPosicion(int[] posicion){
+        this.posicion = posicion;
+    }
+    //Sobrecarga
+    public void setPosicion(int i, int j){
+        this.posicion[0] = i;
+        this.posicion[1] = j;
     }
     
     public void atacarCerca(int[] posObjetivo) {}

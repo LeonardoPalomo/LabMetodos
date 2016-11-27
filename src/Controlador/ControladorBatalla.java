@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 import java.util.Random;
 
@@ -23,17 +24,22 @@ public class ControladorBatalla implements ActionListener, MouseListener {
     public static int areaAsignatura;
     private Personaje[] pjsJugador;
     private Personaje[] pjsCpu;
+    private int[] ultPosClick = new int[2];
+    private int cantPjsUbicados = 0;
+    private boolean ubicandoPjs = true;
     
     //Constructor
     public ControladorBatalla(int areaAsignatura, ArrayList<Personaje> pjsJugador){
-        pjsJugador.toArray(this.pjsJugador);
+        ultPosClick[0] = -1;
+        ultPosClick[1] = -1;
         this.areaAsignatura = areaAsignatura;
         vb = new VistaBatalla();
         vb.setVisible(true);
         vb.setListener(this);
         vb.setMouseListener(this);
         b = new Batalla();
-        b.setPjsJugador(this.pjsJugador);
+        b.limpiarListaPjs(pjsJugador);
+        this.pjsJugador = b.getPjsJugador();
         b.asignarTerrenos(areaAsignatura, distribAltura); //Asigna los terrenos en función del área de la asignatura.
         //Por ahora, el área está fija en 3. 1 es plan común, 2 es economía, 3 es especialidad.
         b.corregirTerrenosTodos(); //Corrige los ríos que están solos, para que siempre haya al menos dos juntos.
@@ -64,17 +70,65 @@ public class ControladorBatalla implements ActionListener, MouseListener {
             vb.ponerImagenTablero(ruta, fila, columna);
         }
         b.contarTerrenos();
-        System.out.println(b.revisarAlturas());
-        
+        if(!b.revisarAlturas()){
+            System.out.println("Volviendo a generar escenario...");
+            ArrayList<Personaje> pjsSeleccionados = new ArrayList<>(Arrays.asList(this.pjsJugador));
+            ControladorBatalla cb = new ControladorBatalla(ControladorBatalla.areaAsignatura,pjsSeleccionados);
+        }
+        else{
+            b.ordenarTurnos();
+            vb.getBtnAtacar().setEnabled(false);
+            vb.getBtnEnd().setEnabled(false);
+            vb.getBtnMover().setEnabled(false);
+            vb.getBtnSurrender().setEnabled(false);
+            vb.getBtnUsar().setEnabled(false);
+            vb.getbtnCancelar().setEnabled(false);
+            vb.marcarZona(0,0,24,3,Color.WHITE);
+            b.informarUbicarPjs(vb,this.pjsJugador[0]);
+        }      
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand()=="Cancelar"){
-            System.out.println("Accion cancelar");
+            //System.out.println("Accion cancelar");
+            if(ultPosClick[0] != -1 && ultPosClick[1] != -1){
+                vb.marcarZona(ultPosClick[0], ultPosClick[1], ultPosClick[0], ultPosClick[1], Color.WHITE);
+            }
+            cantPjsUbicados--;
+            ultPosClick[0] = this.pjsJugador[cantPjsUbicados].getPosicion()[0];
+            ultPosClick[1] = this.pjsJugador[cantPjsUbicados].getPosicion()[1];
+            String ruta = b.ponerRutaImagenesTerreno(ultPosClick[0],ultPosClick[1]);
+            vb.ponerImagenTablero(ruta,ultPosClick[0],ultPosClick[1]);
+            b.ubicarPersonaje(ultPosClick[0],ultPosClick[1]);
+            b.informarUbicarPjs(vb,this.pjsJugador[cantPjsUbicados]);
+            ultPosClick[0] = -1;
+            ultPosClick[1] = -1;
         }
         else if(e.getActionCommand()=="Aceptar"){
-            System.out.println("Accion aceptar");
+            //System.out.println("Accion aceptar");
+            if(ultPosClick[0] != -1 && ultPosClick[1] != -1){
+                String ruta = b.ubicarPersonaje(this.pjsJugador[cantPjsUbicados],ultPosClick[0],ultPosClick[1]);
+                if(!ruta.equals("")){
+                    vb.ponerImagenTablero(ruta,ultPosClick[0],ultPosClick[1]);
+                    vb.marcarZona(ultPosClick[0], ultPosClick[1], ultPosClick[0], ultPosClick[1], Color.WHITE);
+                    cantPjsUbicados++;
+                    vb.getbtnCancelar().setEnabled(true);
+                    if(cantPjsUbicados == this.pjsJugador.length){
+                        //Inicia la batalla
+                        JOptionPane.showMessageDialog(vb,"¡Ha comenzado la batalla!");
+                        vb.getbtnAceptar().setEnabled(false);
+                        vb.getbtnCancelar().setEnabled(false);
+                        vb.desmarcarZona(0,0,24,3);
+                        vb.eliminarBordesEscenario();
+                    }
+                    else{
+                        b.informarUbicarPjs(vb,this.pjsJugador[cantPjsUbicados]);
+                        ultPosClick[0] = -1;
+                        ultPosClick[1] = -1;
+                    }
+                }
+            }
         }
         else if(e.getActionCommand()=="Atacar"){
             System.out.println("Accion atacar");
@@ -87,6 +141,9 @@ public class ControladorBatalla implements ActionListener, MouseListener {
         }
         else if(e.getActionCommand()=="Finalizar turno"){
             System.out.println("Accion terminar turno");
+        }
+        else if(vb.getBtnSurrender() == e.getSource()){
+        
         }
         for(int i=0;i<25;i++){
             for(int j=0; j<25;j++)
@@ -108,6 +165,36 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                             nombreTerreno = "Montaña";
                     }
                     System.out.println("Posición ["+i+"], ["+j+"]. Su terreno es "+nombreTerreno+", y su altura es "+b.getTablero(i,j).getAltura()+".");
+                    
+                    if(cantPjsUbicados < this.pjsJugador.length){
+                        //if(ubicandoPjs){
+                            if(b.getTablero(i, j).getCaminable() ){
+                                if(b.getTablero(i,j).getDisponible()){
+                                    if(j < 4){
+                                        if(ultPosClick[0] != -1 && ultPosClick[1] != -1){
+                                            vb.marcarZona(ultPosClick[0], ultPosClick[1], ultPosClick[0], ultPosClick[1], Color.WHITE);
+                                        }
+                                        vb.marcarZona(i, j, i, j, Color.BLUE);
+                                        this.ultPosClick[0] = i;
+                                        this.ultPosClick[1] = j;
+                                        
+                                    }
+                                    else{
+                                        System.out.println("Casilla fuera del área permitida");
+                                        JOptionPane.showMessageDialog(vb,"La casilla está fuera del área permitida.","ERROR",JOptionPane.ERROR_MESSAGE);
+                                    }
+                                }
+                                else{
+                                    System.out.println("Casilla no disponible");
+                                    JOptionPane.showMessageDialog(vb,"La casilla no está disponible.","ERROR",JOptionPane.ERROR_MESSAGE);
+                                }
+                            }
+                            else{
+                                System.out.println("Casilla no caminable");
+                                JOptionPane.showMessageDialog(vb,"El terreno Río no es válido para posicionar personajes.","ERROR",JOptionPane.ERROR_MESSAGE);
+                            }
+                        //}
+                    }
                 }
             }
         }
@@ -134,7 +221,9 @@ public class ControladorBatalla implements ActionListener, MouseListener {
         for(int i=0;i<25;i++){
             for(int j=0; j<25;j++){
                 if(e.getSource() == vb.getTablero()[i][j]){
-                    int terreno = b.getTablero(i,j).getTerreno();
+                    Casilla casilla = b.getTablero(i,j);
+                    Personaje pj = casilla.getPersonaje();
+                    int terreno = casilla.getTerreno();
                     String nombreTerreno = "nada prro :v";
                     switch(terreno){
                         case 1:
@@ -152,11 +241,11 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                     }
                     vb.setLabelPosicion(i, j);
                     vb.setLabelTerreno(nombreTerreno);
-                    vb.setLabelAltura(b.getTablero(i,j).getAltura());
-                    if(b.getTablero(i, j).getPersonaje()!=null){
-                        vb.setLabelPersonaje(b.getTablero(i, j).getPersonaje().getNombre());
-                        vb.setLabelDueño(b.getTablero(i, j).getPersonaje().getDueno());
-                        int tipo = b.getTablero(i, j).getPersonaje().getTipo();
+                    vb.setLabelAltura(casilla.getAltura());
+                    if(pj != null){
+                        vb.setLabelPersonaje(pj.getNombre());
+                        vb.setLabelDueño(pj.getDueno());
+                        int tipo = pj.getTipo();
                         String tipoTexto = "";
                         switch(tipo){
                             case 1:
@@ -170,8 +259,8 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                                 break;
                         }
                         vb.setLabelTipo(tipoTexto);
-                        int rol = b.getTablero(i,j).getPersonaje().getRol();
-                        int subRol = b.getTablero(i,j).getPersonaje().getSubRol();
+                        int rol = pj.getRol();
+                        int subRol = pj.getSubRol();
                         String rolTexto = "";
                         String subRolTexto = "";
                         switch(rol){
@@ -203,6 +292,10 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                                 break;
                         }
                         vb.setLabelRol(rolTexto+subRolTexto);
+                        vb.setLabelLvl(pj.getNivel());
+                        vb.setLabelHp(pj.getHpActual(),pj.getHpTotal());
+                        vb.setLabelMana(pj.getManaActual(),pj.getManaTotal());
+                        vb.setLabelMov(pj.getMovActual(), pj.getMovTotal());
                     }
                 }
             }
@@ -222,6 +315,10 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                     vb.setLabelDueño();
                     vb.setLabelTipo();
                     vb.setLabelRol();
+                    vb.setLabelLvl();
+                    vb.setLabelHp();
+                    vb.setLabelMana();
+                    vb.setLabelMov();
                 }
             }
         }

@@ -32,6 +32,7 @@ public class ControladorSelPjs implements ActionListener, ListSelectionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         //throw new UnsupportedOperationException("Not supported yet.");
+        
         if(vsp.getAgregar() == e.getSource()){
             if(vsp.getListaPjsDisponibles().getSelectedValue() != null){
                 ArrayList aRemover = new ArrayList();
@@ -49,6 +50,9 @@ public class ControladorSelPjs implements ActionListener, ListSelectionListener{
             }
             if(cantPjsSel == 5){
                 vsp.getAgregar().setEnabled(false);
+                
+            }
+            if(cantPjsSel > 0){
                 vsp.getListo().setEnabled(true);
             }
         }
@@ -72,6 +76,10 @@ public class ControladorSelPjs implements ActionListener, ListSelectionListener{
             }
             if(cantPjsSel == 0){
                 vsp.getQuitar().setEnabled(false);
+            }
+            if(pjsSeleccionados.size() < 5){
+                vsp.getListo().setEnabled(false);
+                vsp.getAgregar().setEnabled(true);
             }
         }
         if(vsp.getVolver() == e.getSource()){

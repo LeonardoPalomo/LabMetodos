@@ -55,6 +55,11 @@ public class Casilla{
         this.personaje = personaje;
         this.disponible = false;
     }
+    //Sobrecarga
+    public void setPersonaje(){
+        this.personaje = null;
+        this.disponible = true;
+    }
     public Personaje getPersonaje() {
         return personaje;
     }

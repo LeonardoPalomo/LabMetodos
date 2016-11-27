@@ -1,6 +1,9 @@
 package Modelo;
 
 import java.util.*;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class Batalla {
     
@@ -18,6 +21,10 @@ public class Batalla {
                 tablero[i][j] = new Casilla();
             }
         }
+    }
+    
+    public Personaje[] getOrdenTurnos(){
+        return this.ordenTurnos;
     }
    
     public void terminarTurno() {}
@@ -276,7 +283,7 @@ public class Batalla {
                         }
                         if (contador >= contadorTope) {//Si ninguna casilla adyacente cumple con la condicion
                             comprobador = false;
-                            System.out.println("Generando otra vez...");
+                            System.out.println("Volviendo a generar alturas...");
                             break;
                         }
                     }
@@ -292,7 +299,7 @@ public class Batalla {
                         }
                         if (contador >= contadorTope) {
                             comprobador = false;
-                            System.out.println("Generando otra vez...");
+                            System.out.println("Volviendo a generar alturas...");
                             break;
                         }
                     }
@@ -308,7 +315,7 @@ public class Batalla {
                         }
                         if (contador >= contadorTope) {
                             comprobador = false;
-                            System.out.println("Generando otra vez...");
+                            System.out.println("Volviendo a generar alturas...");
                             break;
                         }
                     }
@@ -324,7 +331,7 @@ public class Batalla {
                         }
                         if (contador >= contadorTope) {
                             comprobador = false;
-                            System.out.println("Generando otra vez...");
+                            System.out.println("Volviendo a generar...");
                             break;
                         }
                     }
@@ -504,6 +511,47 @@ public class Batalla {
         ruta = ruta+".png";
         return ruta;
     }
+    
+    public String ponerRutaPjSinFondo(Personaje pj){
+        String ruta = "src/Imagen/";
+        int rol = pj.getRol();
+        switch(rol){
+            case 1:
+                ruta = ruta+"Guerrero/Guerrero";
+                break;
+            case 2:
+                ruta = ruta+"Arquero/Arquero";
+                break;
+            case 3:
+                ruta = ruta+"Ninja/Ninja";
+                break;
+            case 4:
+                int subRol = pj.getSubRol();
+                String subRuta = "Mago ";
+                switch(subRol){
+                    case 1:
+                        subRuta = subRuta+"Humanista/Mago Humanista";
+                        break;
+                    case 2:
+                        subRuta = subRuta+"Tecnologo/Mago Tecnologo";
+                        break;
+                    case 3:
+                        subRuta = subRuta+"Medico/Mago Medico";
+                        break;
+                }
+                ruta = ruta+"Mago/"+subRuta;
+                break;
+        }
+        ruta = ruta + " 16x18 sin fondo ";
+        if(pj.getEsCpu()){
+            ruta = ruta + "CPU";
+        }
+        else{
+            ruta = ruta + "PJ";
+        }
+        ruta = ruta + ".png";
+        return ruta;
+    }
 
     public Casilla getTablero(int i, int j) {
         return tablero[i][j];
@@ -517,9 +565,22 @@ public class Batalla {
         String ruta = "";
         if(tablero[i][j].getCaminable() && tablero[i][j].getDisponible()){
             tablero[i][j].setPersonaje(personaje);
+            personaje.setPosicion(i,j);
             ruta = ponerRutaImagenPersonaje(i,j);
         }
+        else if(!tablero[i][j].getCaminable()){
+            System.out.println("Casilla inválida");
+            JOptionPane.showMessageDialog(null,"ERROR: Río es una casilla inválida.","ERROR",JOptionPane.ERROR_MESSAGE);
+        }
+        else if(!tablero[i][j].getDisponible()){
+            System.out.println("Casilla ocupada");
+            JOptionPane.showMessageDialog(null,"ERROR: Esa casilla se encuentra ocupada por otro personaje.","ERROR",JOptionPane.ERROR_MESSAGE);
+        }
         return ruta;
+    }
+    //Sobrecarga
+    public void ubicarPersonaje(int i, int j){
+        tablero[i][j].setPersonaje();
     }
     
     public String[] ubicarPersonajesCpu(Personaje[] personajesCpu){
@@ -544,8 +605,12 @@ public class Batalla {
         return paramPonerImagen;
     }
     
-    public void ubicarPersonajesJugador(){
-        
+    public void informarUbicarPjs(JFrame vistaBatalla, Personaje pj){
+        JOptionPane.showMessageDialog(vistaBatalla,
+                "<html><center>Haga click en una casilla válida (no río) del área marcada "
+                + "<br><center> para ubicar al personaje "+pj.getNombre(),
+                "Posicionar personaje",JOptionPane.INFORMATION_MESSAGE,
+                new ImageIcon(this.ponerRutaPjSinFondo(pj)));
     }
     
     public Personaje[] obtenerPersonajesCpu(/*Asignatura ramo*/){ //Método que obtiene los personajes del cpu según la asignatura
@@ -559,45 +624,71 @@ public class Batalla {
         return personajesCpu;
     }
     
-    public Personaje[] ordenarTurnos(){
+    public void limpiarListaPjs(ArrayList<Personaje> listaPjs){
+        ArrayList<Object> aRemover = new ArrayList();
+        for(Object o:listaPjs){
+            if(o == null){
+                aRemover.add(o);
+            }
+        }
+        listaPjs.removeAll(aRemover);
+        this.pjsJugador = new Personaje[listaPjs.size()];
+        this.pjsJugador = listaPjs.toArray(pjsJugador);
+    }
+    
+    public void ordenarTurnos(){
         Personaje[] ordenTurnosPjs;
         Personaje[] arrayAuxiliar;
         int cantPjs = this.pjsJugador.length + this.pjsCpu.length;
-        ordenTurnosPjs = new Personaje[cantPjs];
+        ArrayList<Personaje> ordenArrayList = new ArrayList();
         arrayAuxiliar = new Personaje[cantPjs];
         Personaje masRapido;
         System.arraycopy(this.pjsJugador,0,arrayAuxiliar,0,this.pjsJugador.length);
         System.arraycopy(this.pjsCpu,0,arrayAuxiliar,this.pjsJugador.length,this.pjsCpu.length);
         ArrayList<Personaje> arrayListAuxiliar = new ArrayList(Arrays.asList(arrayAuxiliar));
-        masRapido = arrayListAuxiliar.get(0);
-        for(Personaje pj:arrayListAuxiliar){
-            if(pj.getVelocidad() > masRapido.getVelocidad()){
-                masRapido = pj;
-            }
-            if(pj.getVelocidad() == masRapido.getVelocidad() && pj != masRapido){
-                if(pj.getMovTotal() > masRapido.getMovTotal()){
+        int contador = 0;
+        while(arrayListAuxiliar.size() > 0){
+            masRapido = new Personaje();
+            for(Personaje pj:arrayListAuxiliar){
+                if(pj.getVelocidad() > masRapido.getVelocidad()){
                     masRapido = pj;
                 }
-                if(pj.getMovTotal() == masRapido.getMovTotal()){
-                    if(pj.getNivel() > masRapido.getNivel()){
+                if(pj.getVelocidad() == masRapido.getVelocidad() && pj != masRapido){
+                    if(pj.getMovTotal() > masRapido.getMovTotal()){
                         masRapido = pj;
                     }
-                    if(pj.getNivel() == masRapido.getNivel()){
-                        Random rnd = new Random();
-                        int numeroRnd = rnd.nextInt(2);
-                        if(numeroRnd == 1){
+                    if(pj.getMovTotal() == masRapido.getMovTotal()){
+                        if(pj.getNivel() > masRapido.getNivel()){
                             masRapido = pj;
+                        }
+                        if(pj.getNivel() == masRapido.getNivel()){
+                            Random rnd = new Random();
+                            int numeroRnd = rnd.nextInt(2);
+                            if(numeroRnd == 1){
+                                masRapido = pj;
+                            }
                         }
                     }
                 }
             }
+            ordenArrayList.add(masRapido);
+            contador++;
+            int indice = arrayListAuxiliar.indexOf(masRapido);
+            arrayListAuxiliar.remove(indice);
         }
-        
-        return ordenTurnosPjs;
+        ordenTurnosPjs = new Personaje[ordenArrayList.size()];
+        ordenArrayList.toArray(ordenTurnosPjs);
+        for(int i=0; i<ordenTurnosPjs.length; i++){
+            System.out.println("El "+(i+1)+"° personaje es "+ordenTurnosPjs[i].getNombre());
+        }
+        this.ordenTurnos = ordenTurnosPjs;
     }
     
     public void setPjsJugador(Personaje[] pjsJugador){
         this.pjsJugador = pjsJugador;
+    }
+    public Personaje[] getPjsJugador(){
+        return this.pjsJugador;
     }
     
 }
