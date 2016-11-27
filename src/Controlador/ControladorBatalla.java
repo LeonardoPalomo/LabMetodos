@@ -26,7 +26,13 @@ public class ControladorBatalla implements ActionListener, MouseListener {
     private Personaje[] pjsCpu;
     private int[] ultPosClick = new int[2];
     private int cantPjsUbicados = 0;
-    private boolean ubicandoPjs = true;
+    private int cntTurno = 0;
+    private boolean esperaClickMover = false;
+    private boolean esperaClickAtacar = false;
+    private boolean puedeMover = true;
+    private boolean puedeAtacar = true;
+    private boolean seMovio = false;
+    private boolean ataco = false;
     
     //Constructor
     public ControladorBatalla(int areaAsignatura, ArrayList<Personaje> pjsJugador){
@@ -40,6 +46,7 @@ public class ControladorBatalla implements ActionListener, MouseListener {
         b = new Batalla();
         b.limpiarListaPjs(pjsJugador);
         this.pjsJugador = b.getPjsJugador();
+        this.pjsCpu = b.getPjsCpu();
         b.asignarTerrenos(areaAsignatura, distribAltura); //Asigna los terrenos en función del área de la asignatura.
         //Por ahora, el área está fija en 3. 1 es plan común, 2 es economía, 3 es especialidad.
         b.corregirTerrenosTodos(); //Corrige los ríos que están solos, para que siempre haya al menos dos juntos.
@@ -73,15 +80,13 @@ public class ControladorBatalla implements ActionListener, MouseListener {
         if(!b.revisarAlturas()){
             System.out.println("Volviendo a generar escenario...");
             ArrayList<Personaje> pjsSeleccionados = new ArrayList<>(Arrays.asList(this.pjsJugador));
+            vb.dispose();
             ControladorBatalla cb = new ControladorBatalla(ControladorBatalla.areaAsignatura,pjsSeleccionados);
         }
         else{
             b.ordenarTurnos();
-            vb.getBtnAtacar().setEnabled(false);
-            vb.getBtnEnd().setEnabled(false);
-            vb.getBtnMover().setEnabled(false);
+            vb.disableButtons();
             vb.getBtnSurrender().setEnabled(false);
-            vb.getBtnUsar().setEnabled(false);
             vb.getbtnCancelar().setEnabled(false);
             vb.marcarZona(0,0,24,3,Color.WHITE);
             b.informarUbicarPjs(vb,this.pjsJugador[0]);
@@ -104,8 +109,11 @@ public class ControladorBatalla implements ActionListener, MouseListener {
             b.informarUbicarPjs(vb,this.pjsJugador[cantPjsUbicados]);
             ultPosClick[0] = -1;
             ultPosClick[1] = -1;
+            if(cantPjsUbicados == 0){
+                vb.getbtnCancelar().setEnabled(false);
+            }
         }
-        else if(e.getActionCommand()=="Aceptar"){
+        if(e.getActionCommand()=="Aceptar"){
             //System.out.println("Accion aceptar");
             if(ultPosClick[0] != -1 && ultPosClick[1] != -1){
                 String ruta = b.ubicarPersonaje(this.pjsJugador[cantPjsUbicados],ultPosClick[0],ultPosClick[1]);
@@ -121,6 +129,11 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                         vb.getbtnCancelar().setEnabled(false);
                         vb.desmarcarZona(0,0,24,3);
                         vb.eliminarBordesEscenario();
+                        vb.enableButtons();
+                        vb.getBtnSurrender().setEnabled(true);
+                        String turnoActual = b.getOrdenTurnos()[cntTurno].getNombre();
+                        vb.setTextArea("Turno "+(b.getTurno()+1)+" - Turno de "+turnoActual);
+                        vb.marcarCasilla(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getOrdenTurnos()[cntTurno].getEsCpu());
                     }
                     else{
                         b.informarUbicarPjs(vb,this.pjsJugador[cantPjsUbicados]);
@@ -130,20 +143,57 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                 }
             }
         }
-        else if(e.getActionCommand()=="Atacar"){
-            System.out.println("Accion atacar");
+        if(e.getActionCommand()=="Atacar"){
+            //System.out.println("Accion atacar");
+            if(seMovio){
+                puedeMover = false;
+            }
         }
-        else if(e.getActionCommand()=="Mover"){
-            System.out.println("Accion mover");
+        if(e.getActionCommand()=="Mover"){
+            //System.out.println("Accion mover");
+            if(puedeMover){
+                JOptionPane.showMessageDialog(vb,"<html><center>Haga click en la casilla a la que desea moverse"
+                    + "<br><center> (debe ser adyacente al personaje)","Mover",JOptionPane.INFORMATION_MESSAGE);
+                this.esperaClickMover = true;
+            }
+            
         }
-        else if(e.getActionCommand()=="Usar"){
+        if(e.getActionCommand()=="Usar"){
             System.out.println("Accion usar");
         }
-        else if(e.getActionCommand()=="Finalizar turno"){
-            System.out.println("Accion terminar turno");
+        if(e.getActionCommand()=="Finalizar turno"){
+            //System.out.println("Accion terminar turno");
+            cntTurno++;
+            b.sumarTurno();
+            if(cntTurno > b.getOrdenTurnos().length - 1){
+                cntTurno = 0;
+            }
+            String turnoActual = b.getOrdenTurnos()[cntTurno].getNombre();
+            vb.setTextArea("Turno "+(b.getTurno()+1)+" - Turno de "+turnoActual);
+            vb.marcarCasilla(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getOrdenTurnos()[cntTurno].getEsCpu());
+            if(cntTurno == 0){
+                vb.eliminarBordesCasilla(b.getOrdenTurnos()[b.getOrdenTurnos().length-1].getPosicion());
+            }
+            else{
+                vb.eliminarBordesCasilla(b.getOrdenTurnos()[cntTurno-1].getPosicion());
+            }
+            if(b.getOrdenTurnos()[cntTurno].getEsCpu()){
+                vb.disableButtons();
+            }
+            else{
+                vb.enableButtons();
+            }
         }
-        else if(vb.getBtnSurrender() == e.getSource()){
-        
+        if(vb.getBtnSurrender() == e.getSource()){
+            int opcion = JOptionPane.showConfirmDialog(vb,"<html><center>¿Estás seguro/a que quieres rendirte?"
+                    + "<br><center> Perderás cualquier avance y ganancias obtenidos en la batalla,"
+                    + "<br><center> pero los items gastados y los daños recibidos permanecerán.",
+                    "¿Acaso eres un gallina, McFly?",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+            if(opcion == JOptionPane.YES_OPTION){
+                JOptionPane.showMessageDialog(vb,"Has perdido... :(","RIP",JOptionPane.INFORMATION_MESSAGE);
+                vb.dispose();
+                ControladorVistaPrincipal cvp = new ControladorVistaPrincipal();
+            }
         }
         for(int i=0;i<25;i++){
             for(int j=0; j<25;j++)
@@ -165,7 +215,28 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                             nombreTerreno = "Montaña";
                     }
                     System.out.println("Posición ["+i+"], ["+j+"]. Su terreno es "+nombreTerreno+", y su altura es "+b.getTablero(i,j).getAltura()+".");
-                    
+                    if(esperaClickMover){
+                        int iAnterior = b.getOrdenTurnos()[cntTurno].getPosicion()[0];
+                        int jAnterior = b.getOrdenTurnos()[cntTurno].getPosicion()[1];
+                        if(b.getOrdenTurnos()[cntTurno].mover(i,j,b.verificarMover(i,j,cntTurno))){
+                            String ruta = b.ubicarPersonaje(b.getOrdenTurnos()[cntTurno],i,j);
+                            if(!ruta.equals("")){
+                                vb.ponerImagenTablero(ruta,i,j);
+                                vb.marcarCasilla(i,j,false);
+                                vb.ponerImagenTablero(b.ponerRutaImagenesTerreno(iAnterior, jAnterior),iAnterior,jAnterior);
+                                vb.eliminarBordesCasilla(iAnterior,jAnterior);
+                                b.getTablero(iAnterior, jAnterior).setPersonaje();
+                                seMovio = true;
+                                if(ataco){
+                                    puedeAtacar = false;
+                                }
+                                if(b.getOrdenTurnos()[cntTurno].getMovActual() == 0){
+                                    vb.getBtnMover().setEnabled(false);
+                                }
+                            }
+                        }
+                        esperaClickMover = false;
+                    }
                     if(cantPjsUbicados < this.pjsJugador.length){
                         //if(ubicandoPjs){
                             if(b.getTablero(i, j).getCaminable() ){
@@ -174,7 +245,7 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                                         if(ultPosClick[0] != -1 && ultPosClick[1] != -1){
                                             vb.marcarZona(ultPosClick[0], ultPosClick[1], ultPosClick[0], ultPosClick[1], Color.WHITE);
                                         }
-                                        vb.marcarZona(i, j, i, j, Color.BLUE);
+                                        vb.marcarCasilla(i, j,b.getOrdenTurnos()[cntTurno].getEsCpu());
                                         this.ultPosClick[0] = i;
                                         this.ultPosClick[1] = j;
                                         
@@ -242,6 +313,9 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                     vb.setLabelPosicion(i, j);
                     vb.setLabelTerreno(nombreTerreno);
                     vb.setLabelAltura(casilla.getAltura());
+                    if(cantPjsUbicados == pjsJugador.length){
+                        vb.marcarCasilla(i, j,b.getOrdenTurnos()[cntTurno].getEsCpu());
+                    }
                     if(pj != null){
                         vb.setLabelPersonaje(pj.getNombre());
                         vb.setLabelDueño(pj.getDueno());
@@ -319,6 +393,11 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                     vb.setLabelHp();
                     vb.setLabelMana();
                     vb.setLabelMov();
+                    if(cantPjsUbicados == pjsJugador.length){
+                        if(b.getTablero(i, j).getPersonaje() != b.getOrdenTurnos()[cntTurno]){
+                            vb.desmarcarCasilla(i, j);
+                        }
+                    }
                 }
             }
         }

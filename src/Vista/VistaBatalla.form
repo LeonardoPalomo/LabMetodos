@@ -31,15 +31,15 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnMover" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
-                          <Component id="btnUsar" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
-                          <Component id="btnAceptar" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
+                          <Component id="btnMover" linkSize="9" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
+                          <Component id="btnUsar" linkSize="9" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
+                          <Component id="btnAceptar" linkSize="9" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="41" pref="41" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnAtacar" alignment="1" min="-2" pref="101" max="-2" attributes="0"/>
-                          <Component id="btnEnd" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnCancelar" alignment="1" min="-2" pref="101" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btnEnd" linkSize="8" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnAtacar" linkSize="8" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnCancelar" linkSize="8" alignment="1" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">

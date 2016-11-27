@@ -7,12 +7,13 @@ import javax.swing.JOptionPane;
 
 public class Batalla {
     
-   private int turno;
+   private int turno = 0;
    private Jugador jugador;
    private Personaje[] pjsJugador;
    private Personaje[] pjsCpu;
    private Personaje[] ordenTurnos;
    private Casilla[][] tablero;
+   public static String errorMovimiento = "";
    
     public Batalla(){
         tablero = new Casilla[25][25];
@@ -689,6 +690,79 @@ public class Batalla {
     }
     public Personaje[] getPjsJugador(){
         return this.pjsJugador;
+    }
+    public void setPjsCpu(Personaje[] pjsCpu){
+        this.pjsCpu = pjsCpu;
+    }
+    public Personaje[] getPjsCpu(){
+        return this.pjsCpu;
+    }
+    public void sumarTurno(){
+        this.turno++;
+    }
+    public int getTurno(){
+        return this.turno;
+    }
+    
+    public boolean verificarAdyacencia(int i, int j, int cantTurno){
+        boolean comprobador = false;
+        int[] posPj = this.ordenTurnos[cantTurno].getPosicion();
+        if(posPj[0] == i && posPj[1] == j){
+            comprobador = false;
+            errorMovimiento = "Estás intentando moverte a tu misma casilla... ._.";
+        }
+        else if(posPj[0] == i){
+            try{
+                if(posPj[1] == j-1){
+                    comprobador = true;
+                }
+            }
+            catch(ArrayIndexOutOfBoundsException a){}    
+            try{
+                if(posPj[1] == j+1){
+                    comprobador = true;
+                }
+            }
+            catch(ArrayIndexOutOfBoundsException a){}
+        }
+        else if(posPj[1] == j){
+            try{
+                if(posPj[0] == i-1){
+                    comprobador = true;
+                }
+            }
+            catch(ArrayIndexOutOfBoundsException a){}
+            try{
+                if(posPj[0] == i+1){
+                    comprobador = true;
+                }
+            }
+            catch(ArrayIndexOutOfBoundsException a){}
+        }
+        else{
+            errorMovimiento = "La casilla seleccionada no es adyacente.";
+        }
+        return comprobador;
+    }
+    
+    public boolean verificarMover(int i, int j, int cantTurno){
+        boolean comprobador = false;
+        if(verificarAdyacencia(i,j,cantTurno)){
+            if(this.tablero[i][j].getCaminable() && this.tablero[i][j].getDisponible()){
+                int alturaObj = this.tablero[i][j].getAltura();
+                int[] posAct = this.ordenTurnos[cantTurno].getPosicion();
+                int alturaAct = this.tablero[posAct[0]][posAct[1]].getAltura();
+                comprobador = Math.abs(alturaAct - alturaObj) <= 2;
+                if(!comprobador){
+                    errorMovimiento = "La diferencia de alturas es demasiada.";
+                }
+            }
+            else{
+                comprobador = false;
+                errorMovimiento = "La casilla seleccionada no es válida.";
+            }
+        }
+        return comprobador;
     }
     
 }

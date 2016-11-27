@@ -4,6 +4,7 @@ package Vista;
 import Controlador.ControladorPrincipal;
 import java.awt.Color;
 import static java.awt.Color.BLUE;
+import static java.awt.Color.RED;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
@@ -267,10 +268,10 @@ public class VistaBatalla extends javax.swing.JFrame {
                             .addComponent(btnUsar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAtacar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEnd, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnEnd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAtacar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(146, 146, 146)
                         .addComponent(btnSurrender))
@@ -284,6 +285,11 @@ public class VistaBatalla extends javax.swing.JFrame {
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAtacar, btnCancelar, btnEnd});
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAceptar, btnMover, btnUsar});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -334,6 +340,7 @@ public class VistaBatalla extends javax.swing.JFrame {
        btnMover.addActionListener(a);
        btnUsar.addActionListener(a);
        btnEnd.addActionListener(a);
+       btnSurrender.addActionListener(a);
        for(int i=0;i<25;i++){
             for(int j=0; j<25;j++){
                 tablero[i][j].addActionListener(a);
@@ -365,16 +372,20 @@ public class VistaBatalla extends javax.swing.JFrame {
     }  
     public JButton getbtnAceptar(){
         return btnAceptar;    
-     }
+    }
     public JButton getbtnCancelar(){
         return btnCancelar;
     }   
     public JPanel getPanelVacio() {
          return panelVacio;
-     }
+    }
     public JButton[][] getTablero() {
          return tablero;
-     }
+    }
+    
+    public void setTextArea(String texto){
+        this.areaInfo.append(texto+"\n");
+    }
 
     public void setLabelPosicion(int i, int j){
         String posicionStr = "["+String.valueOf(i)+","+String.valueOf(j)+"]";
@@ -419,7 +430,6 @@ public class VistaBatalla extends javax.swing.JFrame {
         this.labelMov.setText(movActualStr+"/"+movTotalStr);
     }
 
-
     //Sobrecarga
     public void setLabelPosicion(){
         this.labelPosicion.setText("");
@@ -455,7 +465,18 @@ public class VistaBatalla extends javax.swing.JFrame {
         this.labelMov.setText("");
     }
 
-   
+    public void disableButtons(){
+        this.btnAtacar.setEnabled(false);
+        this.btnMover.setEnabled(false);
+        this.btnEnd.setEnabled(false);
+        this.btnUsar.setEnabled(false);
+    }
+    public void enableButtons(){
+        this.btnAtacar.setEnabled(true);
+        this.btnMover.setEnabled(true);
+        this.btnEnd.setEnabled(true);
+        this.btnUsar.setEnabled(true);
+    }
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea areaInfo;
@@ -521,12 +542,40 @@ public class VistaBatalla extends javax.swing.JFrame {
             }
         }
     }
+    public void marcarCasilla(int i, int j, boolean esCpu){
+        Border borde;
+        if(esCpu){
+            borde = new LineBorder(RED,2);
+        }
+        else{
+            borde = new LineBorder(BLUE,2);
+        }
+        tablero[i][j].setBorder(borde);
+    }
+    //Sobrecarga
+    public void marcarCasilla(int[] pos, boolean esCpu){
+        Border borde;
+        if(esCpu){
+            borde = new LineBorder(RED,2);
+        }
+        else{
+            borde = new LineBorder(BLUE,2);
+        }
+        tablero[pos[0]][pos[1]].setBorder(borde);
+    }
     public void desmarcarZona(int sup, int izq, int inf, int der){
         for(int i=sup; i<=inf; i++){
             for(int j=izq; j<=der; j++){
                 tablero[i][j].setBorder(UIManager.getBorder("Button.border"));
             }
         }
+    }
+    public void desmarcarCasilla(int i, int j){
+        tablero[i][j].setBorder(UIManager.getBorder("Button.border"));
+    }
+    //Sobrecarga
+    public void desmarcarCasilla(int[] pos){
+        tablero[pos[0]][pos[1]].setBorder(UIManager.getBorder("Button.border"));
     }
     public void eliminarBordesEscenario(){
         for(int i=0; i<25; i++){
@@ -535,5 +584,11 @@ public class VistaBatalla extends javax.swing.JFrame {
             }
         }
     }
-    
+    public void eliminarBordesCasilla(int i, int j){
+        tablero[i][j].setBorder(null);
+    }
+    //Sobrecarga
+    public void eliminarBordesCasilla(int[] pos){
+        tablero[pos[0]][pos[1]].setBorder(null);
+    }
 }

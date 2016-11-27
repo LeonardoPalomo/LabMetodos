@@ -3,6 +3,7 @@ package Modelo;
 import Controlador.ControladorLogin;
 import static java.lang.Math.abs;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 public class Personaje {
    private String nombre;
@@ -442,6 +443,27 @@ public class Personaje {
        return damage;
     }
   
-    public void mover(int[] posInicial, int[] posFinal) {}
-    //public boolean posibleMover(int[] posInicial, int[] posFinal)
+    public boolean mover(int i, int j, boolean comprobAltura){
+        boolean comprobador = false;
+        if(this.movActual == 0){
+            Batalla.errorMovimiento = "Al personaje "+this.getNombre()+" no le quedan puntos de movimiento";
+            System.out.println(Batalla.errorMovimiento);
+            JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Puntos de movimiento insuficientes",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            if(comprobAltura){
+                this.posicion[0] = i;
+                this.posicion[1] = j;
+                this.movActual--;
+                comprobador = true;
+            }
+            else{
+                System.out.println(Batalla.errorMovimiento);
+                JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Movimiento no permitido",
+                    JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        return comprobador;
+    }
 }

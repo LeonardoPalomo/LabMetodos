@@ -7,6 +7,7 @@ public class Casilla{
     private boolean caminable; //false si es río
     private boolean disponible; //false si hay un personaje en esta ubicación
     private Personaje personaje; //el personaje ubicado en esta casilla
+    private int[] posicion = new int[2];
     
     //Constructor
     public Casilla(){
@@ -64,4 +65,11 @@ public class Casilla{
         return personaje;
     }
     
+    public void setPosicion(int i, int j){
+        this.posicion[0] = i;
+        this.posicion[1] = j;
+    }
+    public int[] getPosicion(){
+        return this.posicion;
+    }
 }
