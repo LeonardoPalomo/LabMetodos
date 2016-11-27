@@ -8,6 +8,7 @@ public class Batalla {
    private Jugador jugador;
    private Personaje[] pjsJugador;
    private Personaje[] pjsCpu;
+   private Personaje[] ordenTurnos;
    private Casilla[][] tablero;
    
     public Batalla(){
@@ -554,7 +555,49 @@ public class Batalla {
         for(int i=0; i<personajesCpu.length; i++){
             personajesCpu[i] = new Personaje(i+1);
         }
+        this.pjsCpu = personajesCpu;
         return personajesCpu;
+    }
+    
+    public Personaje[] ordenarTurnos(){
+        Personaje[] ordenTurnosPjs;
+        Personaje[] arrayAuxiliar;
+        int cantPjs = this.pjsJugador.length + this.pjsCpu.length;
+        ordenTurnosPjs = new Personaje[cantPjs];
+        arrayAuxiliar = new Personaje[cantPjs];
+        Personaje masRapido;
+        System.arraycopy(this.pjsJugador,0,arrayAuxiliar,0,this.pjsJugador.length);
+        System.arraycopy(this.pjsCpu,0,arrayAuxiliar,this.pjsJugador.length,this.pjsCpu.length);
+        ArrayList<Personaje> arrayListAuxiliar = new ArrayList(Arrays.asList(arrayAuxiliar));
+        masRapido = arrayListAuxiliar.get(0);
+        for(Personaje pj:arrayListAuxiliar){
+            if(pj.getVelocidad() > masRapido.getVelocidad()){
+                masRapido = pj;
+            }
+            if(pj.getVelocidad() == masRapido.getVelocidad() && pj != masRapido){
+                if(pj.getMovTotal() > masRapido.getMovTotal()){
+                    masRapido = pj;
+                }
+                if(pj.getMovTotal() == masRapido.getMovTotal()){
+                    if(pj.getNivel() > masRapido.getNivel()){
+                        masRapido = pj;
+                    }
+                    if(pj.getNivel() == masRapido.getNivel()){
+                        Random rnd = new Random();
+                        int numeroRnd = rnd.nextInt(2);
+                        if(numeroRnd == 1){
+                            masRapido = pj;
+                        }
+                    }
+                }
+            }
+        }
+        
+        return ordenTurnosPjs;
+    }
+    
+    public void setPjsJugador(Personaje[] pjsJugador){
+        this.pjsJugador = pjsJugador;
     }
     
 }

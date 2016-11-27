@@ -54,7 +54,7 @@ public class ControladorSelPjs implements ActionListener, ListSelectionListener{
         }
         if(vsp.getListo() == e.getSource()){
             vsp.dispose();
-            ControladorBatalla cb = new ControladorBatalla(ControladorBatalla.areaAsignatura);
+            ControladorBatalla cb = new ControladorBatalla(ControladorBatalla.areaAsignatura,this.pjsSeleccionados);
         }
         if(vsp.getQuitar() == e.getSource()){
             if(vsp.getListaPjsSeleccionados().getSelectedValue() != null){

@@ -4,6 +4,7 @@ package Controlador;
 
 import Modelo.Batalla;
 import Modelo.Casilla;
+import Modelo.Personaje;
 import Vista.VistaBatalla;
 import java.awt.Color;
 import java.awt.Component;
@@ -11,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import java.util.Random;
 
@@ -19,15 +21,19 @@ public class ControladorBatalla implements ActionListener, MouseListener {
     private Batalla b;
     private Random distribAltura;
     public static int areaAsignatura;
+    private Personaje[] pjsJugador;
+    private Personaje[] pjsCpu;
     
     //Constructor
-    public ControladorBatalla(int areaAsignatura){
+    public ControladorBatalla(int areaAsignatura, ArrayList<Personaje> pjsJugador){
+        pjsJugador.toArray(this.pjsJugador);
         this.areaAsignatura = areaAsignatura;
         vb = new VistaBatalla();
         vb.setVisible(true);
         vb.setListener(this);
         vb.setMouseListener(this);
         b = new Batalla();
+        b.setPjsJugador(this.pjsJugador);
         b.asignarTerrenos(areaAsignatura, distribAltura); //Asigna los terrenos en función del área de la asignatura.
         //Por ahora, el área está fija en 3. 1 es plan común, 2 es economía, 3 es especialidad.
         b.corregirTerrenosTodos(); //Corrige los ríos que están solos, para que siempre haya al menos dos juntos.
@@ -59,6 +65,7 @@ public class ControladorBatalla implements ActionListener, MouseListener {
         }
         b.contarTerrenos();
         System.out.println(b.revisarAlturas());
+        
     }
 
     @Override
