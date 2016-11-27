@@ -35,7 +35,7 @@ public class ControladorBibliotecaCentral implements ActionListener{
             String iniciado = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha iniciado misión extra buscaminas";
             ControladorPrincipal.registrarAccion(iniciado);
             vbc.setVisible(false);
-            //AGREGAR CONTROLADOR RESPECTIVO
+            ControladorBuscaminas cb = new ControladorBuscaminas();
         }
         else if(vbc.getBotonAdivinaLaPalabra()==e.getSource()){
             String iniciado = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha iniciado misión extra adivina la palabra";
@@ -47,7 +47,7 @@ public class ControladorBibliotecaCentral implements ActionListener{
             String iniciado = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha iniciado misión extra tres en raya";
             ControladorPrincipal.registrarAccion(iniciado);
             vbc.setVisible(false);
-            //AGREGAR CONTROLADOR RESPECTIVO
+            ControladorPrincipalTresEnRaya cp = new ControladorPrincipalTresEnRaya();
         }
     }
 }
