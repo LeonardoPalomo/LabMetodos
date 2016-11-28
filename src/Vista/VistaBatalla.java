@@ -563,6 +563,13 @@ public class VistaBatalla extends javax.swing.JFrame {
         }
         tablero[pos[0]][pos[1]].setBorder(borde);
     }
+    //Sobrecarga
+    public void marcarCasilla(int i, int j, Color color){
+        Border borde;
+        borde = new LineBorder(color,2);
+        tablero[i][j].setBorder(borde);
+    }
+    
     public void desmarcarZona(int sup, int izq, int inf, int der){
         for(int i=sup; i<=inf; i++){
             for(int j=izq; j<=der; j++){

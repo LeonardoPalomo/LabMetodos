@@ -13,13 +13,14 @@ public class Batalla {
    private Personaje[] pjsCpu;
    private Personaje[] ordenTurnos;
    private Casilla[][] tablero;
-   public static String errorMovimiento = "";
+   public static String errorMovimiento = "La casilla seleccionada no es adyacente.";
    
     public Batalla(){
         tablero = new Casilla[25][25];
         for(int i=0;i<25;i++){
             for(int j=0;j<25;j++){
                 tablero[i][j] = new Casilla();
+                tablero[i][j].setPosicion(i, j);
             }
         }
     }
@@ -763,6 +764,37 @@ public class Batalla {
             }
         }
         return comprobador;
+    }
+    
+    public ArrayList<Personaje> revisarMuertes(){
+        ArrayList<Personaje> pjsMuertos = new ArrayList();
+        for(Personaje pj:ordenTurnos){
+            if(pj.getHpActual() == 0){
+                pjsMuertos.add(pj);
+            }
+        }
+        return pjsMuertos;
+    }
+    
+    public void retirarMuertos(ArrayList<Personaje> pjsMuertos){
+        ArrayList<Personaje> personajesCpu = new ArrayList(Arrays.asList(this.pjsCpu));
+        ArrayList<Personaje> personajesJugador = new ArrayList(Arrays.asList(this.pjsJugador));
+        ArrayList<Personaje> ordenTurnosArrayList =new ArrayList(Arrays.asList(this.ordenTurnos));
+        for(Personaje pj:pjsMuertos){
+            if(pj.getEsCpu()){
+                personajesCpu.remove(pj);
+            }
+            else{
+                personajesJugador.remove(pj);
+            }
+            ordenTurnosArrayList.remove(pj);
+        }
+        this.pjsCpu = new Personaje[personajesCpu.size()];
+        personajesCpu.toArray(this.pjsCpu);
+        this.pjsJugador = new Personaje[personajesJugador.size()];
+        personajesJugador.toArray(this.pjsJugador);
+        this.ordenTurnos = new Personaje[ordenTurnosArrayList.size()];
+        ordenTurnosArrayList.toArray(this.ordenTurnos);
     }
     
 }

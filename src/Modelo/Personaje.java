@@ -397,28 +397,39 @@ public class Personaje {
         this.posicion[1] = j;
     }
     
+    /*
+    public boolean tieneArmaLargoAlcance(){
+        boolean comprobador = false;
+        if(){
+        
+        }
+        return comprobador;
+    }
+    */
+    
     public void atacarCerca(int[] posObjetivo) {}
    
-   /**
+    /*
+   
     * Funcion que verifica si es posible el ataque a larga distancia
     * @param posObjetivo arreglo que indica la posicion del objetivo
      * @return true si se puede o false si no se puede
-    */
+    
     public boolean verificarAtacarLejos(int[] posObjetivo) {
        int difFila; //diferencia de fila
        int difColumna; //diferencia de columna
        int suma;
-       difFila = abs(posicion[1] - posObjetivo[1]); //no estoy seguro si es this.posicion
-       difColumna = abs(posicion[0] - posObjetivo[0]);
+       difColumna = abs(posicion[1] - posObjetivo[1]);
+       difFila = abs(posicion[0] - posObjetivo[0]);
        suma = difFila + difColumna;
-       return suma == 5 || suma == 6;
+       return suma == 5 || suma == 6 || suma == 7 || suma == 8;
     }
    
-   /**
+   
     * Funcion que verifica si es posible el ataque a corto alcance
     * @param posObjetivo arreglo que indica la posicion del objetivo
     * @return 
-    */
+    
     public boolean verificarAtacarCorto(int[] posObjetivo) {
        int difFila; //diferencia de fila
        int difColumna; //diferencia de columna
@@ -428,7 +439,30 @@ public class Personaje {
        suma = difFila + difColumna;
        return suma == 1 || suma == 2;
     }
-   
+    */
+
+   /**
+    * Funcion que calcula el tipo de ataque a realizar en función de la distancia del objetivo
+    * @param posObjetivo arreglo que indica la posicion del objetivo
+    * @return tipoAtaque número que representa el tipo de ataque -1 cerca, 2 lejos, 0 nada
+    */
+    public int calcularRangoAtaque(int[] posObjetivo){
+        int tipoAtaque = 0; //No está dentro del rango de ataque
+        int difFila; //diferencia de fila
+        int difColumna; //diferencia de columna
+        int suma;
+        difColumna = abs(posicion[1] - posObjetivo[1]);
+        difFila = abs(posicion[0] - posObjetivo[0]);
+        suma = difFila + difColumna;
+        if(suma == 1 || suma == 2){
+            tipoAtaque = 1; //Corto alcance
+        }
+        else if(suma == 5 || suma == 6 || suma == 7 || suma == 8){
+            tipoAtaque = 2; //Largo alcance
+        }
+        return tipoAtaque;
+    }
+    
    /**
     * Funcion que realiza el ataque lejos
     * @param def la defensa del personaje objetivo
@@ -441,6 +475,14 @@ public class Personaje {
            damage = 0;
        }
        return damage;
+    }
+    
+    public int aplicarDaño(int daño){
+        this.hpActual = hpActual - daño;
+        if(hpActual < 0){
+            hpActual = 0;
+        }
+        return hpActual;
     }
   
     public boolean mover(int i, int j, boolean comprobAltura){
