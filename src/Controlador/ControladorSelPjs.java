@@ -73,11 +73,11 @@ public class ControladorSelPjs implements ActionListener, ListSelectionListener{
                 vsp.setPjsDisponibles(pjsDisponibles);
                 vsp.setPjsSeleccionados(pjsSeleccionados);
                 cantPjsSel--;
+                if(cantPjsSel == 0){
+                    vsp.getQuitar().setEnabled(false);
+                }
             }
-            if(cantPjsSel == 0){
-                vsp.getQuitar().setEnabled(false);
-            }
-            if(pjsSeleccionados.size() < 5){
+            if(pjsSeleccionados.size() == 0){
                 vsp.getListo().setEnabled(false);
                 vsp.getAgregar().setEnabled(true);
             }

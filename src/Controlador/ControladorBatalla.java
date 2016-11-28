@@ -7,7 +7,6 @@ import Modelo.Casilla;
 import Modelo.Personaje;
 import Vista.VistaBatalla;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -33,6 +32,8 @@ public class ControladorBatalla implements ActionListener, MouseListener {
     private boolean puedeAtacar = true;
     private boolean seMovio = false;
     private boolean ataco = false;
+    private boolean instrucMover = true;
+    private boolean instrucAtk = true;
     
     //Constructor
     public ControladorBatalla(int areaAsignatura, ArrayList<Personaje> pjsJugador){
@@ -154,11 +155,14 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                     vb.setTextArea(cancelado);
                 }
                 this.esperaClickMover = false;
-                JOptionPane.showMessageDialog(vb,"<html><center>Haga click en el personaje que desea atacar. "
-                        + "<br><center>En función de la distancia, se usará un ataque a corta o larga distancia. "
-                        + "<br><center>-1 a 2 casillas de distancia - ataque a corta distancia-"
-                        + "<br><center>-5 a 8 casillas de distancia - ataque a larga distancia-",
-                        "Ataque",JOptionPane.INFORMATION_MESSAGE);
+                if(instrucMover){
+                    JOptionPane.showMessageDialog(vb,"<html><center>Haga click en el personaje que desea atacar. "
+                            + "<br><center>En función de la distancia, se usará un ataque a corta o larga distancia. "
+                            + "<br><center>-1 a 2 casillas de distancia - ataque a corta distancia-"
+                            + "<br><center>-5 a 8 casillas de distancia - ataque a larga distancia-",
+                            "Ataque",JOptionPane.INFORMATION_MESSAGE);
+                    instrucMover = false;
+                }
                 this.esperaClickAtacar = true;
                 String esperando = "Esperando ataque...";
                 System.out.println(esperando);
@@ -174,13 +178,15 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                     vb.setTextArea(cancelado);
                 }
                 this.esperaClickAtacar = false;
-                JOptionPane.showMessageDialog(vb,"<html><center>Haga click en la casilla a la que desea moverse"
-                    + "<br><center> (debe ser adyacente al personaje)","Mover",JOptionPane.INFORMATION_MESSAGE);
+                if(instrucAtk){
+                    JOptionPane.showMessageDialog(vb,"<html><center>Haga click en la casilla a la que desea moverse"
+                        + "<br><center> (debe ser adyacente al personaje)","Mover",JOptionPane.INFORMATION_MESSAGE);
+                    instrucAtk = false;
+                }
                 this.esperaClickMover = true;
                 String esperando = "Esperando movimiento...";
                 System.out.println(esperando);
                 vb.setTextArea(esperando);
-                
             }   
         }
         if(e.getActionCommand()=="Usar"){

@@ -1073,3 +1073,13 @@
 2016/11/27 :: 22:15:57 = El usuario Admin ha iniciado misión extra adivina la palabra
 2016/11/27 :: 22:16:00 = El usuario Admin ha vuelto al menú principal.
 2016/11/27 :: 22:16:01 = El usuario Admin ha salido del programa.
+2016/11/28 :: 17:20:32 = Se ha abierto el juego. 
+2016/11/28 :: 17:20:43 = El usuario Admin va a seleccionar una asignatura.
+2016/11/28 :: 17:37:20 = Se ha abierto el juego. 
+2016/11/28 :: 17:37:30 = El usuario null va a seleccionar una asignatura.
+2016/11/28 :: 17:38:53 = El usuario null ha salido del programa.
+2016/11/28 :: 17:52:41 = Se ha abierto el juego. 
+2016/11/28 :: 17:52:53 = El usuario null va a seleccionar una asignatura.
+2016/11/28 :: 17:53:59 = Se ha abierto el juego. 
+2016/11/28 :: 17:54:08 = El usuario null va a seleccionar una asignatura.
+2016/11/28 :: 17:54:54 = Se ha abierto el juego. 

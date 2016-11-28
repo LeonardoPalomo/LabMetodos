@@ -30,52 +30,52 @@ public class ControladorLogin implements ActionListener,KeyListener{
             if(vl.getButtonIngresar()==e.getSource()){
                 String usuario = vl.getUsuarioVista();
                 String password = vl.getPasswordVista();
-                try {
-                    Jugador comprobadorUsuario = Jugador.obtener(usuario, password);
-                    if(comprobadorUsuario!=null){
-                        jugadorPrueba = new Jugador(comprobadorUsuario.getNombre(),comprobadorUsuario.getPassword());
-                        if (jugadorPrueba.existeUsuario(usuario)){
-                            if(jugadorPrueba.verificarDatos(usuario,password)){
-                                usuarioActivo = usuario;
-                                String inicioSesion = "El usuario "+usuarioActivo+" ha iniciado sesión.";
-                                //Malla se obtiene de BDD, por ahora es 1 (civil)
-                                malla = 1;
-                                ControladorPrincipal.registrarAccion(inicioSesion);
-                                vl.dispose();
-                                ControladorVistaPrincipal cvp = new ControladorVistaPrincipal();
+                if(usuario.equals(Jugador.usuarioAdmin) && password.equals(Jugador.passAdmin)){
+                    malla = 1;
+                    vl.dispose();
+                    ControladorVistaPrincipal cvp = new ControladorVistaPrincipal();
+                }
+                else{
+                    try {
+                        Jugador comprobadorUsuario = Jugador.obtener(usuario, password);
+                        if(comprobadorUsuario!=null){
+                            jugadorPrueba = new Jugador(comprobadorUsuario.getNombre(),comprobadorUsuario.getPassword());
+                            if (jugadorPrueba.existeUsuario(usuario)){
+                                if(jugadorPrueba.verificarDatos(usuario,password)){
+                                    usuarioActivo = usuario;
+                                    String inicioSesion = "El usuario "+usuarioActivo+" ha iniciado sesión.";
+                                    //Malla se obtiene de BDD, por ahora es 1 (civil)
+                                    malla = 1;
+                                    ControladorPrincipal.registrarAccion(inicioSesion);
+                                    vl.dispose();
+                                    ControladorVistaPrincipal cvp = new ControladorVistaPrincipal();
+                                }
+                                else{
+                                    String inicioSesionFallidaPass = "Inicio de sesión fallida: Usuario "+usuario+"; Contraseña incorrecta.";
+                                    ControladorPrincipal.registrarAccion(inicioSesionFallidaPass);
+                                    vl.contrasenaIncorrecta();
+                                }
+
                             }
                             else{
-                                String inicioSesionFallidaPass = "Inicio de sesión fallida: Usuario "+usuario+"; Contraseña incorrecta.";
-                                ControladorPrincipal.registrarAccion(inicioSesionFallidaPass);
-                                vl.contrasenaIncorrecta();
+                                String inicioSesionFallidaUser = "Inicio de sesión fallida: Usuario "+usuario+" no existe.";
+                                ControladorPrincipal.registrarAccion(inicioSesionFallidaUser);
+                                vl.usuarioInexistente(usuario);
                             }
-                    
                         }
                         else{
                             String inicioSesionFallidaUser = "Inicio de sesión fallida: Usuario "+usuario+" no existe.";
                             ControladorPrincipal.registrarAccion(inicioSesionFallidaUser);
                             vl.usuarioInexistente(usuario);
                         }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    else{
-                        String inicioSesionFallidaUser = "Inicio de sesión fallida: Usuario "+usuario+" no existe.";
-                        ControladorPrincipal.registrarAccion(inicioSesionFallidaUser);
-                        vl.usuarioInexistente(usuario);
-                    }
-                } catch (SQLException ex) {
-                    Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
+                }                
             }
             if(vl.getButtonRegistrarse()==e.getSource()){
                 ControladorRegistro cr = new ControladorRegistro(this);
                 vl.setVisible(false);
-            }
-            if(vl.getButtonBackdoor()==e.getSource()){
-                vl.dispose();
-                malla = 1;
-                usuarioActivo = "Admin";
-                ControladorVistaPrincipal cvp = new ControladorVistaPrincipal();
             }
     }
     public void setVista(boolean b){

@@ -22,6 +22,9 @@ public class Jugador {
    private String pjSecundario;
    private int rolPjSecundario;
    
+   public static String usuarioAdmin = "Admin";
+   public static String passAdmin = "666";
+   
     public Jugador(String nombre, String password) throws SQLException{
         this.nombre = nombre;
         this.contrasena = password;
