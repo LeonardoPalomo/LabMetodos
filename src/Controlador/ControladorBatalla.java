@@ -97,7 +97,6 @@ public class ControladorBatalla implements ActionListener, MouseListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand()=="Cancelar"){
-            //System.out.println("Accion cancelar");
             if(ultPosClick[0] != -1 && ultPosClick[1] != -1){
                 vb.marcarZona(ultPosClick[0], ultPosClick[1], ultPosClick[0], ultPosClick[1], Color.WHITE);
             }
@@ -115,7 +114,6 @@ public class ControladorBatalla implements ActionListener, MouseListener {
             }
         }
         if(e.getActionCommand()=="Aceptar"){
-            //System.out.println("Accion aceptar");
             if(ultPosClick[0] != -1 && ultPosClick[1] != -1){
                 String ruta = b.ubicarPersonaje(this.pjsJugador[cantPjsUbicados],ultPosClick[0],ultPosClick[1]);
                 if(!ruta.equals("")){
@@ -147,7 +145,6 @@ public class ControladorBatalla implements ActionListener, MouseListener {
             }
         }
         if(e.getActionCommand()=="Atacar"){
-            //System.out.println("Accion atacar");
             if(puedeAtacar){
                 if(esperaClickMover){
                     String cancelado = "Movimiento cancelado";
@@ -170,7 +167,6 @@ public class ControladorBatalla implements ActionListener, MouseListener {
             }
         }
         if(e.getActionCommand()=="Mover"){
-            //System.out.println("Accion mover");
             if(puedeMover){
                 if(esperaClickAtacar){
                     String cancelado = "Ataque cancelado";
@@ -190,11 +186,9 @@ public class ControladorBatalla implements ActionListener, MouseListener {
             }   
         }
         if(e.getActionCommand()=="Usar"){
-            //System.out.println("Accion usar");
             JOptionPane.showMessageDialog(vb,"Trabajo en progreso...","WIP",JOptionPane.INFORMATION_MESSAGE);
         }
         if(e.getActionCommand()=="Finalizar turno"){
-            //System.out.println("Accion terminar turno");
             cntTurno++;
             this.puedeAtacar = true;
             this.puedeMover = true;
