@@ -22,7 +22,7 @@ public class Personaje {
    private int movTotal;
    private int movActual;
    private int ptsTraicion;
-   private Equipamiento[] equipamiento;
+   private Equipamiento[] equipamiento = new Equipamiento[6];   //2 armas + 4 partes de armadura
    private int velocidad;
    private int tipo; //1 alumno, 2 ayudante, 3 profesor
    private int rol; //1 guerrero, 2 arquero, 3 ninja, 4 mago

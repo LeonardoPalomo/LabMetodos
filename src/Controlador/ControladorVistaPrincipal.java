@@ -17,12 +17,12 @@ public class ControladorVistaPrincipal implements ActionListener{
         vp.agregarListener(this);
         vp.setVisible(true);
         //Se crea ArrayList de pjs provisorio, a futuro recibirá los pjs desde la BDD
-        Personaje pj1 = new Personaje("PJ 1",1,0);
-        Personaje pj2 = new Personaje("PJ 2",2,0);
-        Personaje pj3 = new Personaje("PJ 3",3,0);
-        Personaje pj4 = new Personaje("PJ 4",4,1);
-        Personaje pj5 = new Personaje("PJ 5",4,2);
-        Personaje pj6 = new Personaje("PJ 6",4,3);
+        Personaje pj1 = new Personaje("Pinky",1,0);
+        Personaje pj2 = new Personaje("Viru",2,0);
+        Personaje pj3 = new Personaje("Ulloa",3,0);
+        Personaje pj4 = new Personaje("Oveja",4,1);
+        Personaje pj5 = new Personaje("Oink",4,2);
+        Personaje pj6 = new Personaje("Mumu",4,3);
         pjsJugador.add(pj1);
         pjsJugador.add(pj2);
         pjsJugador.add(pj3);

@@ -10,6 +10,7 @@ import java.awt.event.KeyListener;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class ControladorLogin implements ActionListener,KeyListener{
     
@@ -30,7 +31,15 @@ public class ControladorLogin implements ActionListener,KeyListener{
             if(vl.getButtonIngresar()==e.getSource()){
                 String usuario = vl.getUsuarioVista();
                 String password = vl.getPasswordVista();
-                if(usuario.equals(Jugador.usuarioAdmin) && password.equals(Jugador.passAdmin)){
+                if(usuario.equals("")){
+                    System.out.println("No ha ingresado un nombre de usuario");
+                    JOptionPane.showMessageDialog(vl,"Ingrese un nombre de usuario.","ERROR",JOptionPane.ERROR_MESSAGE);
+                }
+                else if(password.equals("")){
+                    System.out.println("No ha ingresado su contraseña");
+                    JOptionPane.showMessageDialog(vl,"Ingrese una contraseña.","ERROR",JOptionPane.ERROR_MESSAGE);
+                }
+                else if(usuario.equals(Jugador.usuarioAdmin) && password.equals(Jugador.passAdmin)){
                     malla = 1;
                     vl.dispose();
                     ControladorVistaPrincipal cvp = new ControladorVistaPrincipal();

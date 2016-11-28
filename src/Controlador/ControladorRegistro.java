@@ -1,12 +1,11 @@
 package Controlador;
 
 import Modelo.Conexion;
+import Modelo.Jugador;
 import Vista.VistaRegistro;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Modelo.Jugador;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -21,7 +20,6 @@ public class ControladorRegistro implements ActionListener{
         vr.setVisible(true);
         vr.setLocationRelativeTo(null);
         vr.agregarListener(this);
-        
         this.cl = cl;
     }
 
@@ -34,7 +32,11 @@ public class ControladorRegistro implements ActionListener{
         else if (vr.getButtonRegistrarse()==e.getSource()){
             try {
                 conexion = new Conexion();
-                conexion.conectar();
+                boolean comprobador = conexion.conectar();
+                if(!comprobador){
+                    System.out.println("La base de datos no está conectada.");
+                    JOptionPane.showMessageDialog(vr,"No se pudo acceder a la base de datos.","ERROR: Base de datos no conectada",JOptionPane.ERROR_MESSAGE);
+                }
                 if(vr.getPassword().equals(vr.getPassword2())){
                     if(Jugador.obtener(vr.getUsuario())){
                         String intentoRegistro1 = "Intento fallido de registro: el usuario "+vr.getUsuario()+" ya existe.";
@@ -57,6 +59,7 @@ public class ControladorRegistro implements ActionListener{
                     JOptionPane.showMessageDialog(null,intentoRegistro2);
                 }
             } catch (SQLException ex) {
+                System.out.println("Fallo al tratar de acceder a BDD");
                 Logger.getLogger(ControladorRegistro.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

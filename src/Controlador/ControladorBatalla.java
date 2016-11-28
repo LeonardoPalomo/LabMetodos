@@ -13,8 +13,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Arrays;
-import javax.swing.JOptionPane;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 public class ControladorBatalla implements ActionListener, MouseListener {
     private VistaBatalla vb;
