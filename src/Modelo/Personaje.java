@@ -465,16 +465,31 @@ public class Personaje {
     
    /**
     * Funcion que realiza el ataque lejos
-    * @param def la defensa del personaje objetivo
+    * @param def la defensa del personaje objetivo 
+     * @param terreno el tipo de terreno en que se encuentra el personaje objetivo
     * @return el daño realizado (restar despues con el hp)
     */
-    public int atacarLejos(int def){
-       int damage;
-       damage = this.atkLejos - def;
-       if (damage < 0){
-           damage = 0;
-       }
-       return damage;
+    public int atacarLejos(int def,int terreno){
+        Random chance = new Random();
+        int damage;
+        int fallo;
+        if(terreno == 3){
+            fallo = chance.nextInt(5);
+        }
+        else{
+            fallo = 1;
+        }
+        if(fallo == 0){
+            damage = -1;
+        }
+        else{
+            damage = this.atkLejos - def;
+            if (damage < 0){
+                damage = 0;
+            }
+        }
+        
+        return damage;
     }
     
     public int aplicarDaño(int daño){

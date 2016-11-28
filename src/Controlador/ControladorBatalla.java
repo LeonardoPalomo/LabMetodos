@@ -297,14 +297,21 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                                     break;
                                 case 2:
                                     //if(b.getOrdenTurnos()[cntTurno].tieneArmaLargoAlcance()){
-                                        int daño = b.getOrdenTurnos()[cntTurno].atacarLejos(b.getTablero(i,j).getPersonaje().getDef());
-                                        int hpRestante = b.getTablero(i,j).getPersonaje().aplicarDaño(daño);
                                         String ataque = "El personaje "+b.getOrdenTurnos()[cntTurno].getNombre()+" ataca a distancia al personaje "+b.getTablero(i,j).getPersonaje().getNombre();
-                                        String dañoRecibido = b.getTablero(i,j).getPersonaje().getNombre()+" recibe "+daño+" puntos de daño.";
                                         System.out.println(ataque);
-                                        System.out.println(dañoRecibido);
                                         vb.setTextArea(ataque);
-                                        vb.setTextArea(dañoRecibido);
+                                        int daño = b.getOrdenTurnos()[cntTurno].atacarLejos(b.getTablero(i,j).getPersonaje().getDef(),b.getTablero(i,j).getTerreno());
+                                        if(daño == -1){
+                                            String falloCritico = "¡"+b.getOrdenTurnos()[cntTurno].getNombre()+" ha fallado su ataque!";
+                                            System.out.println(falloCritico);
+                                            vb.setTextArea(falloCritico);
+                                        }
+                                        else{
+                                            int hpRestante = b.getTablero(i,j).getPersonaje().aplicarDaño(daño);
+                                            String dañoRecibido = b.getTablero(i,j).getPersonaje().getNombre()+" recibe "+daño+" puntos de daño.";
+                                            System.out.println(dañoRecibido);
+                                            vb.setTextArea(dañoRecibido);
+                                        }
                                     //}
                                     break;
                             }

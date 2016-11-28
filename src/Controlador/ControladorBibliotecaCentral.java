@@ -41,7 +41,7 @@ public class ControladorBibliotecaCentral implements ActionListener{
             String iniciado = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha iniciado misión extra adivina la palabra";
             ControladorPrincipal.registrarAccion(iniciado);
             vbc.setVisible(false);
-            //AGREGAR CONTROLADOR RESPECTIVO
+            ControladorInicialAdivLaPal cialp = new ControladorInicialAdivLaPal();
         }
         else if(vbc.getBotonTresEnRaya()==e.getSource()){
             String iniciado = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha iniciado misión extra tres en raya";

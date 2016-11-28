@@ -333,7 +333,7 @@ public class Batalla {
                         }
                         if (contador >= contadorTope) {
                             comprobador = false;
-                            System.out.println("Volviendo a generar...");
+                            System.out.println("Volviendo a generar alturas...");
                             break;
                         }
                     }

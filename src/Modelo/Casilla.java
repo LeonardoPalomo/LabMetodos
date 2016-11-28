@@ -36,6 +36,9 @@ public class Casilla{
         if(terreno == 2){
             this.caminable = false;
         }
+        else{
+            this.caminable = true;
+        }
     }
     public int getTerreno(){
         return this.tipo;
