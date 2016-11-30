@@ -50,7 +50,7 @@ public class ControladorTableroBuscaminas implements MouseListener{
        vt.bListener(this);
        mapaJugador = casilla.getMapa1();
        this.rango = vt.getRango();
-       numeroMin = (int) (rango*1.5);
+       numeroMin = buscaminas.cantidadTotalMinas(rango);
        mapaResuelto = casilla.getMapa2();
        for(int x=0; x<cantidadTotalMinas; x++){//Setea las minas en coordenadas aleatorias
            aleatorioX = buscaminas.posicionMinaX(rango);
@@ -109,7 +109,6 @@ public class ControladorTableroBuscaminas implements MouseListener{
                                 int numeritoY = casillita.getPosicionY();
                                 vt.mostrar(numeritoX, numeritoY,mapaResuelto[numeritoX][numeritoY], true);
                                 System.out.println("Estado casilla: "+casillita.getEstado());
-                                //Problema radica en la funcion de descubrir terreno, hay algunas casillas que no se estan marcando como descubiertas...
                             }
                         }
                         else if(mapaResuelto[i][j] == 9){//Si el jugador presiona una casilla que contiene una mina, pierde.

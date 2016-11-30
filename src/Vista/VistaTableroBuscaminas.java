@@ -6,7 +6,9 @@
 package Vista;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
@@ -29,16 +31,17 @@ public class VistaTableroBuscaminas extends javax.swing.JFrame {
         construirTablero(rango, numeroMin);
         if (rango == 10){
             this.setSize(900,735);
-            Panel.setSize(400,400);
+            Panel.setSize(620,620);
         }
         if (rango == 20){
             this.setSize(1100, 735);
-            Panel.setSize(800,800);
+            Panel.setSize(620,620);
         }
         if (rango == 30){
             this.setSize(1400, 735);
-            Panel.setSize(1200,1200);
+            Panel.setSize(620,620);
         }
+        
     }
     
     //Métodos get y set//
@@ -59,18 +62,21 @@ public class VistaTableroBuscaminas extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        Panel.setPreferredSize(new java.awt.Dimension(400, 400));
+        Panel.setMaximumSize(new java.awt.Dimension(620, 620));
+        Panel.setMinimumSize(new java.awt.Dimension(620, 620));
+        Panel.setPreferredSize(new java.awt.Dimension(620, 620));
 
         javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
         Panel.setLayout(PanelLayout);
         PanelLayout.setHorizontalGroup(
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 619, Short.MAX_VALUE)
+            .addGap(0, 620, Short.MAX_VALUE)
         );
         PanelLayout.setVerticalGroup(
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGap(0, 620, Short.MAX_VALUE)
         );
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -92,15 +98,16 @@ public class VistaTableroBuscaminas extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
+                .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCancelar)
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(numeroMinas, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,12 +116,13 @@ public class VistaTableroBuscaminas extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(numeroMinas, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 426, Short.MAX_VALUE)
                 .addComponent(btnCancelar)
                 .addGap(92, 92, 92))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
-                .addGap(0, 22, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -166,7 +174,12 @@ public class VistaTableroBuscaminas extends javax.swing.JFrame {
         for(int i=0; i<rango; i++){
             for(int j=0; j<rango; j++){
                 mapa1[i][j] = new JButton();
+                Dimension tamaño = new Dimension(15,15);
+                mapa1[i][j].setPreferredSize(tamaño);
+                mapa1[i][j].setMaximumSize(tamaño);
+                mapa1[i][j].setMinimumSize(tamaño);
                 mapa1[i][j].setBorderPainted(true);
+                mapa1[i][j].setMargin(new Insets(0,0,0,0));
                 if(rango == 20){
                     //mapa1[i][j].setSize(1000, 1000);
                     //Panel.setSize(1000, 1000);
@@ -174,6 +187,9 @@ public class VistaTableroBuscaminas extends javax.swing.JFrame {
                 Panel.add(mapa1[i][j]);
             }
         }
+        System.out.println(this.mapa1[0][0].getPreferredSize());
+        System.out.println(this.mapa1[0][0].getMaximumSize());
+        System.out.println(this.mapa1[0][0].getMinimumSize());
     return mapa1;
     }
     

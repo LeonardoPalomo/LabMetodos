@@ -1105,3 +1105,14 @@
 2016/11/30 :: 00:56:49 = Se ha abierto el juego. 
 2016/11/30 :: 00:57:02 = El usuario null ha accedido a biblioteca central
 2016/11/30 :: 00:57:03 = El usuario null ha iniciado misión extra tres en raya
+2016/11/30 :: 10:51:32 = Se ha abierto el juego. 
+2016/11/30 :: 10:51:33 = Se ha abierto el juego. 
+2016/11/30 :: 10:51:45 = Se ha abierto el juego. 
+2016/11/30 :: 10:52:53 = Se ha abierto el juego. 
+2016/11/30 :: 10:53:05 = El usuario null va a seleccionar una asignatura.
+2016/11/30 :: 10:59:57 = Se ha abierto el juego. 
+2016/11/30 :: 11:00:11 = El usuario null ha accedido a biblioteca central
+2016/11/30 :: 11:00:13 = El usuario null ha iniciado misión extra buscaminas
+2016/11/30 :: 11:04:57 = Se ha abierto el juego. 
+2016/11/30 :: 11:05:13 = El usuario null ha accedido a biblioteca central
+2016/11/30 :: 11:05:14 = El usuario null ha iniciado misión extra buscaminas
