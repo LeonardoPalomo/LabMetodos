@@ -1091,3 +1091,10 @@
 2016/11/28 :: 18:27:22 = El usuario null va a seleccionar una asignatura.
 2016/11/28 :: 18:27:55 = Se ha abierto el juego. 
 2016/11/28 :: 18:28:09 = El usuario null va a seleccionar una asignatura.
+2016/11/28 :: 12:08:01 = Se ha abierto el juego. 
+2016/11/28 :: 12:08:15 = El usuario null ha salido del programa.
+2016/11/29 :: 22:46:00 = Se ha abierto el juego. 
+2016/11/29 :: 22:46:29 = El usuario null va a seleccionar una asignatura.
+2016/11/29 :: 23:19:15 = Se ha abierto el juego. 
+2016/11/29 :: 23:19:28 = El usuario null ha accedido a biblioteca central
+2016/11/29 :: 23:19:30 = El usuario null ha iniciado misión extra tres en raya

@@ -11,12 +11,12 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 
-public class VistaTresEnRaya extends javax.swing.JFrame {
+public class VistaPrincipalTresEnRaya extends javax.swing.JFrame {
      private JButton[][] tablero;
     /**
      * Creates new form VistaPrincipall
      */
-    public VistaTresEnRaya() {
+    public VistaPrincipalTresEnRaya() {
         initComponents();
         construirTablero();
     }
@@ -241,7 +241,7 @@ public class VistaTresEnRaya extends javax.swing.JFrame {
         this.Jugar1.addActionListener(al);
     }
     
-    public void agregarListener(ActionListener al){
+    public void agregarListenerTablero(ActionListener al){
         for(int i=0;i<3;i++){
             for(int j=0; j<3;j++){
                 tablero[i][j].addActionListener(al);
@@ -253,30 +253,39 @@ public class VistaTresEnRaya extends javax.swing.JFrame {
         switch(posicion){
             case 1:
                 tablero[0][0].setText(simbolo);
+                tablero[0][0].setEnabled(false);
                 break;
             case 2:
                 tablero[0][1].setText(simbolo);
+                tablero[0][1].setEnabled(false);
                 break;
             case 3:
                 tablero[0][2].setText(simbolo);
+                tablero[0][2].setEnabled(false);
                 break;
             case 4:
                 tablero[1][0].setText(simbolo);
+                tablero[1][0].setEnabled(false);
                 break;
             case 5:
                 tablero[1][1].setText(simbolo);
+                tablero[1][1].setEnabled(false);
                 break;
             case 6:
                 tablero[1][2].setText(simbolo);
+                tablero[1][2].setEnabled(false);
                 break;
             case 7:
                 tablero[2][0].setText(simbolo);
+                tablero[2][0].setEnabled(false);
                 break;
             case 8:
                 tablero[2][1].setText(simbolo);
+                tablero[2][1].setEnabled(false);
                 break;
             case 9:
                 tablero[2][2].setText(simbolo);
+                tablero[2][2].setEnabled(false);
                 break;
         }
     }
