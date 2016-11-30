@@ -12,8 +12,10 @@ import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+
 public class ControladorPrincipalTresEnRaya implements ActionListener{
     VistaPrincipalTresEnRaya vp;
+    ControladorBibliotecaCentral cbc;
     TresEnRaya tresEnRaya;
     String simbolo = "X";
     int rd;
@@ -59,8 +61,12 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
           
           if(resultado.equals("Gana Jugador")){
               JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+              vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
           }else if(resultado.equals("Gana CPU")){
               JOptionPane.showMessageDialog(null, "Perdiste :c");
+              vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
           }else{
             if(contadorEspacios<9){
                 
@@ -83,19 +89,26 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                     if(resultado.equals("Gana Jugador")){
                         JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
                         comprobador = false;
-                    }else if(resultado.equals("Gana CPU")){
+                        vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
+                    }
+                    else if(resultado.equals("Gana CPU")){
                         JOptionPane.showMessageDialog(null, "Perdiste :c");
                         comprobador = false;
+                        vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                     }else{
                         comprobador = false;
-                        
+                       
                     }
                     
-              }
+                }
           
             }
             }else if(contadorEspacios==9){
                     JOptionPane.showMessageDialog(null, "Empate :o");
+                    vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                 }
             
           }
@@ -116,8 +129,12 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
           
           if(resultado.equals("Gana Jugador")){
               JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+              vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
           }else if(resultado.equals("Gana CPU")){
               JOptionPane.showMessageDialog(null, "Perdiste :c");
+              vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
           }else{
             if(contadorEspacios<9){
                 
@@ -141,9 +158,13 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                     if(resultado.equals("Gana Jugador")){
                         JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
                         comprobador = false;
+                        vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                     }else if(resultado.equals("Gana CPU")){
                         JOptionPane.showMessageDialog(null, "Perdiste :c");
                         comprobador = false;
+                        vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                     }else{
                         comprobador = false;
                         
@@ -154,6 +175,8 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
             }
             }else if(contadorEspacios==9){
                     JOptionPane.showMessageDialog(null, "Empate :o");
+                    vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                 }
           }
       }
@@ -174,8 +197,12 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
           
           if(resultado.equals("Gana Jugador")){
               JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+              vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
           }else if(resultado.equals("Gana CPU")){
               JOptionPane.showMessageDialog(null, "Perdiste :c");
+              vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
           }else{
             if(contadorEspacios<9){
                 
@@ -198,8 +225,12 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                     if(resultado.equals("Gana Jugador")){
                         JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
                         comprobador = false;
+                        vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                     }else if(resultado.equals("Gana CPU")){
                         JOptionPane.showMessageDialog(null, "Perdiste :c");
+                        vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                         comprobador = false;
                     }else{
                         comprobador = false;
@@ -211,6 +242,8 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
             }
             }else if(contadorEspacios==9){
                     JOptionPane.showMessageDialog(null, "Empate :o");
+                    vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                 }
           }
       }
@@ -230,8 +263,12 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
           
           if(resultado.equals("Gana Jugador")){
               JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+              vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
           }else if(resultado.equals("Gana CPU")){
               JOptionPane.showMessageDialog(null, "Perdiste :c");
+              vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
           }else{
             if(contadorEspacios<9){
                 
@@ -254,9 +291,13 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                     if(resultado.equals("Gana Jugador")){
                         JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
                         comprobador = false;
+                        vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                     }else if(resultado.equals("Gana CPU")){
                         JOptionPane.showMessageDialog(null, "Perdiste :c");
                         comprobador = false;
+                        vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                     }else{
                         comprobador = false;
                         
@@ -266,6 +307,8 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
             }
             }else if(contadorEspacios==9){
                     JOptionPane.showMessageDialog(null, "Empate :o");
+                    vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                 }
           
           }
@@ -286,8 +329,12 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
           
           if(resultado.equals("Gana Jugador")){
               JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+              vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
           }else if(resultado.equals("Gana CPU")){
               JOptionPane.showMessageDialog(null, "Perdiste :c");
+              vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
           }else{
             if(contadorEspacios<9){
                 
@@ -310,9 +357,13 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                     if(resultado.equals("Gana Jugador")){
                         JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
                         comprobador = false;
+                        vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                     }else if(resultado.equals("Gana CPU")){
                         JOptionPane.showMessageDialog(null, "Perdiste :c");
                         comprobador = false;
+                        vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                     }else{
                         comprobador = false;
                         
@@ -323,6 +374,8 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
             }
             }else if(contadorEspacios==9){
                     JOptionPane.showMessageDialog(null, "Empate :o");
+                    vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                 }
           }
       }
@@ -342,8 +395,12 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
           
           if(resultado.equals("Gana Jugador")){
               JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+              vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
           }else if(resultado.equals("Gana CPU")){
               JOptionPane.showMessageDialog(null, "Perdiste :c");
+              vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
           }else{
             if(contadorEspacios<9){
                 
@@ -366,9 +423,13 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                     if(resultado.equals("Gana Jugador")){
                         JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
                         comprobador = false;
+                        vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                     }else if(resultado.equals("Gana CPU")){
                         JOptionPane.showMessageDialog(null, "Perdiste :c");
                         comprobador = false;
+                        vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                     }else{
                         comprobador = false;
                         
@@ -379,6 +440,8 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
             }
             }else if(contadorEspacios==9){
                     JOptionPane.showMessageDialog(null, "Empate :o");
+                    vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                 }
           }
       }
@@ -398,8 +461,12 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
           
           if(resultado.equals("Gana Jugador")){
               JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+              vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
           }else if(resultado.equals("Gana CPU")){
               JOptionPane.showMessageDialog(null, "Perdiste :c");
+              vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
           }else{
             if(contadorEspacios<9){
                 
@@ -422,9 +489,13 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                     if(resultado.equals("Gana Jugador")){
                         JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
                         comprobador = false;
+                        vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                     }else if(resultado.equals("Gana CPU")){
                         JOptionPane.showMessageDialog(null, "Perdiste :c");
                         comprobador = false;
+                        vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                     }else{
                         comprobador = false;
                         
@@ -435,6 +506,8 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
             }
             }else if(contadorEspacios==9){
                     JOptionPane.showMessageDialog(null, "Empate :o");
+                    vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                 }
           }
       }
@@ -454,8 +527,12 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
           
           if(resultado.equals("Gana Jugador")){
               JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+              vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
           }else if(resultado.equals("Gana CPU")){
               JOptionPane.showMessageDialog(null, "Perdiste :c");
+              vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
           }else{
             if(contadorEspacios<9){
                 
@@ -478,9 +555,13 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                     if(resultado.equals("Gana Jugador")){
                         JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
                         comprobador = false;
+                                vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                     }else if(resultado.equals("Gana CPU")){
                         JOptionPane.showMessageDialog(null, "Perdiste :c");
                         comprobador = false;
+                        vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                     }else{
                         comprobador = false;
                         
@@ -491,6 +572,8 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
             }
             }else if(contadorEspacios==9){
                     JOptionPane.showMessageDialog(null, "Empate :o");
+                    vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                 }
           }
       }
@@ -510,8 +593,12 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
           
           if(resultado.equals("Gana Jugador")){
               JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+              vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
           }else if(resultado.equals("Gana CPU")){
               JOptionPane.showMessageDialog(null, "Perdiste :c");
+              vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
           }else{
             if(contadorEspacios<9){
                 
@@ -534,9 +621,13 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                     if(resultado.equals("Gana Jugador")){
                         JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
                         comprobador = false;
+                        vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                     }else if(resultado.equals("Gana CPU")){
                         JOptionPane.showMessageDialog(null, "Perdiste :c");
                         comprobador = false;
+                        vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
                     }else{
                         comprobador = false;
                         
@@ -548,6 +639,8 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
             }
             }else if(contadorEspacios==9){
                     JOptionPane.showMessageDialog(null, "Empate :o");
+                    vp.dispose();
+                            cbc = new ControladorBibliotecaCentral();
             }else{
                 
             }

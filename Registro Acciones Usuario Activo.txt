@@ -1098,3 +1098,10 @@
 2016/11/29 :: 23:19:15 = Se ha abierto el juego. 
 2016/11/29 :: 23:19:28 = El usuario null ha accedido a biblioteca central
 2016/11/29 :: 23:19:30 = El usuario null ha iniciado misión extra tres en raya
+2016/11/30 :: 00:18:37 = Se ha abierto el juego. 
+2016/11/30 :: 00:19:07 = El usuario null ha accedido a biblioteca central
+2016/11/30 :: 00:19:12 = El usuario null ha iniciado misión extra tres en raya
+2016/11/30 :: 00:55:56 = Se ha abierto el juego. 
+2016/11/30 :: 00:56:49 = Se ha abierto el juego. 
+2016/11/30 :: 00:57:02 = El usuario null ha accedido a biblioteca central
+2016/11/30 :: 00:57:03 = El usuario null ha iniciado misión extra tres en raya
