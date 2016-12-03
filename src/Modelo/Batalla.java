@@ -25,16 +25,21 @@ public class Batalla {
         }
     }
     
+    //obtiene arreglos de personajes
     public Personaje[] getOrdenTurnos(){
         return this.ordenTurnos;
     }
-   
+  
     public void terminarTurno() {}
 
     public int verificarGanador(Personaje[] pjsJugador, Personaje[] pjsCpu) {
        return 0;
     }
-
+/**
+ * Funcion que dependiendo del area de la asignatura genera una cantidad aleatoria de bosques, rios y montañas
+ * @param areaAsignatura, entero del 1 al 3 representando el area
+ * @param numeroRandom, numero que se genera al azar para escoger cantidades del terreno especifico
+ */
     public void asignarTerrenos(int areaAsignatura, Random numeroRandom){
         numeroRandom = new Random();
         int cntSuelo = 0;
@@ -88,11 +93,18 @@ public class Batalla {
         }
     }
     
+    /**
+     * funcion que se llama para corregir todo el terreno
+     */
     public void corregirTerrenosTodos(){
         this.corregirTerrenos(2);
         this.corregirTerrenos(3);
     }
 
+    /**
+     * 
+     * @param terreno 
+     */
     public void corregirTerrenos(int terreno){ //Para rios y bosques
         int terrenoCorregirCerca;
         int cntTierra = 0;
@@ -704,6 +716,9 @@ public class Batalla {
     public int getTurno(){
         return this.turno;
     }
+    public String getErrorMovimiento(){
+        return Batalla.errorMovimiento;
+    }
     
     public boolean verificarAdyacencia(int i, int j, int cantTurno){
         boolean comprobador = false;
@@ -755,7 +770,7 @@ public class Batalla {
                 int alturaAct = this.tablero[posAct[0]][posAct[1]].getAltura();
                 comprobador = Math.abs(alturaAct - alturaObj) <= 2;
                 if(!comprobador){
-                    errorMovimiento = "La diferencia de alturas es demasiada.";
+                    errorMovimiento = "Movimiento imposible";
                 }
             }
             else{

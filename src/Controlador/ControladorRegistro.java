@@ -30,38 +30,44 @@ public class ControladorRegistro implements ActionListener{
             
         }
         else if (vr.getButtonRegistrarse()==e.getSource()){
-            try {
-                conexion = new Conexion();
-                boolean comprobador = conexion.conectar();
-                if(!comprobador){
-                    System.out.println("La base de datos no está conectada.");
-                    JOptionPane.showMessageDialog(vr,"No se pudo acceder a la base de datos.","ERROR: Base de datos no conectada",JOptionPane.ERROR_MESSAGE);
-                }
-                if(vr.getPassword().equals(vr.getPassword2())){
-                    if(Jugador.obtener(vr.getUsuario())){
-                        String intentoRegistro1 = "Intento fallido de registro: el usuario "+vr.getUsuario()+" ya existe.";
-                        ControladorPrincipal.registrarAccion(intentoRegistro1);
-                        JOptionPane.showMessageDialog(null,intentoRegistro1);
+            if(vr.getUsuario().equals("") || vr.getPassword().equals("") || vr.getPjPrincipal().equals("") || vr.getPjSecundario().equals("")){
+                System.out.println("Hay campos sin llenar, no se puede realizar el registro");
+                JOptionPane.showMessageDialog(vr,"Debe llenar todos los campos.","ERROR: Campos vacíos",JOptionPane.ERROR_MESSAGE);
+            }
+            else{
+                try {
+                    conexion = new Conexion();
+                    boolean comprobador = conexion.conectar();
+                    if(!comprobador){
+                        System.out.println("La base de datos no está conectada.");
+                        JOptionPane.showMessageDialog(vr,"No se pudo acceder a la base de datos.","ERROR: Base de datos no conectada",JOptionPane.ERROR_MESSAGE);
+                    }
+                    if(vr.getPassword().equals(vr.getPassword2())){
+                        if(Jugador.obtener(vr.getUsuario())){
+                            String intentoRegistro1 = "Intento fallido de registro: el usuario "+vr.getUsuario()+" ya existe.";
+                            ControladorPrincipal.registrarAccion(intentoRegistro1);
+                            JOptionPane.showMessageDialog(null,intentoRegistro1);
+                        }
+                        else{
+                            usuario = new Jugador(vr.getUsuario(), vr.getPassword(), vr.getSeleccionMalla(), vr.getPjPrincipal(), vr.getSeleccionRolPrincipal(), vr.getPjSecundario(), vr.getSeleccionRolSecundario());
+                            usuario.save();
+                            String registroExitoso = "El usuario "+vr.getUsuario()+" fue registrado exitosamente.";
+                            ControladorPrincipal.registrarAccion(registroExitoso);
+                            JOptionPane.showMessageDialog(null,registroExitoso);
+                            vr.dispose();
+                            cl.setVista(true);
+                        }
                     }
                     else{
-                        usuario = new Jugador(vr.getUsuario(), vr.getPassword(), vr.getSeleccionMalla(), vr.getPjPrincipal(), vr.getSeleccionRolPrincipal(), vr.getPjSecundario(), vr.getSeleccionRolSecundario());
-                        usuario.save();
-                        String registroExitoso = "El usuario "+vr.getUsuario()+" fue registrado exitosamente.";
-                        ControladorPrincipal.registrarAccion(registroExitoso);
-                        JOptionPane.showMessageDialog(null,registroExitoso);
-                        vr.dispose();
-                        cl.setVista(true);
+                        String intentoRegistro2 = "Intento fallido de registro: las contraseñas no coinciden, intente de nuevo.";
+                        System.out.println(intentoRegistro2);
+                        JOptionPane.showMessageDialog(null,intentoRegistro2);
                     }
+                } catch (SQLException ex) {
+                    System.out.println("Fallo al tratar de acceder a BDD");
+                    Logger.getLogger(ControladorRegistro.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                else{
-                    String intentoRegistro2 = "Intento fallido de registro: las contraseñas no coinciden, intente denuevo.";
-                    System.out.println(intentoRegistro2);
-                    JOptionPane.showMessageDialog(null,intentoRegistro2);
-                }
-            } catch (SQLException ex) {
-                System.out.println("Fallo al tratar de acceder a BDD");
-                Logger.getLogger(ControladorRegistro.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            } 
         }
     } 
 }

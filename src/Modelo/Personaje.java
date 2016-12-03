@@ -505,8 +505,8 @@ public class Personaje {
         if(this.movActual == 0){
             Batalla.errorMovimiento = "Al personaje "+this.getNombre()+" no le quedan puntos de movimiento";
             System.out.println(Batalla.errorMovimiento);
-            JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Puntos de movimiento insuficientes",
-                    JOptionPane.INFORMATION_MESSAGE);
+            //JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Puntos de movimiento insuficientes",
+              //      JOptionPane.INFORMATION_MESSAGE);
         }
         else{
             if(comprobAltura){
@@ -517,10 +517,33 @@ public class Personaje {
             }
             else{
                 System.out.println(Batalla.errorMovimiento);
-                JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Movimiento no permitido",
-                    JOptionPane.INFORMATION_MESSAGE);
+                //JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Movimiento no permitido",
+                  //  JOptionPane.INFORMATION_MESSAGE);
             }
         }
         return comprobador;
     }
+    /**
+     * Funcion que permite el movimiento de la cpu
+     * @param posicion, arreglo que indica la posicion actual del personajeCPU
+     * @param direccion entero que indica a donde moverse 0:arriba 1:derecha 2:abajo 3:izquierda 4:imposible
+     * @return la nueva posicion
+     */
+    public int[] moverCPU(int[] posicion, int direccion){
+        int[] nuevaPosicion = new int[2];
+        switch(direccion){
+            case 0:
+                nuevaPosicion[0] = posicion[0] + 1;
+            case 1:
+                nuevaPosicion[1] = posicion[1] + 1;
+            case 2:
+                nuevaPosicion[0] = posicion[0] - 1;
+            case 3:
+                nuevaPosicion[1] = posicion[1] - 1;
+        
+        }
+        return nuevaPosicion;
+
+    }
+    public void moverMago(){} //implementar
 }

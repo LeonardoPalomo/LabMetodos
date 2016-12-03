@@ -1,5 +1,6 @@
 package Modelo;
 
+import Controlador.ControladorLogin;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -127,6 +128,35 @@ public class Jugador {
         final String consulta = "INSERT INTO USUARIO (NOMBRE_USUARIO,CONTRASEÑA,MALLA,PJ_PRINCIPAL,ROL_PJ_PRINCIPAL,PJ_SECUNDARIO,ROL_PJ_SECUNDARIO) VALUES " + "('" + this.nombre + "','" + this.contrasena + "'," + this.tipoMalla + ",'" + this.pjPrincipal + "'," + this.rolPjPrincipal + ",'" + this.pjSecundario + "'," + this.rolPjSecundario + ")";
         stmt.executeUpdate(consulta);
         stmt.close();
+    }
+    
+    public static void actualizarOro(int oro) throws SQLException {
+        Conexion conexion = new Conexion();
+        boolean resultado = conexion.conectar();
+        Statement stmt = conexion.crearConsulta();
+        final String consultaOro = "SELECT ORO FROM USUARIO WHERE NOMBRE_USUARIO = '" + ControladorLogin.usuarioActivo +"'";
+       
+        ResultSet resultados;
+        resultados = stmt.executeQuery(consultaOro);
+        
+        if (resultados.next()==true) {
+            int oroGuardado = resultados.getInt("ORO");
+            resultados.close();
+            stmt.close();
+            int oroFinal = 0;
+            if(oroGuardado >= oro){
+                oroFinal = oroGuardado + oro;
+            }
+            final String consultaUpdateOro = "UPDATE USUARIO SET ORO = " + oroFinal + " WHERE NOMBRE_USUARIO = '"+ ControladorLogin.usuarioActivo + "'";   
+            Statement stmt2 = conexion.crearConsulta();
+            stmt2.executeUpdate(consultaUpdateOro);
+            stmt2.close();
+            conexion.desconectar();
+        }
+        else {
+            //System.out.println("No Existe");
+            conexion.desconectar();
+        }
     }
     
     public static Jugador obtener(String nombre,String password2) throws SQLException{

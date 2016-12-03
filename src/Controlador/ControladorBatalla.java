@@ -183,7 +183,7 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                 String esperando = "Esperando movimiento...";
                 System.out.println(esperando);
                 vb.setTextArea(esperando);
-            }   
+            }
         }
         if(e.getActionCommand()=="Usar"){
             JOptionPane.showMessageDialog(vb,"Trabajo en progreso...","WIP",JOptionPane.INFORMATION_MESSAGE);
@@ -208,6 +208,7 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                 vb.eliminarBordesCasilla(b.getOrdenTurnos()[cntTurno-1].getPosicion());
             }
             if(b.getOrdenTurnos()[cntTurno].getEsCpu()){
+                
                 vb.disableButtons();
             }
             else{
@@ -269,7 +270,9 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                                 }
                             }
                         }
+                        else vb.setTextArea(b.getErrorMovimiento());
                         esperaClickMover = false;
+                        vb.getBtnMover().doClick(); //simula apretar el boton mover
                     }
                     if(esperaClickAtacar){
                         if(b.getTablero(i, j).getPersonaje() != null){
@@ -281,8 +284,8 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                             switch(tipoAtk){
                                 case 0:
                                     System.out.println("El objetivo no está dentro del rango de ataque.");
-                                    JOptionPane.showMessageDialog(vb,"El objetivo no está dentro del rango de ataque.",
-                                            "Fuera de rango",JOptionPane.INFORMATION_MESSAGE);
+                                    vb.setTextArea("El objetivo no está dentro del rango de ataque");
+                                    vb.getBtnAtacar().doClick();
                                     break;
                                 case 1:
                                     int alturaAtk;
