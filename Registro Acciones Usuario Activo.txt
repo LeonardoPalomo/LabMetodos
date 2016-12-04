@@ -1138,3 +1138,8 @@
 2016/12/02 :: 17:07:32 = El usuario asdf ha cerrado el ahorcado
 2016/12/02 :: 17:07:35 = El usuario asdf ha vuelto al menú principal.
 2016/12/02 :: 17:07:36 = El usuario asdf ha salido del programa.
+2016/12/04 :: 12:13:43 = Se ha abierto el juego. 
+2016/12/04 :: 12:14:36 = El usuario null ha salido del programa.
+2016/12/04 :: 12:53:52 = Se ha abierto el juego. 
+2016/12/04 :: 12:54:04 = El usuario null ha accedido a biblioteca central
+2016/12/04 :: 12:54:05 = El usuario null ha iniciado misión extra tres en raya

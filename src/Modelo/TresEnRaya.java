@@ -12,6 +12,7 @@ import javax.swing.JButton;
  */
 public class TresEnRaya {
     ControladorPrincipalTresEnRaya cp;
+    static int recompensa = 1000;
 
     /**
      * @param args the command line arguments
@@ -127,7 +128,10 @@ public class TresEnRaya {
        }
        return resultado;
    }
-   
+   public static int getRecompensa(){
+        return recompensa;
+    }
+      
    
    
    

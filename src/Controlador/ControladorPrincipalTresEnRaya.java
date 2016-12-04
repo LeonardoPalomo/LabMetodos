@@ -8,9 +8,13 @@ import Vista.VistaPrincipalTresEnRaya;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Modelo.TresEnRaya;
+import java.sql.SQLException;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import Modelo.Jugador;
 
 
 public class ControladorPrincipalTresEnRaya implements ActionListener{
@@ -63,10 +67,12 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
               JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
               vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
-          }else if(resultado.equals("Gana CPU")){
-              JOptionPane.showMessageDialog(null, "Perdiste :c");
-              vp.dispose();
-                            cbc = new ControladorBibliotecaCentral();
+              try {
+                    Jugador.actualizarOro(TresEnRaya.getRecompensa());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControladorPrincipalTresEnRaya.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("BDD no conectada: No se pudo guardar recompensa.");
+          }
           }else{
             if(contadorEspacios<9){
                 
@@ -86,13 +92,8 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                     tablero=vp.getTablero();
                     resultado=tresEnRaya.validarGanador(tablero);
                     
-                    if(resultado.equals("Gana Jugador")){
-                        JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
-                        comprobador = false;
-                        vp.dispose();
-                            cbc = new ControladorBibliotecaCentral();
-                    }
-                    else if(resultado.equals("Gana CPU")){
+                    
+                    if(resultado.equals("Gana CPU")){
                         JOptionPane.showMessageDialog(null, "Perdiste :c");
                         comprobador = false;
                         vp.dispose();
@@ -131,6 +132,13 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
               JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
               vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
+               try {
+                    Jugador.actualizarOro(TresEnRaya.getRecompensa());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControladorPrincipalTresEnRaya.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("BDD no conectada: No se pudo guardar recompensa.");
+                        
+          } 
           }else if(resultado.equals("Gana CPU")){
               JOptionPane.showMessageDialog(null, "Perdiste :c");
               vp.dispose();
@@ -160,6 +168,13 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                         comprobador = false;
                         vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
+                         try {
+                    Jugador.actualizarOro(TresEnRaya.getRecompensa());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControladorPrincipalTresEnRaya.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("BDD no conectada: No se pudo guardar recompensa.");
+                        
+          }
                     }else if(resultado.equals("Gana CPU")){
                         JOptionPane.showMessageDialog(null, "Perdiste :c");
                         comprobador = false;
@@ -199,6 +214,13 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
               JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
               vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
+                try {
+                    Jugador.actualizarOro(TresEnRaya.getRecompensa());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControladorPrincipalTresEnRaya.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("BDD no conectada: No se pudo guardar recompensa.");
+                        
+          }
           }else if(resultado.equals("Gana CPU")){
               JOptionPane.showMessageDialog(null, "Perdiste :c");
               vp.dispose();
@@ -227,6 +249,13 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                         comprobador = false;
                         vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
+                         try {
+                    Jugador.actualizarOro(TresEnRaya.getRecompensa());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControladorPrincipalTresEnRaya.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("BDD no conectada: No se pudo guardar recompensa.");
+                        
+          }
                     }else if(resultado.equals("Gana CPU")){
                         JOptionPane.showMessageDialog(null, "Perdiste :c");
                         vp.dispose();
@@ -265,6 +294,13 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
               JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
               vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
+                try {
+                    Jugador.actualizarOro(TresEnRaya.getRecompensa());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControladorPrincipalTresEnRaya.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("BDD no conectada: No se pudo guardar recompensa.");
+                        
+          }
           }else if(resultado.equals("Gana CPU")){
               JOptionPane.showMessageDialog(null, "Perdiste :c");
               vp.dispose();
@@ -293,6 +329,13 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                         comprobador = false;
                         vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
+                         try {
+                    Jugador.actualizarOro(TresEnRaya.getRecompensa());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControladorPrincipalTresEnRaya.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("BDD no conectada: No se pudo guardar recompensa.");
+                        
+          }
                     }else if(resultado.equals("Gana CPU")){
                         JOptionPane.showMessageDialog(null, "Perdiste :c");
                         comprobador = false;
@@ -331,6 +374,13 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
               JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
               vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
+                try {
+                    Jugador.actualizarOro(TresEnRaya.getRecompensa());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControladorPrincipalTresEnRaya.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("BDD no conectada: No se pudo guardar recompensa.");
+                        
+          }
           }else if(resultado.equals("Gana CPU")){
               JOptionPane.showMessageDialog(null, "Perdiste :c");
               vp.dispose();
@@ -359,6 +409,13 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                         comprobador = false;
                         vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
+                         try {
+                    Jugador.actualizarOro(TresEnRaya.getRecompensa());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControladorPrincipalTresEnRaya.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("BDD no conectada: No se pudo guardar recompensa.");
+                        
+          }
                     }else if(resultado.equals("Gana CPU")){
                         JOptionPane.showMessageDialog(null, "Perdiste :c");
                         comprobador = false;
@@ -397,6 +454,13 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
               JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
               vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
+               try {
+                    Jugador.actualizarOro(TresEnRaya.getRecompensa());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControladorPrincipalTresEnRaya.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("BDD no conectada: No se pudo guardar recompensa.");
+                        
+          }
           }else if(resultado.equals("Gana CPU")){
               JOptionPane.showMessageDialog(null, "Perdiste :c");
               vp.dispose();
@@ -425,6 +489,13 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                         comprobador = false;
                         vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
+                         try {
+                    Jugador.actualizarOro(TresEnRaya.getRecompensa());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControladorPrincipalTresEnRaya.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("BDD no conectada: No se pudo guardar recompensa.");
+                        
+          }
                     }else if(resultado.equals("Gana CPU")){
                         JOptionPane.showMessageDialog(null, "Perdiste :c");
                         comprobador = false;
@@ -463,6 +534,13 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
               JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
               vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
+                try {
+                    Jugador.actualizarOro(TresEnRaya.getRecompensa());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControladorPrincipalTresEnRaya.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("BDD no conectada: No se pudo guardar recompensa.");
+                        
+          }
           }else if(resultado.equals("Gana CPU")){
               JOptionPane.showMessageDialog(null, "Perdiste :c");
               vp.dispose();
@@ -491,6 +569,13 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                         comprobador = false;
                         vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
+                         try {
+                    Jugador.actualizarOro(TresEnRaya.getRecompensa());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControladorPrincipalTresEnRaya.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("BDD no conectada: No se pudo guardar recompensa.");
+                        
+          }
                     }else if(resultado.equals("Gana CPU")){
                         JOptionPane.showMessageDialog(null, "Perdiste :c");
                         comprobador = false;
@@ -529,6 +614,13 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
               JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
               vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
+                try {
+                    Jugador.actualizarOro(TresEnRaya.getRecompensa());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControladorPrincipalTresEnRaya.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("BDD no conectada: No se pudo guardar recompensa.");
+                        
+          }
           }else if(resultado.equals("Gana CPU")){
               JOptionPane.showMessageDialog(null, "Perdiste :c");
               vp.dispose();
@@ -557,6 +649,13 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                         comprobador = false;
                                 vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
+                         try {
+                    Jugador.actualizarOro(TresEnRaya.getRecompensa());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControladorPrincipalTresEnRaya.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("BDD no conectada: No se pudo guardar recompensa.");
+                        
+          }
                     }else if(resultado.equals("Gana CPU")){
                         JOptionPane.showMessageDialog(null, "Perdiste :c");
                         comprobador = false;
@@ -595,6 +694,13 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
               JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
               vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
+                try {
+                    Jugador.actualizarOro(TresEnRaya.getRecompensa());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControladorPrincipalTresEnRaya.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("BDD no conectada: No se pudo guardar recompensa.");
+                        
+          }
           }else if(resultado.equals("Gana CPU")){
               JOptionPane.showMessageDialog(null, "Perdiste :c");
               vp.dispose();
@@ -623,6 +729,13 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                         comprobador = false;
                         vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
+                         try {
+                    Jugador.actualizarOro(TresEnRaya.getRecompensa());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControladorPrincipalTresEnRaya.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("BDD no conectada: No se pudo guardar recompensa.");
+                        
+          }
                     }else if(resultado.equals("Gana CPU")){
                         JOptionPane.showMessageDialog(null, "Perdiste :c");
                         comprobador = false;
