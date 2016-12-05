@@ -195,4 +195,43 @@ public class Jugador {
         
         return resultados.next();
     }
+   public static void actualizarJugadas(int valor) throws SQLException {
+        Conexion conexion = new Conexion();
+        boolean resultado = conexion.conectar();
+        Statement stmt = conexion.crearConsulta();
+        String consulta = "";
+        if (valor ==0){
+            consulta = "SELECT VICTORIA FROM USUARIO WHERE NOMBRE_USUARIO = '" + ControladorLogin.usuarioActivo +"'";
+        }
+        else{
+            consulta = "SELECT DERROTA FROM USUARIO WHERE NOMBRE_USUARIO = '" + ControladorLogin.usuarioActivo +"'";    
+        }
+        ResultSet resultados;
+        resultados = stmt.executeQuery(consulta);
+        int resultadoGuardado;
+        String columnyu="";
+        if (resultados.next()==true) {
+            if(valor==0){
+                resultadoGuardado = resultados.getInt("VICTORIA");
+                columnyu="VICTORIA";
+            }
+            else{
+                resultadoGuardado = resultados.getInt("DERROTA");
+                columnyu="DERROTA";
+            }
+            resultados.close();
+            stmt.close();
+            int resultadoG = 0;
+            resultadoG = resultadoGuardado +1;
+            
+            final String consultaUpdate = "UPDATE USUARIO SET " +columnyu+" = " + resultadoG + " WHERE NOMBRE_USUARIO = '"+ ControladorLogin.usuarioActivo + "'";   
+            Statement stmt2 = conexion.crearConsulta();
+            stmt2.executeUpdate(consultaUpdate);
+            stmt2.close();
+            conexion.desconectar();
+        }else {
+            //System.out.println("No Existe");
+            conexion.desconectar();
+        }
+    } 
 }
