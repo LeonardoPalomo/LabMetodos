@@ -271,9 +271,11 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                                 }
                             }
                         }
-                        else vb.setTextArea(b.getErrorMovimiento());
-                        esperaClickMover = false;
-                        vb.getBtnMover().doClick(); //simula apretar el boton mover
+                        else {
+                            vb.setTextArea(b.getErrorMovimiento());
+                            esperaClickMover = false;
+                            vb.getBtnMover().doClick(); //simula apretar el boton mover
+                        }
                     }
                     if(esperaClickAtacar){
                         if(b.getTablero(i, j).getPersonaje() != null){

@@ -770,7 +770,7 @@ public class Batalla {
                 int alturaAct = this.tablero[posAct[0]][posAct[1]].getAltura();
                 comprobador = Math.abs(alturaAct - alturaObj) <= 2;
                 if(!comprobador){
-                    errorMovimiento = "Movimiento imposible";
+                    errorMovimiento = "La diferencia de alturas es demasiada.";
                 }
             }
             else{

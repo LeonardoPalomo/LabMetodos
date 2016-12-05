@@ -1175,3 +1175,9 @@
 2016/12/04 :: 22:47:31 = Se ha abierto el juego. 
 2016/12/04 :: 22:47:46 = El usuario null ha accedido a biblioteca central
 2016/12/04 :: 22:47:49 = El usuario null ha iniciado misión extra buscaminas
+2016/12/05 :: 11:15:37 = Se ha abierto el juego. 
+2016/12/05 :: 11:15:47 = El usuario null va a seleccionar una asignatura.
+2016/12/05 :: 15:14:23 = Se ha abierto el juego. 
+2016/12/05 :: 15:14:33 = El usuario null va a seleccionar una asignatura.
+2016/12/05 :: 15:15:53 = El usuario null va a seleccionar una asignatura.
+2016/12/05 :: 15:17:03 = El usuario null ha salido del programa.
