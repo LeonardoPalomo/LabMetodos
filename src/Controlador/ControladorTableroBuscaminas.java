@@ -34,7 +34,6 @@ public class ControladorTableroBuscaminas implements MouseListener{
     private int rango;
     private Buscaminas buscaminas;
     private CasillaBuscaminas casilla;
-    //private int[][] mapaJugador;//Mapa logico
     private int [][] mapaResuelto;//Mapa resuelto
     private int aleatorioX;
     private int aleatorioY;
@@ -72,9 +71,6 @@ public class ControladorTableroBuscaminas implements MouseListener{
                 //System.out.println(""+ mapa1[i][j].getPosicionX());
                 casilla.marcarNumero(i, j, mapaResuelto);
                 System.out.println("Estado casilla: "+i+","+j+" valor: "+mapaResuelto[i][j]);
-                //System.out.println(""+mapaJugador[i][j]);
-                //System.out.println("mapa resuelto en i, j: "+ mapaResuelto[i][j]);
-                //vt.mostrar(i, j, mapaResuelto[i][j], true);
             }
        }
     }   
@@ -108,7 +104,7 @@ public class ControladorTableroBuscaminas implements MouseListener{
                                 int numeritoX = casillita.getPosicionX();
                                 int numeritoY = casillita.getPosicionY();
                                 vt.mostrar(numeritoX, numeritoY,mapaResuelto[numeritoX][numeritoY], true);
-                                System.out.println("Estado casilla: "+casillita.getEstado());
+                                //System.out.println("Estado casilla: "+casillita.getEstado());
                             }
                         }
                         else if(mapaResuelto[i][j] == 9){//Si el jugador presiona una casilla que contiene una mina, pierde.
@@ -122,13 +118,13 @@ public class ControladorTableroBuscaminas implements MouseListener{
                         System.out.println(i+","+j);
                         if(mapaJugador[i][j].getEstadoMina() == false && mapaJugador[i][j].getEstado() == false){//Si la casilla esta vacia y no se ha descubierto
                             if(numeroMin>0){
-                                System.out.println("estado antes:"+ mapaJugador[i][j].getEstadoMina());
+                                //System.out.println("estado antes:"+ mapaJugador[i][j].getEstadoMina());
                                 vt.posicionarMina(i, j, 0);//Se posiciona una mina
                                 mapaJugador[i][j].setEstadoMina(true);//Se le indica al mapa que se marco una mina
                                 numeroMin = buscaminas.minasRestantes(numeroMin,true);
                                 vt.setNumeroMinas(numeroMin);
                                 mapaJugador[i][j].setEstado(true);
-                                System.out.println("estado despues:"+ mapaJugador[i][j].getEstadoMina());
+                                //System.out.println("estado despues:"+ mapaJugador[i][j].getEstadoMina());
                             }
                         }
                         else if(mapaJugador[i][j].getEstadoMina() == true){//si en la casilla hay una mina posicionada por el jugador
@@ -142,13 +138,13 @@ public class ControladorTableroBuscaminas implements MouseListener{
                             }
                         }
                     }
-                    for(int m=0; m<rango; m++){
+                    /*for(int m=0; m<rango; m++){
                         for(int n=0; n<rango; n++){
                             System.out.println("Estado casilla "+m+","+n+"= "+mapaJugador[m][n].getEstado());
                         }
-                    }
-                    System.out.println("----------------------------------------");
-                    System.out.println("----------------------------------------");
+                    }*/
+                    //System.out.println("----------------------------------------");
+                    //System.out.println("----------------------------------------");
                     //Funcion que comprueba si se ha ganado.
                     boolean ganador = casilla.revisarGanador2(mapaJugador);
                     if(ganador==true){//jugador gana

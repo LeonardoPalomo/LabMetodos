@@ -406,9 +406,51 @@ public class Personaje {
         return comprobador;
     }
     */
-    
-    public void atacarCerca(int[] posObjetivo) {}
-   
+    //Metodo que calcula el daño los daños realizados al atacante y al atacado(en ese orden) segun las victorias y derrotas del duelo
+    public ArrayList<Integer> atacarCerca(Personaje atacado, int victorias, int derrotas) {
+        ArrayList<Integer> daños = new ArrayList();
+        int damageSalida = 0;
+        int damageEntrada = 0;
+        for(int victoria=0; victoria<victorias; victoria++){//Segun las victorias, calcula el daño a realizar al atacado
+            int damage = this.atkCerca - atacado.def;
+            if(damage<0){
+                damage = 0;
+            }
+            else{
+                damageSalida += damage;
+            }
+        }
+        for(int derrota=0; derrota<derrotas; derrota++){//Segun las derrotas, calcula el daño a realizar al atacante
+            int damage = atacado.atkCerca - this.def;
+            if(damage<0){
+                damage = 0;
+            }
+            else{
+               damageEntrada += damage; 
+            }
+        }
+        daños.add(damageSalida);
+        daños.add(damageEntrada);
+        return daños;
+    }
+    public ArrayList<Integer> ataquesCpu(){
+        Random rnd = new Random();
+        ArrayList<Integer> eleccion = new ArrayList();
+        for(int k=0; k<7; k++){
+            boolean verificador;
+            int i;
+            do{
+                i = (int)(rnd.nextDouble()*4 + 0);
+                if(this.stock[i]>0){
+                    verificador = true;
+                }
+            }
+            while(verificador = false);
+            this.stock[i] = this.stock[i] - 1;
+            eleccion.add(i);
+        }
+        return eleccion;
+   }
     /*
    
     * Funcion que verifica si es posible el ataque a larga distancia

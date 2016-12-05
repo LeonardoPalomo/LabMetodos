@@ -811,5 +811,91 @@ public class Batalla {
         this.ordenTurnos = new Personaje[ordenTurnosArrayList.size()];
         ordenTurnosArrayList.toArray(this.ordenTurnos);
     }
-    
+    public int ataquesVisibles(int nivelAtacante,int nivelAtacado){
+        if(nivelAtacante == nivelAtacado){//Niveles iguales
+            return 2;
+        }
+        else if(nivelAtacante > nivelAtacado){//Nivel del atacante mayor que el atacado
+            int diferenciaNiveles = nivelAtacante-nivelAtacado;
+            if(diferenciaNiveles == 1){
+                return 2;
+            }
+            else if(diferenciaNiveles == 2 || diferenciaNiveles == 3){
+                return 3;
+            }
+            else if(diferenciaNiveles == 4 || diferenciaNiveles == 5){
+                return 4;
+            }
+            else if(diferenciaNiveles == 6 || diferenciaNiveles == 7){
+                return 5;
+            }
+            else if(diferenciaNiveles == 8 || diferenciaNiveles == 9){
+                return 6;
+            }
+        }
+        else if(nivelAtacante<nivelAtacado){
+            int diferenciaNiveles = nivelAtacado-nivelAtacante;
+            if(diferenciaNiveles == 1){
+                return 2;
+            }
+            else if(diferenciaNiveles == 2 || diferenciaNiveles == 3 ||diferenciaNiveles == 4){
+                return 1;
+            }
+            else{
+                return 0;
+            }
+        }
+        return 0;
+    }
+    public int dueloTriangular(int atacante, int atacado){//0 es empate, 1 gana atacante, 2 gana atacado.
+        if(atacante == 0 || atacado == 1){
+            return 0;
+        }
+        else if(atacante==0 || atacado== 1){
+            return 2;
+        }
+        else if(atacante==0 || atacado== 2){
+            return 1;
+        }
+        else if(atacante==0 || atacado== 3){
+            return 2;
+        }
+        if(atacante == 1 || atacado == 0){
+            return 1;
+        }
+        else if(atacante==1 || atacado== 1){
+            return 0;
+        }
+        else if(atacante==1 || atacado== 2){
+            return 2;
+        }
+        else if(atacante==1 || atacado== 3){
+            return 2;
+        }
+        if(atacante == 2 || atacado == 0){
+            return 2;
+        }
+        else if(atacante==2 || atacado== 1){
+            return 1;
+        }
+        else if(atacante==2 || atacado== 2){
+            return 0;
+        }
+        else if(atacante==2 || atacado== 2){
+            return 2;
+        }
+        if(atacante == 3 || atacado == 0){
+            return 1;
+        }
+        else if(atacante==3 || atacado== 1){
+            return 1;
+        }
+        else if(atacante==3 || atacado== 2){
+            return 1;
+        }
+        else if(atacante==3 || atacado== 3){
+            return 0;
+        }
+        return 0;
+    }
 }

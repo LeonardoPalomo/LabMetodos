@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 
 public class ControladorBatalla implements ActionListener, MouseListener {
     private VistaBatalla vb;
+    private ControladorBatallaCortoAlcance cbc;
     private Batalla b;
     private Random distribAltura;
     public static int areaAsignatura;
@@ -296,6 +297,29 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                                     alturaDef = b.getTablero(i,j).getAltura();
                                     if(alturaAtk > alturaDef || alturaDef - alturaAtk <= 2){
                                         //Se ejecuta el duelo
+                                        cbc = new ControladorBatallaCortoAlcance(cntTurno,i,j);
+                                        /*vbc = new VistaBatallaCorta();
+                                        vbc.setVisible(true);
+                                        vbc.aListener(this);
+                                        int nivelAtacante = b.getOrdenTurnos()[cntTurno].getNivel();
+                                        int nivelAtacado = b.getTablero(i, j).getPersonaje().getNivel();
+                                        int visibles = b.ataquesVisibles(nivelAtacante, nivelAtacado);
+                                        ArrayList<Integer> eleccionCpu = b.getTablero(i, j).getPersonaje().ataquesCpu();
+                                        vbc.cambiarLabelEleccionCpu(eleccionCpu, visibles);
+                                        if(vbc.getBtnAceptar()==e.getSource()){
+                                            ArrayList<Integer> eleccionUsuario = vbc.getEleccionMovimientos();
+                                            int victorias = 0;
+                                            int derrotas = 0;
+                                            for(int k=0; k<eleccionUsuario.size(); k++){
+                                                int resultado = b.dueloTriangular(eleccionUsuario.get(k), eleccionCpu.get(k));
+                                                if(resultado == 1){
+                                                    victorias++;
+                                                }
+                                                else if(resultado == 2){
+                                                    derrotas++;
+                                                }
+                                            }
+                                        }*/
                                     }
                                     break;
                                 case 2:
@@ -314,6 +338,7 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                                             String dañoRecibido = b.getTablero(i,j).getPersonaje().getNombre()+" recibe "+daño+" puntos de daño.";
                                             System.out.println(dañoRecibido);
                                             vb.setTextArea(dañoRecibido);
+                                            //System.out.println(vbc.getEleccion1());
                                         }
                                     //}
                                     break;
