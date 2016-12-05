@@ -1181,3 +1181,15 @@
 2016/12/05 :: 15:14:33 = El usuario null va a seleccionar una asignatura.
 2016/12/05 :: 15:15:53 = El usuario null va a seleccionar una asignatura.
 2016/12/05 :: 15:17:03 = El usuario null ha salido del programa.
+2016/12/05 :: 15:20:47 = Se ha abierto el juego. 
+2016/12/05 :: 16:01:44 = Se ha abierto el juego. 
+2016/12/05 :: 16:01:57 = El usuario null va a seleccionar una asignatura.
+2016/12/05 :: 16:02:11 = Se ha abierto el juego. 
+2016/12/05 :: 16:02:17 = El usuario null ha accedido a biblioteca central
+2016/12/05 :: 16:02:18 = El usuario null ha iniciado misión extra tres en raya
+2016/12/05 :: 16:02:46 = El usuario null ha vuelto al menú principal.
+2016/12/05 :: 16:02:49 = El usuario null ha salido del programa.
+2016/12/05 :: 16:19:59 = Se ha abierto el juego. 
+2016/12/05 :: 16:20:07 = El usuario null ha accedido a biblioteca central
+2016/12/05 :: 16:20:08 = El usuario null ha iniciado misión extra tres en raya
+2016/12/05 :: 16:20:43 = El usuario null ha vuelto al menú principal.
