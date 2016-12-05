@@ -8,6 +8,7 @@ package Controlador;
 
 import Modelo.Buscaminas;
 import Modelo.CasillaBuscaminas;
+import Modelo.Jugador;
 import Vista.VistaTableroBuscaminas;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -16,7 +17,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -148,7 +152,33 @@ public class ControladorTableroBuscaminas implements MouseListener{
                     //Funcion que comprueba si se ha ganado.
                     boolean ganador = casilla.revisarGanador2(mapaJugador);
                     if(ganador==true){//jugador gana
-                        JOptionPane.showMessageDialog(vt,"¡Has ganado!");
+                        if(cantidadTotalMinas==15){
+                            try{
+                                Jugador.actualizarOro(buscaminas.getRecompensaF());
+                                JOptionPane.showMessageDialog(vt,"¡Has ganado!\n tu recomepensa es: "+ buscaminas.getRecompensaF());
+                            }  
+                            catch (SQLException ex) {
+                                Logger.getLogger(ControladorTableroBuscaminas.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                        if(cantidadTotalMinas==40){
+                            try {
+                                Jugador.actualizarOro(buscaminas.getRecompensaI());
+                                JOptionPane.showMessageDialog(vt,"¡Has ganado!\n tu recomepensa es: "+ buscaminas.getRecompensaI());
+                            } 
+                            catch (SQLException ex) {
+                                Logger.getLogger(ControladorTableroBuscaminas.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                        if(cantidadTotalMinas==100){
+                            try {
+                                Jugador.actualizarOro(buscaminas.getRecompensaD());
+                                JOptionPane.showMessageDialog(vt,"¡Has ganado!\n tu recomepensa es: "+ buscaminas.getRecompensaD());
+                            }
+                            catch (SQLException ex) {
+                                Logger.getLogger(ControladorTableroBuscaminas.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
                         System.out.println("Se acabo el juego");
                         vt.dispose();
                         cb = new ControladorBuscaminas();

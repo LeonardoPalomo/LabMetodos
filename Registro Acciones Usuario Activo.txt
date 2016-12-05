@@ -1169,3 +1169,9 @@
 2016/12/04 :: 22:10:06 = El usuario null va a seleccionar una asignatura.
 2016/12/04 :: 22:12:48 = Se ha abierto el juego. 
 2016/12/04 :: 22:13:02 = El usuario null va a seleccionar una asignatura.
+2016/12/04 :: 22:38:30 = Se ha abierto el juego. 
+2016/12/04 :: 22:38:41 = El usuario null ha accedido a biblioteca central
+2016/12/04 :: 22:38:41 = El usuario null ha iniciado misión extra buscaminas
+2016/12/04 :: 22:47:31 = Se ha abierto el juego. 
+2016/12/04 :: 22:47:46 = El usuario null ha accedido a biblioteca central
+2016/12/04 :: 22:47:49 = El usuario null ha iniciado misión extra buscaminas

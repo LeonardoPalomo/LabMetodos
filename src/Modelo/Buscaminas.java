@@ -13,9 +13,24 @@ import javax.swing.JButton;
  * @author Usuario
  */
 public class Buscaminas {
+    
     //Atributos
     private int cantidadMinas;
+    private final int recompensaF = 7000;
+    private final int recompensaI = 15000;
+    private final int recompensaD = 30000;
     
+    //getter
+    public int getRecompensaF() {
+        return recompensaF;
+    }
+
+    public int getRecompensaI() {
+        return recompensaI;
+    }
+    public int getRecompensaD() {
+        return recompensaD;
+    }
     //Metodos
     public int posicionMinaX(int rango){
         
