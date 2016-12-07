@@ -6,10 +6,12 @@ import Controlador.ControladorJuegoAdivLaPal;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 public class VistaJuegoAdivLaPal extends javax.swing.JFrame {
 
@@ -428,6 +430,36 @@ public class VistaJuegoAdivLaPal extends javax.swing.JFrame {
         }
     }
     
+    public void agregarKeyListener(KeyListener kl){
+        this.botonBorrar.addKeyListener(kl);
+        this.botonOk.addKeyListener(kl);
+        for (int i=0; i<10; i++){
+            tecladoFila1[i].addKeyListener(kl);
+        }
+        for (int j=0; j<9; j++){
+            tecladoFila2[j].addKeyListener(kl);
+        }
+        for (int k=0; k<7; k++){
+            tecladoFila3[k].addKeyListener(kl);
+        }
+    }
     
+    public void marcarCasilla(){
+        Border borde = new LineBorder(Color.LIGHT_GRAY,10);
+        if(ControladorJuegoAdivLaPal.indiceLetra != ControladorJuegoAdivLaPal.cantidadLetras){
+            tablero[ControladorJuegoAdivLaPal.cantidadIntentos][ControladorJuegoAdivLaPal.indiceLetra].setBorder(borde);
+            if(ControladorJuegoAdivLaPal.indiceLetra > 0){
+                tablero[ControladorJuegoAdivLaPal.cantidadIntentos][ControladorJuegoAdivLaPal.indiceLetra-1].setBorder(bordeLabels);
+            }
+        }
+        for(int i=ControladorJuegoAdivLaPal.indiceLetra+1; i<ControladorJuegoAdivLaPal.cantidadLetras; i++){
+            tablero[ControladorJuegoAdivLaPal.cantidadIntentos][i].setBorder(bordeLabels);
+        }
+        if(ControladorJuegoAdivLaPal.cantidadIntentos > 0){
+            for(int j=0; j<ControladorJuegoAdivLaPal.cantidadLetras; j++){
+                tablero[ControladorJuegoAdivLaPal.cantidadIntentos-1][j].setBorder(bordeLabels);
+            }
+        }
+    }
 
 }

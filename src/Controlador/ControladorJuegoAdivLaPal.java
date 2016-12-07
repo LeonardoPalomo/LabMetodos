@@ -5,9 +5,11 @@ import Modelo.JuegoAdivLaPal;
 import Vista.VistaJuegoAdivLaPal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 
-public class ControladorJuegoAdivLaPal implements ActionListener {
+public class ControladorJuegoAdivLaPal implements ActionListener, KeyListener {
     
     private VistaJuegoAdivLaPal vj;
     private JuegoAdivLaPal j;
@@ -35,6 +37,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
         vj.setVisible(true);
         vj.setLocationRelativeTo(null);
         vj.agregarListener(this);
+        vj.agregarKeyListener(this);
         j = new JuegoAdivLaPal();
         palabraCpu = j.obtenerPalabra(dificultad);
         System.out.println("La palabra elegida por la cpu es: "+palabraCpu);
@@ -45,6 +48,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
         letrasCorrectas = new char[cantidadLetras];
         letrasCorrectas[0] = palabraSeparada[0];
         vj.mostrarLetra(palabraSeparada[0]);
+        vj.marcarCasilla();
     }
 
     @Override
@@ -73,6 +77,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 }
                 indiceLetra = 0;
                 cantidadIntentos++;
+                vj.marcarCasilla();
             }
             else{
                 JOptionPane.showMessageDialog(null,"Debe ingresar " + cantidadLetras + " para realizar un intento.","Error",JOptionPane.INFORMATION_MESSAGE);
@@ -80,11 +85,21 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
         }
         else if(vj.getBotonBorrar() == e.getSource()){
             System.out.println("Ha presionado Borrar");
-            if(indiceLetra>0){
+            if(indiceLetra == cantidadLetras-1){
+                intentoUsuario[indiceLetra] = '\0';
                 vj.mostrarLetra(false);
-                intentoUsuario[indiceLetra-1] = '\0';
                 indiceLetra--;
             }
+            else if(indiceLetra>0 && indiceLetra<4){       
+                intentoUsuario[indiceLetra-1] = '\0'; 
+                vj.mostrarLetra(false);
+                indiceLetra--;  
+            }
+            else{
+                intentoUsuario[indiceLetra] = '\0';
+                vj.mostrarLetra(false);
+            }
+            vj.marcarCasilla();
         }
         else if(vj.getLetraQ() == e.getSource()){
             System.out.println("Ha presionado Q");
@@ -93,6 +108,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('Q');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -103,6 +119,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('W');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -113,6 +130,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('E');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -123,6 +141,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('R');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -133,6 +152,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('T');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -143,6 +163,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('Y');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -153,6 +174,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('U');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -163,6 +185,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('I');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -173,6 +196,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('O');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -183,6 +207,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('P');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -193,6 +218,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('A');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -203,6 +229,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('S');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -213,6 +240,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('D');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -223,6 +251,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('F');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -233,6 +262,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('G');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -243,6 +273,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('H');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -253,6 +284,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('J');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -263,6 +295,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('K');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -273,6 +306,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('L');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -283,6 +317,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('Z');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -293,6 +328,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('X');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -303,6 +339,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('C');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -313,6 +350,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('V');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -323,6 +361,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('B');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -333,6 +372,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('N');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
@@ -343,9 +383,109 @@ public class ControladorJuegoAdivLaPal implements ActionListener {
                 vj.mostrarLetra('M');
                 if(indiceLetra!=cantidadLetras-1){
                     indiceLetra++;
+                    vj.marcarCasilla();
                 }
             }
         }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet.");
+        if(e.getKeyCode()==KeyEvent.VK_BACK_SPACE){
+            vj.getBotonBorrar().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_ENTER){
+            vj.getBotonOk().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_A){
+            vj.getLetraA().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_B){
+            vj.getLetraB().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_C){
+            vj.getLetraC().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_D){
+            vj.getLetraD().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_E){
+            vj.getLetraE().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_F){
+            vj.getLetraF().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_G){
+            vj.getLetraG().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_H){
+            vj.getLetraH().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_I){
+            vj.getLetraI().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_J){
+            vj.getLetraJ().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_K){
+            vj.getLetraK().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_L){
+            vj.getLetraL().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_M){
+            vj.getLetraM().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_N){
+            vj.getLetraN().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_O){
+            vj.getLetraO().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_P){
+            vj.getLetraP().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_Q){
+            vj.getLetraQ().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_R){
+            vj.getLetraR().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_S){
+            vj.getLetraS().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_T){
+            vj.getLetraT().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_U){
+            vj.getLetraU().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_V){
+            vj.getLetraV().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_W){
+            vj.getLetraW().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_X){
+            vj.getLetraX().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_Y){
+            vj.getLetraY().doClick();
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_Z){
+            vj.getLetraZ().doClick();
+        }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }
