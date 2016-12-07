@@ -64,7 +64,7 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
           
           
           if(resultado.equals("Gana Jugador")){
-              JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+              JOptionPane.showMessageDialog(null, "Ganaste!!!!! \n Tu Recompensa es:1000");
               vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
               try {
@@ -129,7 +129,7 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
           resultado= tresEnRaya.validarGanador(tablero);
           
           if(resultado.equals("Gana Jugador")){
-              JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+              JOptionPane.showMessageDialog(null, "Ganaste!!!!! \n Tu Recompensa es:1000");
               vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
                try {
@@ -164,7 +164,7 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                     resultado=tresEnRaya.validarGanador(tablero);
                     
                     if(resultado.equals("Gana Jugador")){
-                        JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+                        JOptionPane.showMessageDialog(null, "Ganaste!!!!! \n Tu Recompensa es:1000");
                         comprobador = false;
                         vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
@@ -211,7 +211,7 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
           resultado= tresEnRaya.validarGanador(tablero);
           
           if(resultado.equals("Gana Jugador")){
-              JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+              JOptionPane.showMessageDialog(null, "Ganaste!!!!! \n Tu Recompensa es:1000");
               vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
                 try {
@@ -245,7 +245,7 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                     resultado=tresEnRaya.validarGanador(tablero);
                     
                     if(resultado.equals("Gana Jugador")){
-                        JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+                        JOptionPane.showMessageDialog(null, "Ganaste!!!!! \n Tu Recompensa es:1000");
                         comprobador = false;
                         vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
@@ -291,7 +291,7 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
           resultado= tresEnRaya.validarGanador(tablero);
           
           if(resultado.equals("Gana Jugador")){
-              JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+              JOptionPane.showMessageDialog(null, "Ganaste!!!!! \n Tu Recompensa es:1000");
               vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
                 try {
@@ -325,7 +325,7 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                     resultado=tresEnRaya.validarGanador(tablero);
                     
                     if(resultado.equals("Gana Jugador")){
-                        JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+                        JOptionPane.showMessageDialog(null, "Ganaste!!!!! \n Tu Recompensa es:1000");
                         comprobador = false;
                         vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
@@ -371,7 +371,7 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
           resultado= tresEnRaya.validarGanador(tablero);
           
           if(resultado.equals("Gana Jugador")){
-              JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+              JOptionPane.showMessageDialog(null, "Ganaste!!!!! \n Tu Recompensa es:1000");
               vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
                 try {
@@ -405,7 +405,7 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                     resultado=tresEnRaya.validarGanador(tablero);
                     
                     if(resultado.equals("Gana Jugador")){
-                        JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+                        JOptionPane.showMessageDialog(null, "Ganaste!!!!! \n Tu Recompensa es:1000");
                         comprobador = false;
                         vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
@@ -451,7 +451,7 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
           resultado= tresEnRaya.validarGanador(tablero);
           
           if(resultado.equals("Gana Jugador")){
-              JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+              JOptionPane.showMessageDialog(null, "Ganaste!!!!! \n Tu Recompensa es:1000");
               vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
                try {
@@ -485,7 +485,7 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                     resultado=tresEnRaya.validarGanador(tablero);
                     
                     if(resultado.equals("Gana Jugador")){
-                        JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+                        JOptionPane.showMessageDialog(null, "Ganaste!!!!! \n Tu Recompensa es:1000");
                         comprobador = false;
                         vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
@@ -531,7 +531,7 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
           resultado= tresEnRaya.validarGanador(tablero);
           
           if(resultado.equals("Gana Jugador")){
-              JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+              JOptionPane.showMessageDialog(null, "Ganaste!!!!! \n Tu Recompensa es:1000");
               vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
                 try {
@@ -565,7 +565,7 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                     resultado=tresEnRaya.validarGanador(tablero);
                     
                     if(resultado.equals("Gana Jugador")){
-                        JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+                        JOptionPane.showMessageDialog(null, "Ganaste!!!!! \n Tu Recompensa es:1000");
                         comprobador = false;
                         vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
@@ -611,7 +611,7 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
           resultado= tresEnRaya.validarGanador(tablero);
           
           if(resultado.equals("Gana Jugador")){
-              JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+              JOptionPane.showMessageDialog(null, "Ganaste!!!!! \n Tu Recompensa es:1000");
               vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
                 try {
@@ -645,7 +645,7 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                     resultado=tresEnRaya.validarGanador(tablero);
                     
                     if(resultado.equals("Gana Jugador")){
-                        JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+                        JOptionPane.showMessageDialog(null, "Ganaste!!!!! \n Tu Recompensa es:1000");
                         comprobador = false;
                                 vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
@@ -691,7 +691,7 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
           resultado= tresEnRaya.validarGanador(tablero);
           
           if(resultado.equals("Gana Jugador")){
-              JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+              JOptionPane.showMessageDialog(null, "Ganaste!!!!! \n Tu Recompensa es:1000");
               vp.dispose();
                             cbc = new ControladorBibliotecaCentral();
                 try {
@@ -725,7 +725,7 @@ public class ControladorPrincipalTresEnRaya implements ActionListener{
                     resultado=tresEnRaya.validarGanador(tablero);
                     
                     if(resultado.equals("Gana Jugador")){
-                        JOptionPane.showMessageDialog(null, "Ganaste!!!!!");
+                        JOptionPane.showMessageDialog(null, "Ganaste!!!!! \n Tu Recompensa es:1000");
                         comprobador = false;
                         vp.dispose();
                             cbc = new ControladorBibliotecaCentral();

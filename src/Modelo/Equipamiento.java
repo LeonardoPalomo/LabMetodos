@@ -21,11 +21,11 @@ public class Equipamiento extends Item{
     private int durabActual;
    
     //Constructor de prueba, para crear arco de prueba para arquero de prueba... prueba
-   public Equipamiento(String nombre, int tipo, int subTipo){
+   public Equipamiento(String nombre){
        this.nombre = nombre;
        this.rol = 2;
-       this.tipo = tipo;
-       this.subtipo = subTipo;
+       this.tipo = 1;
+       this.subtipo = 2;
        this.bonusAtkLejos = 100;
        this.durabTotal = 5;
        this.durabActual = durabTotal;
@@ -38,5 +38,5 @@ public class Equipamiento extends Item{
    public boolean verificarDurabilidad(int durabActual, int durabTotal) {
       return false;
    }
-
+   
 }
