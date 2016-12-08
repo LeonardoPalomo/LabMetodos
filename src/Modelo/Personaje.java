@@ -597,4 +597,259 @@ public class Personaje {
             }
         }
     }
+    public ArrayList<int[]> moverCpu(int[] posicionCpu, Casilla[][] tablero){
+        ArrayList<int[]> recorrido = new ArrayList();//Recorrido al reves(desde el personaje objetivo hasta la posicion de la Cpu)
+        ArrayList<ArrayList<int[]>> abierto = new ArrayList();//Estados abiertos (Lista de listas de arreglos de enteros de largo 2) (Estado actual es el primer arreglo de enteros de cada lista de la lista)
+        ArrayList<ArrayList<int[]>> cerrado = new ArrayList();//Estados cerrados
+        //Se crea el estado inicial (Arreglo de 2 posiciones)
+        ArrayList<int[]> eInicial = new ArrayList();
+        int[] inicial = posicionCpu;
+        eInicial.add(inicial);
+        eInicial.add(inicial);//Se agrega 2 veces por que no hay estado anterior al inicial
+        abierto.add(eInicial);//Se agrega el primer estado
+        //Se crea un vericficador de que si en alguna transicion se llega a algun personaje enemigo
+        boolean verificadorMaximo = false;
+        do{
+            //Se obtiene el primer elemento de la lista de estados abiertos
+            ArrayList<int[]> estadoActual = abierto.get(0);
+            //Posiciones x,y del estado actual
+            int posicionX = estadoActual.get(0)[0];
+            int posicionY = estadoActual.get(0)[1];
+            int[] posicionActual = new int[2];
+            posicionActual[0] = posicionX;
+            posicionActual[1] = posicionY;
+            //Transiciones
+            //----------------------------------
+            //Coordenadas de la casilla a revisar
+            int nuevaPosicionX;
+            int nuevaPosicionY;
+            //Posicion [x-1,y] (Abajo)
+            //Verificacion de que no se sale del rango
+            if(posicionX-1>=0 || posicionX-1<25){
+                nuevaPosicionX = posicionX-1;
+                nuevaPosicionY = posicionY;
+                //Verificacion de la altura.
+                if(abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura()))<2){
+                    //Verificacion de que si se puede caminar sobre ella.
+                    if(tablero[nuevaPosicionX][nuevaPosicionY].getCaminable()==true){
+                        //Verificacion en la casilla esta algun personaje enemigo
+                        if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==false){
+                            if(tablero[nuevaPosicionX][nuevaPosicionY].getPersonaje().getEsCpu()==false){
+                                verificadorMaximo = true;
+                            }
+                        }
+                        //Verificacion de si hay un personaje posicionado en la casilla
+                        if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==true){
+                            //Verificacion de que no es estado abierto ni cerrado(no se ha pasado por ahi)
+                            boolean verificador = true;
+                            for(int i = 0; i<abierto.size(); i++){
+                                if(abierto.get(i).get(0)[0]==nuevaPosicionX || abierto.get(i).get(0)[1]==nuevaPosicionY){
+                                    verificador = false;
+                                }
+                            }
+                            for(int i = 0; i<cerrado.size(); i++){
+                                if(cerrado.get(i).get(0)[0]==nuevaPosicionX || cerrado.get(i).get(0)[1]==nuevaPosicionY){
+                                    verificador = false;
+                                }
+                            }
+                            //Fin verificacion
+                            //-----------------
+                            if(verificador==true){
+                                //Creacion de nuevo estado
+                                ArrayList<int[]> nuevoEstado = new ArrayList();
+                                //Nueva posicion actual del estado
+                                int[] nuevaPosicion = new int[2];
+                                nuevaPosicion[0] = nuevaPosicionX;
+                                nuevaPosicion[1] = nuevaPosicionY;
+                                //Se agrega la posicion actual y la anterior al nuevo estado(en ese orden)
+                                nuevoEstado.add(nuevaPosicion);
+                                nuevoEstado.add(posicionActual);
+                                //Se añade como un nuevo estado abierto
+                                abierto.add(nuevoEstado);
+                            }
+                        }
+                    }    
+                }
+            }
+            //Posicion [x+1,y] (Arriba)
+            //Verificacion de que no se sale del rango
+            if(posicionX+1>=0 || posicionX+1<25){
+                nuevaPosicionX = posicionX+1;
+                nuevaPosicionY = posicionY;
+                //Verificacion de la altura.
+                if(abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura()))<2){
+                    //Verificacion de que si se puede caminar sobre ella.
+                    if(tablero[nuevaPosicionX][nuevaPosicionY].getCaminable()==true){
+                        //Verificacion en la casilla esta algun personaje enemigo
+                        if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==false){
+                            if(tablero[nuevaPosicionX][nuevaPosicionY].getPersonaje().getEsCpu()==false){
+                                verificadorMaximo = true;
+                            }
+                        }
+                        //Verificacion de si hay un personaje posicionado en la casilla
+                        if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==true){
+                            //Verificacion de que no es estado abierto ni cerrado(no se ha pasado por ahi)
+                            boolean verificador = true;
+                            for(int i = 0; i<abierto.size(); i++){
+                                if(abierto.get(i).get(0)[0]==nuevaPosicionX || abierto.get(i).get(0)[1]==nuevaPosicionY){
+                                    verificador = false;
+                                }
+                            }
+                            for(int i = 0; i<cerrado.size(); i++){
+                                if(cerrado.get(i).get(0)[0]==nuevaPosicionX || cerrado.get(i).get(0)[1]==nuevaPosicionY){
+                                    verificador = false;
+                                }
+                            }
+                            //Fin verificacion
+                            //-----------------
+                            if(verificador==true){
+                                //Creacion de nuevo estado
+                                ArrayList<int[]> nuevoEstado = new ArrayList();
+                                //Nueva posicion actual del estado
+                                int[] nuevaPosicion = new int[2];
+                                nuevaPosicion[0] = nuevaPosicionX;
+                                nuevaPosicion[1] = nuevaPosicionY;
+                                //Se agrega la posicion actual y la anterior al nuevo estado(en ese orden)
+                                nuevoEstado.add(nuevaPosicion);
+                                nuevoEstado.add(posicionActual);
+                                //Se añade como un nuevo estado abierto
+                                abierto.add(nuevoEstado);
+                            }
+                        }
+                    }    
+                }
+            }
+            //Posicion [x,y-1] (Izquierda)
+            //Verificacion de que no se sale del rango
+            if(posicionY-1>=0 || posicionY-1<25){
+                nuevaPosicionX = posicionX;
+                nuevaPosicionY = posicionY-1;
+                //Verificacion de la altura.
+                if(abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura()))<2){
+                    //Verificacion de que si se puede caminar sobre ella.
+                    if(tablero[nuevaPosicionX][nuevaPosicionY].getCaminable()==true){
+                        //Verificacion en la casilla esta algun personaje enemigo
+                        if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==false){
+                            if(tablero[nuevaPosicionX][nuevaPosicionY].getPersonaje().getEsCpu()==false){
+                                verificadorMaximo = true;
+                            }
+                        }
+                        //Verificacion de si hay un personaje posicionado en la casilla
+                        if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==true){
+                            //Verificacion de que no es estado abierto ni cerrado(no se ha pasado por ahi)
+                            boolean verificador = true;
+                            for(int i = 0; i<abierto.size(); i++){
+                                if(abierto.get(i).get(0)[0]==nuevaPosicionX || abierto.get(i).get(0)[1]==nuevaPosicionY){
+                                    verificador = false;
+                                }
+                            }
+                            for(int i = 0; i<cerrado.size(); i++){
+                                if(cerrado.get(i).get(0)[0]==nuevaPosicionX || cerrado.get(i).get(0)[1]==nuevaPosicionY){
+                                    verificador = false;
+                                }
+                            }
+                            //Fin verificacion
+                            //-----------------
+                            if(verificador==true){
+                                //Creacion de nuevo estado
+                                ArrayList<int[]> nuevoEstado = new ArrayList();
+                                //Nueva posicion actual del estado
+                                int[] nuevaPosicion = new int[2];
+                                nuevaPosicion[0] = nuevaPosicionX;
+                                nuevaPosicion[1] = nuevaPosicionY;
+                                //Se agrega la posicion actual y la anterior al nuevo estado(en ese orden)
+                                nuevoEstado.add(nuevaPosicion);
+                                nuevoEstado.add(posicionActual);
+                                //Se añade como un nuevo estado abierto
+                                abierto.add(nuevoEstado);
+                            }
+                        }
+                    }    
+                }
+            }
+            //Posicion [x,y+1] (Derecha)
+            //Verificacion de que no se sale del rango
+            if(posicionY+1>=0 || posicionY+1<25){
+                nuevaPosicionX = posicionX;
+                nuevaPosicionY = posicionY+1;
+                //Verificacion de la altura.
+                if(abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura()))<2){
+                    //Verificacion de que si se puede caminar sobre ella.
+                    if(tablero[nuevaPosicionX][nuevaPosicionY].getCaminable()==true){
+                        //Verificacion en la casilla esta algun personaje enemigo
+                        if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==false){
+                            if(tablero[nuevaPosicionX][nuevaPosicionY].getPersonaje().getEsCpu()==false){
+                                verificadorMaximo = true;
+                            }
+                        }
+                        //Verificacion de si hay un personaje posicionado en la casilla
+                        if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==true){
+                            //Verificacion de que no es estado abierto ni cerrado(no se ha pasado por ahi)
+                            boolean verificador = true;
+                            for(int i = 0; i<abierto.size(); i++){
+                                if(abierto.get(i).get(0)[0]==nuevaPosicionX || abierto.get(i).get(0)[1]==nuevaPosicionY){
+                                    verificador = false;
+                                }
+                            }
+                            for(int i = 0; i<cerrado.size(); i++){
+                                if(cerrado.get(i).get(0)[0]==nuevaPosicionX || cerrado.get(i).get(0)[1]==nuevaPosicionY){
+                                    verificador = false;
+                                }
+                            }
+                            //Fin verificacion
+                            //-----------------
+                            if(verificador==true){
+                                //Creacion de nuevo estado
+                                ArrayList<int[]> nuevoEstado = new ArrayList();
+                                //Nueva posicion actual del estado
+                                int[] nuevaPosicion = new int[2];
+                                nuevaPosicion[0] = nuevaPosicionX;
+                                nuevaPosicion[1] = nuevaPosicionY;
+                                //Se agrega la posicion actual y la anterior al nuevo estado(en ese orden)
+                                nuevoEstado.add(nuevaPosicion);
+                                nuevoEstado.add(posicionActual);
+                                //Se añade como un nuevo estado abierto
+                                abierto.add(nuevoEstado);
+                            }
+                        }
+                    }    
+                }
+            }
+            //Luego de realizar las transiciones, se cierra el estado y se elimina de los abiertos
+            cerrado.add(abierto.get(0));
+            abierto.remove(0);
+        }
+        while(verificadorMaximo==true);
+        //Se crea la lista con las posiciones de camino
+        ArrayList<int[]> ultimoEstado = cerrado.get(cerrado.size()-1);
+        recorrido.add(ultimoEstado.get(0));
+        this.obtenerRecorrido(ultimoEstado, cerrado, recorrido);
+        //Se da vuelta las casillas recorrido
+        ArrayList<int[]> recorridoFinal = new ArrayList();//recorrido desde el personaje de la Cpu hasta el enemigo
+        for(int i=0; i<recorrido.size(); i++){
+            recorridoFinal.add(recorrido.get(recorrido.size()-1));
+        }
+        return recorridoFinal;
+    }
+    //metodo recursivo que entrega el recorrido al reves del movimiento de la Cpu
+    public void obtenerRecorrido(ArrayList<int[]> estado, ArrayList<ArrayList<int[]>> estados, ArrayList<int[]> recorrido){
+        ArrayList<int[]> respuesta = new ArrayList();
+        //Se busca el estado anterior
+        int[] anterior = estado.get(1);
+        //Se agrega al recorrido
+        recorrido.add(anterior);
+        for(int i=0; i<estados.size()-1; i++){
+            if(estados.get(i).get(0)[0]==anterior[0] || estados.get(i).get(0)[1] == anterior[1]){
+                respuesta.add(estados.get(0).get(0));
+                respuesta.add(estados.get(i).get(1));
+            }
+        }
+        //Si no es el estado inicial, se llama de nuevo a la funcion
+        if(respuesta.get(0)[0]!=respuesta.get(1)[0]){//
+            if(respuesta.get(0)[1]!=respuesta.get(1)[1]){
+                this.obtenerRecorrido(respuesta, estados, recorrido);
+            }
+        }
+    } 
+    
 }

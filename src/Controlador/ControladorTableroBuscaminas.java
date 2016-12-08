@@ -142,14 +142,7 @@ public class ControladorTableroBuscaminas implements MouseListener{
                             }
                         }
                     }
-                    /*for(int m=0; m<rango; m++){
-                        for(int n=0; n<rango; n++){
-                            System.out.println("Estado casilla "+m+","+n+"= "+mapaJugador[m][n].getEstado());
-                        }
-                    }*/
-                    //System.out.println("----------------------------------------");
-                    //System.out.println("----------------------------------------");
-                    //Funcion que comprueba si se ha ganado.
+                    //Se comprueba si se ha ganado.
                     boolean ganador = casilla.revisarGanador2(mapaJugador);
                     if(ganador==true){//jugador gana
                         if(cantidadTotalMinas==15){
