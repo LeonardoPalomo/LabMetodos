@@ -7,8 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
-//
+
 public class ControladorJuegoAdivLaPal implements ActionListener, KeyListener {
     
     private VistaJuegoAdivLaPal vj;
@@ -18,7 +19,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener, KeyListener {
     public static int cantidadLetras;
     private char[] palabraSeparada;
     private char[] intentoUsuario;
-    private char[] letrasCorrectas;
+    //private char[] letrasCorrectas;
     public static int cantidadIntentos;
     public static int indiceLetra;
     
@@ -45,8 +46,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener, KeyListener {
         System.out.println("La primera letra es: "+palabraSeparada[0]);
         cantidadIntentos = 0;
         intentoUsuario = new char[cantidadLetras];
-        letrasCorrectas = new char[cantidadLetras];
-        letrasCorrectas[0] = palabraSeparada[0];
+        j.getLetrasCorrectas()[0] = palabraSeparada[0];
         vj.mostrarLetra(palabraSeparada[0]);
         vj.marcarCasilla();
     }
@@ -60,20 +60,19 @@ public class ControladorJuegoAdivLaPal implements ActionListener, KeyListener {
                 if(letra=='\0'){
                     chequeo = false;
                 }
+                else{
+                    System.out.println("Letra intentada: "+String.valueOf(letra));
+                }
             }
+            System.out.println(chequeo);
             if(chequeo){
-                char[] letrasEncontradas;
-                letrasEncontradas = j.revisarIntento(palabraSeparada,intentoUsuario,letrasCorrectas);
-                indiceLetra = 0;
-                for(char letra:letrasCorrectas){
-                    System.out.println(letra);
-                    if(letra=='\0'){
-                        vj.mostrarLetra(false);
-                    }
-                    else{
-                        vj.mostrarLetra(letra);
-                    }
-                    indiceLetra++;
+                char[][] resultado = new char[2][intentoUsuario.length];
+                resultado = j.revisarIntento(palabraSeparada,intentoUsuario);
+                for(char letra:resultado[0]){
+                    System.out.println("Letras correctas: "+String.valueOf(letra));
+                }
+                for(char letra:resultado[1]){
+                    System.out.println("Letras encontradas: "+String.valueOf(letra));
                 }
                 indiceLetra = 0;
                 cantidadIntentos++;
