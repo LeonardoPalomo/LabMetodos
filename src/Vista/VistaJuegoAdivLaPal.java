@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -327,8 +328,13 @@ public class VistaJuegoAdivLaPal extends javax.swing.JFrame {
         tablero[ControladorJuegoAdivLaPal.cantidadIntentos][ControladorJuegoAdivLaPal.indiceLetra].setText(null);
     }
     
-    public void mostrarAciertos(){
-    
+    public void mostrarAciertos(ArrayList<Integer> indicesLetrasCorrectas, ArrayList<Integer> indicesLetrasEncontradas){
+        for(Integer indice:indicesLetrasCorrectas){
+            tablero[ControladorJuegoAdivLaPal.cantidadIntentos][indice].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/AdivLaPal/FondoLetraCorrecta.png")));
+        }
+        for(Integer indice:indicesLetrasEncontradas){
+            tablero[ControladorJuegoAdivLaPal.cantidadIntentos][indice].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/AdivLaPal/FondoLetraExiste.png")));
+        }
     }
     
     public JButton getBotonOk(){

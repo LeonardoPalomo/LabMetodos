@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 
@@ -74,6 +75,11 @@ public class ControladorJuegoAdivLaPal implements ActionListener, KeyListener {
                 for(char letra:resultado[1]){
                     System.out.println("Letras encontradas: "+String.valueOf(letra));
                 }
+                ArrayList<Integer> indicesLetrasCorrectas;
+                indicesLetrasCorrectas = j.ubicarLetraCorrecta(resultado[0]);
+                ArrayList<Integer> indicesLetrasEncontradas;
+                indicesLetrasEncontradas = j.ubicarLetrasEncontradas(resultado[1]);
+                vj.mostrarAciertos(indicesLetrasCorrectas, indicesLetrasEncontradas);
                 indiceLetra = 0;
                 cantidadIntentos++;
                 vj.marcarCasilla();

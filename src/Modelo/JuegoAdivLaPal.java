@@ -7,9 +7,9 @@ import java.util.Random;
 
 public class JuegoAdivLaPal {
     
-    private String[] palabrasFacil = {"chela","pisco","vodka","trago","droga","porro","verde","pucho","saque","licor","fonda","asado","pelea","usach","plata","ebrio","manco","bajon","mambo","pasta"};
-    private String[] palabrasNormal = {"tabaco","hierba","copete","whisky","vomito","fiesta","perreo","viagra","mezcal","fernet","brandy","bebida","comida","tocata","pilsen","queque","resaca","escudo","becker","dorada"};
-    private String[] palabrasDificil = {"alcohol","cigarro","absenta","cerveza","carrete","tomanji","cocaina","heroina","extasis","tequila","ginebra","viernes","roncola","piscola","daikiri","horario","cogollo","baltica","cristal","trabajo"};
+    private String[] palabrasFacil = {"CHELA","PISCO","VODKA","TRAGO","DROGA","PORRO","VERDE","PUCHO","SAQUE","LICOR","FONDA","ASADO","PELEA","USACH","PLATA","EBRIO","PARTY","BAJON","MAMBO","PASTA"};
+    private String[] palabrasNormal = {"TABACO","HIERBA","COPETE","WHISKY","VOMITO","FIESTA","PERREO","VIAGRA","MEZCAL","FERNET","BRANDY","BEBIDA","COMIDA","TOCATA","PILSEN","QUEQUE","RESACA","ESCUDO","BECKER","DORADA"};
+    private String[] palabrasDificil = {"ALCOHOL","CIGARRO","ABSENTA","CERVEZA","CARRETE","TOMANJI","COCAINA","HEROINA","EXTASIS","TEQUILA","GINEBRA","VIERNES","RONCOLA","PISCOLA","DAIKIRI","TRAFICO","COGOLLO","BALTICA","CRISTAL","VINACHO"};
     private char[] letrasCorrectas = new char[ControladorJuegoAdivLaPal.cantidadLetras];
     
     public char[] getLetrasCorrectas(){
@@ -38,17 +38,26 @@ public class JuegoAdivLaPal {
     }
     
     public char[][] revisarIntento(char[] palabraSeparada,char[] intentoUsuario){
+        for(char letra:intentoUsuario){
+            System.out.println("Intento usuario = "+String.valueOf(letra));
+        }
+        for(char letra:palabraSeparada){
+            System.out.println("Letra palabra = "+String.valueOf(letra));
+        }
         char[][] resultado = new char[2][ControladorJuegoAdivLaPal.cantidadLetras];
         char[] letrasCorrectas = new char[ControladorJuegoAdivLaPal.cantidadLetras];
         char[] letrasEncontradas = new char[ControladorJuegoAdivLaPal.cantidadLetras];
         for(int i=0; i<ControladorJuegoAdivLaPal.cantidadLetras; i++){
             if(intentoUsuario[i] == palabraSeparada[i]){
                 letrasCorrectas[i] = intentoUsuario[i];
+                System.out.println("Letra correcta = "+String.valueOf(letrasCorrectas[i]));
             }
             else{
                 for(int j=0;j<ControladorJuegoAdivLaPal.cantidadLetras;j++){
+                    
                     if(intentoUsuario[i] == palabraSeparada[j]){
                         letrasEncontradas[i] = intentoUsuario[i];
+                        System.out.println("Letra encontrada = "+String.valueOf(letrasEncontradas[i]));
                         break;
                     }
                 }
@@ -59,10 +68,10 @@ public class JuegoAdivLaPal {
         return resultado;
     }
     
-    public ArrayList<Integer> ubicarLetraCorrecta(){
+    public ArrayList<Integer> ubicarLetraCorrecta(char[] letrasCorrectas){
         ArrayList<Integer> indices = new ArrayList();
-        for(int i=0; i<this.letrasCorrectas.length; i++){
-            if(this.letrasCorrectas[i] != '\0'){
+        for(int i=0; i<letrasCorrectas.length; i++){
+            if(letrasCorrectas[i] != '\0'){
                 indices.add(i);
             }
         }
