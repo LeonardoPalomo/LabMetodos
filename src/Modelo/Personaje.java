@@ -547,7 +547,7 @@ public class Personaje {
         return hpActual;
     }
   
-        public boolean mover(int i, int j, boolean comprobAltura, int terreno){ //rol: 1 guerrero, 2 arquero, 3 ninja, 4 mago
+    public boolean mover(int i, int j, boolean comprobAltura){
         boolean comprobador = false;
         if(this.movActual == 0){
             Batalla.errorMovimiento = "Al personaje "+this.getNombre()+" no le quedan puntos de movimiento";
@@ -555,46 +555,37 @@ public class Personaje {
             JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Modelo Personaje - Puntos de movimiento insuficientes",
                       JOptionPane.INFORMATION_MESSAGE);
         }
-        else if(this.rol == 1 || this.rol == 2){
-            if(comprobAltura){
-                this.posicion[0] = i;
-                this.posicion[1] = j;
-                this.movActual--;
-                comprobador = true;
-            }
-            else{
-                System.out.println(Batalla.errorMovimiento);
-                JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Modelo Personaje - Movimiento no permitido",
-                    JOptionPane.INFORMATION_MESSAGE);
-            }
-        }
-        else if(this.rol == 3){
-            
-            if(comprobAltura){
-                this.posicion[0] = i;
-                this.posicion[1] = j;
-                this.movActual--;
-                comprobador = true;
-                if(this.movActual == 0 && terreno == 2){
-                    this.hpActual = 0;
-                }
-            }
-            
-            else{
-                System.out.println(Batalla.errorMovimiento);
-                JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Modelo Personaje - Movimiento no permitido",
-                    JOptionPane.INFORMATION_MESSAGE);
-            }
-        }
-        
         else{
+            if(comprobAltura){
+                this.posicion[0] = i;
+                this.posicion[1] = j;
+                this.movActual--;
+                comprobador = true;
+            }
+            else{
+                System.out.println(Batalla.errorMovimiento);
+                JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Modelo Personaje - Movimiento no permitido",
+                    JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        return comprobador;
+    }
+    
+    public boolean moverMago(int i, int j, boolean comprobarRio){
+        boolean comprobador = false;
+        if(this.movActual == 0){
+            Batalla.errorMovimiento = "Al personaje "+this.getNombre()+" no le quedan puntos de movimiento";
+            System.out.println(Batalla.errorMovimiento);
+            JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Modelo Personaje - Puntos de movimiento insuficientes",
+                      JOptionPane.INFORMATION_MESSAGE);
+            }
             int difFila; //diferencia de fila
             int difColumna; //diferencia de columna
             int suma;
             difFila = abs(this.posicion[0] - i);
             difColumna = abs(this.posicion[1] - j);
             suma = difFila + difColumna;
-            if(suma <= movActual && terreno != 2){
+            if(suma <= movActual && !comprobarRio){
                 this.posicion[0] = i;
                 this.posicion[1] = j;
                 this.movActual = this.movActual - suma;
@@ -605,7 +596,31 @@ public class Personaje {
                 JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Modelo Personaje - Movimiento no permitido",
                     JOptionPane.INFORMATION_MESSAGE);
             }
-            
+        return comprobador;
+    }
+    
+
+    
+    public boolean moverNinja(int i, int j, boolean comprobAltura){
+        boolean comprobador = false;
+        if(this.movActual == 0){
+            Batalla.errorMovimiento = "Al personaje "+this.getNombre()+" no le quedan puntos de movimiento";
+            System.out.println(Batalla.errorMovimiento);
+            JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Modelo Personaje - Puntos de movimiento insuficientes",
+                      JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            if(comprobAltura){
+                this.posicion[0] = i;
+                this.posicion[1] = j;
+                this.movActual--;
+                comprobador = true;
+            }
+            else{
+                System.out.println(Batalla.errorMovimiento);
+                JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Modelo Personaje - Movimiento no permitido",
+                    JOptionPane.INFORMATION_MESSAGE);
+            }
         }
         return comprobador;
     }
@@ -892,6 +907,6 @@ public class Personaje {
                 this.obtenerRecorrido(respuesta, estados, recorrido);
             }
         }
-    } 
+    }
     
 }

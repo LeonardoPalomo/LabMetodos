@@ -254,10 +254,9 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                     System.out.println("Posición ["+i+"], ["+j+"]. Su terreno es "+nombreTerreno+", y su altura es "+b.getTablero(i,j).getAltura()+".");
                     if(esperaClickMover){
                         Personaje personajeActual = b.getOrdenTurnos()[cntTurno];
-                        if ((personajeActual.getRol() == 3) && (terreno == 2)) b.getTablero(i,j).setCaminable(true); //pone los rios caminables
                         int iAnterior = b.getOrdenTurnos()[cntTurno].getPosicion()[0];
                         int jAnterior = b.getOrdenTurnos()[cntTurno].getPosicion()[1];
-                        if(personajeActual.mover(i,j,b.verificarMover(i,j,cntTurno),terreno)){
+                        if(personajeActual.mover(i,j,b.verificarMover(i,j,cntTurno))){
                             String ruta = b.ubicarPersonaje(b.getOrdenTurnos()[cntTurno],i,j);
                             if(!ruta.equals("")){
                                 vb.ponerImagenTablero(ruta,i,j);
