@@ -141,7 +141,13 @@ public class VistaPrincipalAdivLaPal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void mostrarInstrucciones(){
-        JOptionPane.showMessageDialog(null,"Estas son las instrucciones :v");
+        JOptionPane.showMessageDialog(null,"El objetivo del juego es adivinar una palabra al azar."
+                + "\nPara lograr esto debe ingresar letras mediante el teclado en pantalla"
+                + "\no el teclado real. Al validar el intento (presionando OK o Enter)"
+                + "\nse indicarán por pantalla sus aciertos. Si la letra se marca con un fondo verde"
+                + "\nsignifica que esa letra está en la palabra a adivinar, en esa posición exacta."
+                + "\nSi la letra se marca con un círculo verde, la letra está en la palabra, pero no"
+                + "\nen esa posición. Use estos indicadores para llegar a adivinar la palabra.","Instrucciones",JOptionPane.INFORMATION_MESSAGE);
     }
 
     public JButton getBotonDificil() {

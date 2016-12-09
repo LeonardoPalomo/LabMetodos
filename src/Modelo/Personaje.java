@@ -1,6 +1,7 @@
 package Modelo;
 
 import Controlador.ControladorLogin;
+import static Modelo.Batalla.errorMovimiento;
 import static java.lang.Math.abs;
 import java.util.*;
 import javax.swing.JOptionPane;
@@ -61,6 +62,9 @@ public class Personaje {
    
    public Personaje(String nombre, int rol, int subRol){
        this.nombre = nombre;
+       for(int i=0; i<6; i++){
+        this.equipamiento[i] = new Equipamiento();
+       }
        switch(rol){
            case 1:
                this.hpTotal = 100;
@@ -95,7 +99,7 @@ public class Personaje {
                this.def = 6;
                this.spDef = 5;
                this.nivel = 1;
-               this.movTotal = 8;
+               this.movTotal = 15;
                this.movActual = movTotal;
                this.equipamiento[0] = new Equipamiento("Arco Pulento");
                this.velocidad = 11;
@@ -170,9 +174,9 @@ public class Personaje {
                this.esCpu = false;
                this.setDueño(ControladorLogin.usuarioActivo);
                break;
-       }
-       
-   }
+        }
+        this.equiparObjetosIniciales();
+    }
    
    public Personaje(int i){
        this.nombre = "Genérico "+i;
@@ -553,7 +557,7 @@ public class Personaje {
             Batalla.errorMovimiento = "Al personaje "+this.getNombre()+" no le quedan puntos de movimiento";
             System.out.println(Batalla.errorMovimiento);
             JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Modelo Personaje - Puntos de movimiento insuficientes",
-                      JOptionPane.INFORMATION_MESSAGE);
+                      JOptionPane.ERROR_MESSAGE);
         }
         else{
             if(comprobAltura){
@@ -565,7 +569,7 @@ public class Personaje {
             else{
                 System.out.println(Batalla.errorMovimiento);
                 JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Modelo Personaje - Movimiento no permitido",
-                    JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.ERROR_MESSAGE);
             }
         }
         return comprobador;
@@ -577,37 +581,55 @@ public class Personaje {
             Batalla.errorMovimiento = "Al personaje "+this.getNombre()+" no le quedan puntos de movimiento";
             System.out.println(Batalla.errorMovimiento);
             JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Modelo Personaje - Puntos de movimiento insuficientes",
-                      JOptionPane.INFORMATION_MESSAGE);
+                      JOptionPane.ERROR_MESSAGE);
             }
-            int difFila; //diferencia de fila
-            int difColumna; //diferencia de columna
-            int suma;
-            difFila = abs(this.posicion[0] - i);
-            difColumna = abs(this.posicion[1] - j);
-            suma = difFila + difColumna;
-            if(suma <= movActual && !comprobarRio){
-                this.posicion[0] = i;
-                this.posicion[1] = j;
-                this.movActual = this.movActual - suma;
-                comprobador = true;            
-            }
-            else{
+        else{         
+            if(posicion[0] == i && posicion[1] == j){
+                comprobador = false;
+                Batalla.errorMovimiento = "Estás intentando moverte a tu misma casilla... ._.";
                 System.out.println(Batalla.errorMovimiento);
                 JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Modelo Personaje - Movimiento no permitido",
-                    JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.ERROR_MESSAGE);
             }
+            else{
+                int difFila; //diferencia de fila
+                int difColumna; //diferencia de columna
+                int suma;
+                difFila = abs(this.posicion[0] - i);
+                difColumna = abs(this.posicion[1] - j);
+                suma = difFila + difColumna;
+                if(suma <= movActual && comprobarRio){
+                    this.posicion[0] = i;
+                    this.posicion[1] = j;
+                    this.movActual = this.movActual - suma;
+                    comprobador = true;            
+                }
+                else{
+                    if(!comprobarRio){
+                        Batalla.errorMovimiento = "La casilla seleccionada no es válida";
+                        System.out.println(Batalla.errorMovimiento);
+                        JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Modelo Personaje - Movimiento no permitido",
+                            JOptionPane.ERROR_MESSAGE);
+                    }
+                    else{
+                        Batalla.errorMovimiento = "Puntos de movimiento insuficientes";
+                        System.out.println(Batalla.errorMovimiento);
+                        JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Modelo Personaje - Movimiento no permitido",
+                            JOptionPane.ERROR_MESSAGE);
+                    }    
+                }
+            } 
+        }
         return comprobador;
     }
-    
-
-    
+      
     public boolean moverNinja(int i, int j, boolean comprobAltura){
         boolean comprobador = false;
         if(this.movActual == 0){
             Batalla.errorMovimiento = "Al personaje "+this.getNombre()+" no le quedan puntos de movimiento";
             System.out.println(Batalla.errorMovimiento);
             JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Modelo Personaje - Puntos de movimiento insuficientes",
-                      JOptionPane.INFORMATION_MESSAGE);
+                      JOptionPane.ERROR_MESSAGE);
         }
         else{
             if(comprobAltura){
@@ -619,7 +641,7 @@ public class Personaje {
             else{
                 System.out.println(Batalla.errorMovimiento);
                 JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Modelo Personaje - Movimiento no permitido",
-                    JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.ERROR_MESSAGE);
             }
         }
         return comprobador;
@@ -630,7 +652,7 @@ public class Personaje {
      * @param direccion entero que indica a donde moverse 0:arriba 1:derecha 2:abajo 3:izquierda 4:imposible
      * @return la nueva posicion
      */
-    public int[] moverCPU(int[] posicion, int direccion){
+    /*public int[] moverCPU(int[] posicion, int direccion){
         int[] nuevaPosicion = new int[2];
         switch(direccion){
             case 0:
@@ -645,12 +667,21 @@ public class Personaje {
         }
         return nuevaPosicion;
 
-    }
+    }*/
 
     public void equiparObjetosIniciales(){
         for(int i=0; i<6; i++){
-            if(this.equipamiento[i] == null){
-                
+            if(this.equipamiento[i] != null){
+                this.atkCerca += equipamiento[i].getBonusAtkCerca();
+                this.atkLejos += equipamiento[i].getBonusAtkLejos();
+                this.spAtkCerca += equipamiento[i].getBonusSpAtkCerca();
+                this.spAtkLejos += equipamiento[i].getBonusSpAtkLejos();
+                this.def += equipamiento[i].getBonusDef();
+                this.spDef += equipamiento[i].getBonusSpDef();
+                this.hpTotal += equipamiento[i].getBonusVida();
+                this.manaTotal += equipamiento[i].getBonusMana();
+                this.movTotal += equipamiento[i].getBonusMov();
+                this.velocidad += equipamiento[i].getBonusSpeed();
             }
         }
     }
@@ -905,6 +936,22 @@ public class Personaje {
         if(respuesta.get(0)[0]!=respuesta.get(1)[0]){//
             if(respuesta.get(0)[1]!=respuesta.get(1)[1]){
                 this.obtenerRecorrido(respuesta, estados, recorrido);
+            }
+        }
+    }
+    
+    public void resetMov(){
+        this.movActual = this.movTotal;
+    }
+    
+    public void recuperarMana(){
+        if(this.manaActual < this.manaTotal){
+            int recuperacionMana = (int)this.manaTotal/5;
+            if(this.manaTotal - this.manaActual < recuperacionMana){
+                this.manaActual = this.manaTotal;
+            }
+            else{
+                this.manaActual += recuperacionMana;
             }
         }
     }

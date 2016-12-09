@@ -12,6 +12,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 public class VistaJuegoAdivLaPal extends javax.swing.JFrame {
@@ -71,6 +73,7 @@ public class VistaJuegoAdivLaPal extends javax.swing.JFrame {
                 tablero[i][j].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/AdivLaPal/FondoCasilla.png")));
                 tablero[i][j].setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
                 tablero[i][j].setBorder(bordeLabels);
+                tablero[i][j].setOpaque(false);
                 panelTablero.add(tablero[i][j]);
             }
         }
@@ -421,6 +424,10 @@ public class VistaJuegoAdivLaPal extends javax.swing.JFrame {
     public JButton getLetraM(){
         return tecladoFila3[6];
     }
+    
+    public void setTextArea(String texto){
+        this.textoInfoJuego.append(texto+"\n");
+    }
 
     public void agregarListener(ActionListener al){
         this.botonOk.addActionListener(al);
@@ -451,19 +458,21 @@ public class VistaJuegoAdivLaPal extends javax.swing.JFrame {
     }
     
     public void marcarCasilla(){
-        Border borde = new LineBorder(Color.LIGHT_GRAY,10);
-        if(ControladorJuegoAdivLaPal.indiceLetra != ControladorJuegoAdivLaPal.cantidadLetras){
-            tablero[ControladorJuegoAdivLaPal.cantidadIntentos][ControladorJuegoAdivLaPal.indiceLetra].setBorder(borde);
-            if(ControladorJuegoAdivLaPal.indiceLetra > 0){
-                tablero[ControladorJuegoAdivLaPal.cantidadIntentos][ControladorJuegoAdivLaPal.indiceLetra-1].setBorder(bordeLabels);
+        if(ControladorJuegoAdivLaPal.cantidadIntentos < 5){
+            Border borde = new LineBorder(Color.RED,1);
+            if(ControladorJuegoAdivLaPal.indiceLetra != ControladorJuegoAdivLaPal.cantidadLetras){
+                tablero[ControladorJuegoAdivLaPal.cantidadIntentos][ControladorJuegoAdivLaPal.indiceLetra].setBorder(borde);
+                if(ControladorJuegoAdivLaPal.indiceLetra > 0){
+                    tablero[ControladorJuegoAdivLaPal.cantidadIntentos][ControladorJuegoAdivLaPal.indiceLetra-1].setBorder(bordeLabels);
+                }
             }
-        }
-        for(int i=ControladorJuegoAdivLaPal.indiceLetra+1; i<ControladorJuegoAdivLaPal.cantidadLetras; i++){
-            tablero[ControladorJuegoAdivLaPal.cantidadIntentos][i].setBorder(bordeLabels);
-        }
-        if(ControladorJuegoAdivLaPal.cantidadIntentos > 0){
-            for(int j=0; j<ControladorJuegoAdivLaPal.cantidadLetras; j++){
-                tablero[ControladorJuegoAdivLaPal.cantidadIntentos-1][j].setBorder(bordeLabels);
+            for(int i=ControladorJuegoAdivLaPal.indiceLetra+1; i<ControladorJuegoAdivLaPal.cantidadLetras; i++){
+                tablero[ControladorJuegoAdivLaPal.cantidadIntentos][i].setBorder(bordeLabels);
+            }
+            if(ControladorJuegoAdivLaPal.cantidadIntentos > 0){
+                for(int j=0; j<ControladorJuegoAdivLaPal.cantidadLetras; j++){
+                    tablero[ControladorJuegoAdivLaPal.cantidadIntentos-1][j].setBorder(bordeLabels);
+                }
             }
         }
     }

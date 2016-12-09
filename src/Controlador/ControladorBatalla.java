@@ -190,6 +190,7 @@ public class ControladorBatalla implements ActionListener, MouseListener {
             JOptionPane.showMessageDialog(vb,"Trabajo en progreso...","WIP",JOptionPane.INFORMATION_MESSAGE);
         }
         if(e.getActionCommand()=="Finalizar turno"){
+            b.getOrdenTurnos()[cntTurno].resetMov();
             int fila = b.getOrdenTurnos()[cntTurno].getPosicion()[0];
             int columna = b.getOrdenTurnos()[cntTurno].getPosicion()[1];
             if (b.getOrdenTurnos()[cntTurno].getRol() == 3 && b.getTablero(fila,columna).getTerreno() == 2){
@@ -205,6 +206,7 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                 cntTurno = 0;
             }
             String turnoActual = b.getOrdenTurnos()[cntTurno].getNombre();
+            b.getOrdenTurnos()[cntTurno].recuperarMana();
             vb.setTextArea("Turno "+(b.getTurno()+1)+" - Turno de "+turnoActual);
             vb.marcarCasilla(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getOrdenTurnos()[cntTurno].getEsCpu());
             if(cntTurno == 0){
@@ -214,8 +216,8 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                 vb.eliminarBordesCasilla(b.getOrdenTurnos()[cntTurno-1].getPosicion());
             }
             if(b.getOrdenTurnos()[cntTurno].getEsCpu()){
-                
                 vb.disableButtons();
+                b.getOrdenTurnos()[cntTurno].moverCpu(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getTablero());
             }
             else{
                 vb.enableButtons();
@@ -256,25 +258,43 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                         Personaje personajeActual = b.getOrdenTurnos()[cntTurno];
                         int iAnterior = b.getOrdenTurnos()[cntTurno].getPosicion()[0];
                         int jAnterior = b.getOrdenTurnos()[cntTurno].getPosicion()[1];
-                        if(personajeActual.mover(i,j,b.verificarMover(i,j,cntTurno))){
-                            String ruta = b.ubicarPersonaje(b.getOrdenTurnos()[cntTurno],i,j);
-                            if(!ruta.equals("")){
-                                vb.ponerImagenTablero(ruta,i,j);
-                                vb.marcarCasilla(i,j,false);
-                                vb.ponerImagenTablero(b.ponerRutaImagenesTerreno(iAnterior, jAnterior),iAnterior,jAnterior);
-                                vb.eliminarBordesCasilla(iAnterior,jAnterior);
-                                b.getTablero(iAnterior, jAnterior).setPersonaje();
-                                seMovio = true;
-                                String movimiento = "Movimiento realizado.";
-                                System.out.println(movimiento);
-                                vb.setTextArea(movimiento);
-                                if(ataco){
-                                    puedeAtacar = false;
-                                    vb.getBtnAtacar().setEnabled(false);
-                                }
-                                if(b.getOrdenTurnos()[cntTurno].getMovActual() == 0){
-                                    vb.getBtnMover().setEnabled(false);
-                                }
+                        int rol = personajeActual.getRol();
+                        String ruta = "";
+                        boolean busquedaRuta = false;
+                        if(rol == 1 || rol == 2){
+                            if(personajeActual.mover(i,j,b.verificarMover(i,j,cntTurno))){
+                                busquedaRuta = true;
+                            }
+                        }
+                        else if(rol == 3){
+                            if(personajeActual.moverNinja(i,j,b.verificarMoverAltura(i, j, cntTurno))){
+                                busquedaRuta = true;
+                            }
+                        }
+                        else{
+                            if(personajeActual.moverMago(i,j,b.getTablero(i, j).getCaminable())){
+                                busquedaRuta = true;
+                            }
+                        }
+                        if(busquedaRuta){
+                            ruta = b.ubicarPersonaje(b.getOrdenTurnos()[cntTurno],i,j);
+                        }
+                        if(!ruta.equals("")){
+                            vb.ponerImagenTablero(ruta,i,j);
+                            vb.marcarCasilla(i,j,false);
+                            vb.ponerImagenTablero(b.ponerRutaImagenesTerreno(iAnterior, jAnterior),iAnterior,jAnterior);
+                            vb.eliminarBordesCasilla(iAnterior,jAnterior);
+                            b.getTablero(iAnterior, jAnterior).setPersonaje();
+                            seMovio = true;
+                            String movimiento = "Movimiento realizado.";
+                            System.out.println(movimiento);
+                            vb.setTextArea(movimiento);
+                            if(ataco){
+                                puedeAtacar = false;
+                                vb.getBtnAtacar().setEnabled(false);
+                            }
+                            if(b.getOrdenTurnos()[cntTurno].getMovActual() == 0){
+                                vb.getBtnMover().setEnabled(false);
                             }
                         }
                         else {
@@ -305,7 +325,8 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                                     alturaDef = b.getTablero(i,j).getAltura();
                                     if(alturaAtk > alturaDef || alturaDef - alturaAtk <= 2){
                                         //Se ejecuta el duelo
-                                        cbc = new ControladorBatallaCortoAlcance(cntTurno,i,j);
+                                        vb.setVisible(false);
+                                        cbc = new ControladorBatallaCortoAlcance(cntTurno,i,j,b);
                                         /*vbc = new VistaBatallaCorta();
                                         vbc.setVisible(true);
                                         vbc.aListener(this);
@@ -331,7 +352,13 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                                     }
                                     break;
                                 case 2:
-                                    //if(b.getOrdenTurnos()[cntTurno].tieneArmaLargoAlcance()){
+                                    boolean tieneArmaLargoAlcance = false;
+                                    for(int arma=0; arma<2; arma++){
+                                        if(b.getOrdenTurnos()[cntTurno].getEquipamiento()[arma].getTipo() == 1 && b.getOrdenTurnos()[cntTurno].getEquipamiento()[arma].getSubtipo() == 2){
+                                            tieneArmaLargoAlcance = true;
+                                        }
+                                    }
+                                    if(tieneArmaLargoAlcance){
                                         String ataque = "El personaje "+b.getOrdenTurnos()[cntTurno].getNombre()+" ataca a distancia al personaje "+b.getTablero(i,j).getPersonaje().getNombre();
                                         System.out.println(ataque);
                                         vb.setTextArea(ataque);
@@ -348,7 +375,12 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                                             vb.setTextArea(dañoRecibido);
                                             //System.out.println(vbc.getEleccion1());
                                         }
-                                    //}
+                                    }
+                                    else{
+                                        String noTieneArmaLA = b.getOrdenTurnos()[cntTurno].getNombre()+" no tiene un arma de largo alcance.";
+                                        System.out.println(noTieneArmaLA);
+                                        vb.setTextArea(noTieneArmaLA);
+                                    }
                                     break;
                             }
                             if(tipoAtk == 1 || tipoAtk == 2){

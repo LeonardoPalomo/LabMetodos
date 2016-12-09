@@ -19,7 +19,11 @@ public class Equipamiento extends Item{
     private int bonusMov;
     private int durabTotal;
     private int durabActual;
-   
+
+    public Equipamiento(){
+    
+    }
+    
     //Constructor de prueba, para crear arco de prueba para arquero de prueba... prueba
    public Equipamiento(String nombre){
        this.nombre = nombre;
@@ -30,6 +34,68 @@ public class Equipamiento extends Item{
        this.durabTotal = 5;
        this.durabActual = durabTotal;
    }
+
+    public int getRol() {
+        return rol;
+    }
+
+    public int getTipo() {
+        return tipo;
+    }
+
+    public int getSubtipo() {
+        return subtipo;
+    }
+
+    public int getBonusAtkCerca() {
+        return bonusAtkCerca;
+    }
+
+    public int getBonusAtkLejos() {
+        return bonusAtkLejos;
+    }
+
+    public int getBonusSpAtkCerca() {
+        return bonusSpAtkCerca;
+    }
+
+    public int getBonusSpAtkLejos() {
+        return bonusSpAtkLejos;
+    }
+
+    public int getBonusDef() {
+        return bonusDef;
+    }
+
+    public int getBonusSpDef() {
+        return bonusSpDef;
+    }
+
+    public int getBonusVida() {
+        return bonusVida;
+    }
+
+    public int getBonusMana() {
+        return bonusMana;
+    }
+
+    public int getBonusSpeed() {
+        return bonusSpeed;
+    }
+
+    public int getBonusMov() {
+        return bonusMov;
+    }
+
+    public int getDurabTotal() {
+        return durabTotal;
+    }
+
+    public int getDurabActual() {
+        return durabActual;
+    }
+   
+   
    
    public boolean verificarRol(int rolUsuario, int rolEquip) {
       return false;

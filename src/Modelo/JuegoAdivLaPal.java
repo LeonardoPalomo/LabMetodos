@@ -1,6 +1,7 @@
 
 package Modelo;
 
+import Controlador.ControladorInicialAdivLaPal;
 import Controlador.ControladorJuegoAdivLaPal;
 import java.util.ArrayList;
 import java.util.Random;
@@ -11,9 +12,30 @@ public class JuegoAdivLaPal {
     private String[] palabrasNormal = {"TABACO","HIERBA","COPETE","WHISKY","VOMITO","FIESTA","PERREO","VIAGRA","MEZCAL","FERNET","BRANDY","BEBIDA","COMIDA","TOCATA","PILSEN","QUEQUE","RESACA","ESCUDO","BECKER","DORADA"};
     private String[] palabrasDificil = {"ALCOHOL","CIGARRO","ABSENTA","CERVEZA","CARRETE","TOMANJI","COCAINA","HEROINA","EXTASIS","TEQUILA","GINEBRA","VIERNES","RONCOLA","PISCOLA","DAIKIRI","TRAFICO","COGOLLO","BALTICA","CRISTAL","VINACHO"};
     private char[] letrasCorrectas = new char[ControladorJuegoAdivLaPal.cantidadLetras];
+    private boolean victoria = false;
     
     public char[] getLetrasCorrectas(){
         return this.letrasCorrectas;
+    }
+    
+    public boolean getVictoria(){
+        return this.victoria;
+    }
+    
+    public int getRecompensa(){
+        int recompensa = 0;
+        switch(ControladorInicialAdivLaPal.dificultad){
+            case 1:
+                recompensa = 500;
+                break;
+            case 2:
+                recompensa = 750;
+                break;
+            case 3:
+                recompensa = 1000;
+                break;
+        }
+        return recompensa;
     }
     
     public String obtenerPalabra(int dificultad){
@@ -47,24 +69,36 @@ public class JuegoAdivLaPal {
         char[][] resultado = new char[2][ControladorJuegoAdivLaPal.cantidadLetras];
         char[] letrasCorrectas = new char[ControladorJuegoAdivLaPal.cantidadLetras];
         char[] letrasEncontradas = new char[ControladorJuegoAdivLaPal.cantidadLetras];
+        ArrayList<Integer> indicesAdivinados = new ArrayList(); 
         for(int i=0; i<ControladorJuegoAdivLaPal.cantidadLetras; i++){
             if(intentoUsuario[i] == palabraSeparada[i]){
                 letrasCorrectas[i] = intentoUsuario[i];
                 System.out.println("Letra correcta = "+String.valueOf(letrasCorrectas[i]));
+                indicesAdivinados.add(i);
             }
-            else{
-                for(int j=0;j<ControladorJuegoAdivLaPal.cantidadLetras;j++){
-                    
-                    if(intentoUsuario[i] == palabraSeparada[j]){
-                        letrasEncontradas[i] = intentoUsuario[i];
-                        System.out.println("Letra encontrada = "+String.valueOf(letrasEncontradas[i]));
+        }
+        for(int j=0;j<ControladorJuegoAdivLaPal.cantidadLetras;j++){
+            for(int k=0;k<ControladorJuegoAdivLaPal.cantidadLetras;k++){
+                if(intentoUsuario[j] == palabraSeparada[k]){
+                    if(!indicesAdivinados.contains(k)){
+                        letrasEncontradas[j] = intentoUsuario[j];
+                        System.out.println("Letra encontrada = "+String.valueOf(letrasEncontradas[j]));
                         break;
                     }
-                }
+                }  
             }
         }
         resultado[0] = letrasCorrectas;
         resultado[1] = letrasEncontradas;
+        boolean comprobacionVictoria = true;
+        for(int j=0; j<letrasCorrectas.length; j++){
+            if(letrasCorrectas[j] != palabraSeparada[j]){
+                comprobacionVictoria = false;
+            }
+        }
+        if(comprobacionVictoria){
+            this.victoria = true;
+        }
         return resultado;
     }
     

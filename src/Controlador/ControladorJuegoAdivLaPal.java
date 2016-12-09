@@ -2,13 +2,17 @@
 package Controlador;
 
 import Modelo.JuegoAdivLaPal;
+import Modelo.Jugador;
 import Vista.VistaJuegoAdivLaPal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class ControladorJuegoAdivLaPal implements ActionListener, KeyListener {
@@ -55,7 +59,9 @@ public class ControladorJuegoAdivLaPal implements ActionListener, KeyListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(vj.getBotonOk() == e.getSource()){
-            System.out.println("Ha intentado adivinar la palabra");
+            String intento = "Ha intentado adivinar la palabra";
+            System.out.println(intento);
+            vj.setTextArea(intento);
             boolean chequeo = true;
             for(char letra:intentoUsuario){
                 if(letra=='\0'){
@@ -83,6 +89,28 @@ public class ControladorJuegoAdivLaPal implements ActionListener, KeyListener {
                 indiceLetra = 0;
                 cantidadIntentos++;
                 vj.marcarCasilla();
+                if(j.getVictoria()){
+                    int recompensa = j.getRecompensa();
+                    try {
+                        Jugador.actualizarOro(recompensa);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControladorJuegoAdivLaPal.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("BDD no conectada: No se pudo guardar recompensa.");
+                    }
+                    String msjeVictoria = "¡Has ganado! \nRecompensa: "+recompensa;
+                    System.out.println(msjeVictoria);
+                    JOptionPane.showMessageDialog(vj,msjeVictoria,"Victoria",JOptionPane.INFORMATION_MESSAGE);
+                    vj.dispose();
+                    ControladorPrincipalAdivLaPal cp = new ControladorPrincipalAdivLaPal();
+                }
+                else if(cantidadIntentos == 5){
+                    String msjeDerrota = "Has perdido :( \nLa palabra era "+palabraCpu;
+                    System.out.println(msjeDerrota);
+                    JOptionPane.showMessageDialog(vj,msjeDerrota,"Derrota",JOptionPane.INFORMATION_MESSAGE);
+                    vj.dispose();
+                    ControladorPrincipalAdivLaPal cp = new ControladorPrincipalAdivLaPal();
+                }
+                
             }
             else{
                 JOptionPane.showMessageDialog(null,"Debe ingresar " + cantidadLetras + " para realizar un intento.","Error",JOptionPane.INFORMATION_MESSAGE);
@@ -95,7 +123,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener, KeyListener {
                 vj.mostrarLetra(false);
                 indiceLetra--;
             }
-            else if(indiceLetra>0 && indiceLetra<4){       
+            else if(indiceLetra>0 && indiceLetra<cantidadLetras-1){       
                 intentoUsuario[indiceLetra-1] = '\0'; 
                 vj.mostrarLetra(false);
                 indiceLetra--;  

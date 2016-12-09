@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Controlador;
 
 import Modelo.Batalla;
@@ -12,10 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-/**
- *
- * @author Usuario
- */
 public class ControladorBatallaCortoAlcance implements ActionListener{
     private VistaBatallaCorta vbc;
     private Batalla b;
@@ -24,9 +16,11 @@ public class ControladorBatallaCortoAlcance implements ActionListener{
     private ArrayList<Integer> eleccionCpu;
     private int cntTurno; 
     
-    public ControladorBatallaCortoAlcance(int cntTurno, int i, int j){
+    public ControladorBatallaCortoAlcance(int cntTurno, int i, int j, Batalla b){
+        this.b = b;
         vbc = new VistaBatallaCorta();
         vbc.setVisible(true);
+        vbc.setLocationRelativeTo(null);
         vbc.aListener(this);
         this.i = i;
         this.j = j;

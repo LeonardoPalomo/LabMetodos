@@ -570,6 +570,10 @@ public class Batalla {
     public Casilla getTablero(int i, int j) {
         return tablero[i][j];
     }
+    //Sobrecarga
+    public Casilla[][] getTablero(){
+        return this.tablero;
+    }
 
     public void setTablero(Casilla[][] tablero) {
         this.tablero = tablero;
@@ -577,18 +581,10 @@ public class Batalla {
     
     public String ubicarPersonaje(Personaje personaje, int i, int j){
         String ruta = "";
-        if(tablero[i][j].getCaminable() && tablero[i][j].getDisponible()){
+        if(tablero[i][j].getDisponible()){
             tablero[i][j].setPersonaje(personaje);
             personaje.setPosicion(i,j);
             ruta = ponerRutaImagenPersonaje(i,j);
-        }
-        else if(!tablero[i][j].getCaminable()){
-            System.out.println("Casilla inválida");
-            JOptionPane.showMessageDialog(null,"ERROR: Río es una casilla inválida.","ERROR",JOptionPane.ERROR_MESSAGE);
-        }
-        else if(!tablero[i][j].getDisponible()){
-            System.out.println("Casilla ocupada");
-            JOptionPane.showMessageDialog(null,"ERROR: Esa casilla se encuentra ocupada por otro personaje.","ERROR",JOptionPane.ERROR_MESSAGE);
         }
         return ruta;
     }
@@ -783,6 +779,26 @@ public class Batalla {
         return comprobador;
     }
     
+    public boolean verificarMoverAltura(int i, int j, int cantTurno){
+        boolean comprobador = false;
+        if(verificarAdyacencia(i,j,cantTurno)){
+            if(this.tablero[i][j].getDisponible()){
+                int alturaObj = this.tablero[i][j].getAltura();
+                int[] posAct = this.ordenTurnos[cantTurno].getPosicion();
+                int alturaAct = this.tablero[posAct[0]][posAct[1]].getAltura();
+                comprobador = Math.abs(alturaAct - alturaObj) <= 2;
+                if(!comprobador){
+                    errorMovimiento = "La diferencia de alturas es demasiada.";
+                }
+            }
+            else{
+                comprobador = false;
+                errorMovimiento = "La casilla seleccionada no es válida.";
+            }
+        }
+        return comprobador;
+    }
+
     public ArrayList<Personaje> revisarMuertes(){
         ArrayList<Personaje> pjsMuertos = new ArrayList();
         for(Personaje pj:ordenTurnos){
