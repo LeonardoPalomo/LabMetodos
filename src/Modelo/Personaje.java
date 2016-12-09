@@ -543,7 +543,7 @@ public class Personaje {
         return hpActual;
     }
   
-    public boolean mover(int i, int j, boolean comprobAltura){
+        public boolean mover(int i, int j, boolean comprobAltura, int terreno, int rol, int[] posicionActual){ //rol: 1 guerrero, 2 arquero, 3 ninja, 4 mago
         boolean comprobador = false;
         if(this.movActual == 0){
             Batalla.errorMovimiento = "Al personaje "+this.getNombre()+" no le quedan puntos de movimiento";
@@ -551,7 +551,7 @@ public class Personaje {
             JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Modelo Personaje - Puntos de movimiento insuficientes",
                       JOptionPane.INFORMATION_MESSAGE);
         }
-        else{
+        else if(rol == 1 || rol == 2){
             if(comprobAltura){
                 this.posicion[0] = i;
                 this.posicion[1] = j;
@@ -563,6 +563,44 @@ public class Personaje {
                 JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Modelo Personaje - Movimiento no permitido",
                     JOptionPane.INFORMATION_MESSAGE);
             }
+        }
+        else if(rol == 3){
+            if(comprobAltura){
+                this.posicion[0] = i;
+                this.posicion[1] = j;
+                this.movActual--;
+                comprobador = true;
+                if(this.movActual == 0 && terreno == 2){
+                    this.hpActual = 0;
+                }
+            }
+            
+            else{
+                System.out.println(Batalla.errorMovimiento);
+                JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Modelo Personaje - Movimiento no permitido",
+                    JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        
+        else{
+            int difFila; //diferencia de fila
+            int difColumna; //diferencia de columna
+            int suma;
+            difFila = abs(posicionActual[0] - i);
+            difColumna = abs(posicionActual[1] - j);
+            suma = difFila + difColumna;
+            if(suma <= movActual && terreno != 2){
+                this.posicion[0] = i;
+                this.posicion[1] = j;
+                this.movActual = this.movActual - suma;
+                comprobador = true;            
+            }
+            else{
+                System.out.println(Batalla.errorMovimiento);
+                JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Modelo Personaje - Movimiento no permitido",
+                    JOptionPane.INFORMATION_MESSAGE);
+            }
+            
         }
         return comprobador;
     }
@@ -588,7 +626,6 @@ public class Personaje {
         return nuevaPosicion;
 
     }
-    public void moverMago(){} //implementar
 
     public void equiparObjetosIniciales(){
         for(int i=0; i<6; i++){
