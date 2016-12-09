@@ -722,9 +722,11 @@ public class Batalla {
     
     public boolean verificarAdyacencia(int i, int j, int cantTurno){
         boolean comprobador = false;
+        boolean mismaCasilla = false;
         int[] posPj = this.ordenTurnos[cantTurno].getPosicion();
         if(posPj[0] == i && posPj[1] == j){
             comprobador = false;
+            mismaCasilla = true;
             errorMovimiento = "Estás intentando moverte a tu misma casilla... ._.";
         }
         else if(posPj[0] == i){
@@ -755,7 +757,7 @@ public class Batalla {
             }
             catch(ArrayIndexOutOfBoundsException a){}
         }
-        else{
+        if(!mismaCasilla && !comprobador){
             errorMovimiento = "La casilla seleccionada no es adyacente.";
         }
         return comprobador;

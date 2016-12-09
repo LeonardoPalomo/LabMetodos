@@ -1255,3 +1255,15 @@
 2016/12/08 :: 19:35:18 = Se ha abierto el juego. 
 2016/12/08 :: 19:35:23 = El usuario null ha accedido a biblioteca central
 2016/12/08 :: 19:35:24 = El usuario null ha iniciado misión extra adivina la palabra
+2016/12/08 :: 20:09:36 = Se ha abierto el juego. 
+2016/12/08 :: 20:09:49 = El usuario null ha accedido a biblioteca central
+2016/12/08 :: 20:09:51 = El usuario null ha vuelto al menú principal.
+2016/12/08 :: 20:09:52 = El usuario null va a seleccionar una asignatura.
+2016/12/08 :: 20:14:54 = Se ha abierto el juego. 
+2016/12/08 :: 20:15:12 = El usuario null va a seleccionar una asignatura.
+2016/12/08 :: 20:32:09 = Se ha abierto el juego. 
+2016/12/08 :: 20:32:16 = El usuario null va a seleccionar una asignatura.
+2016/12/08 :: 20:35:42 = Se ha abierto el juego. 
+2016/12/08 :: 20:35:47 = El usuario null va a seleccionar una asignatura.
+2016/12/08 :: 20:43:44 = Se ha abierto el juego. 
+2016/12/08 :: 20:43:50 = El usuario null va a seleccionar una asignatura.
