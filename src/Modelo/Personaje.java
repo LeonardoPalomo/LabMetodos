@@ -283,6 +283,10 @@ public class Personaje {
     public int getHpActual() {
         return hpActual;
     }
+    
+    public void setHpActual(int hp){
+        this.hpActual = hp;
+    }
 
     public int getManaTotal() {
         return manaTotal;
@@ -543,7 +547,7 @@ public class Personaje {
         return hpActual;
     }
   
-        public boolean mover(int i, int j, boolean comprobAltura, int terreno, int rol, int[] posicionActual){ //rol: 1 guerrero, 2 arquero, 3 ninja, 4 mago
+        public boolean mover(int i, int j, boolean comprobAltura, int terreno){ //rol: 1 guerrero, 2 arquero, 3 ninja, 4 mago
         boolean comprobador = false;
         if(this.movActual == 0){
             Batalla.errorMovimiento = "Al personaje "+this.getNombre()+" no le quedan puntos de movimiento";
@@ -551,7 +555,7 @@ public class Personaje {
             JOptionPane.showMessageDialog(null,Batalla.errorMovimiento,"Modelo Personaje - Puntos de movimiento insuficientes",
                       JOptionPane.INFORMATION_MESSAGE);
         }
-        else if(rol == 1 || rol == 2){
+        else if(this.rol == 1 || this.rol == 2){
             if(comprobAltura){
                 this.posicion[0] = i;
                 this.posicion[1] = j;
@@ -564,7 +568,8 @@ public class Personaje {
                     JOptionPane.INFORMATION_MESSAGE);
             }
         }
-        else if(rol == 3){
+        else if(this.rol == 3){
+            
             if(comprobAltura){
                 this.posicion[0] = i;
                 this.posicion[1] = j;
@@ -586,8 +591,8 @@ public class Personaje {
             int difFila; //diferencia de fila
             int difColumna; //diferencia de columna
             int suma;
-            difFila = abs(posicionActual[0] - i);
-            difColumna = abs(posicionActual[1] - j);
+            difFila = abs(this.posicion[0] - i);
+            difColumna = abs(this.posicion[1] - j);
             suma = difFila + difColumna;
             if(suma <= movActual && terreno != 2){
                 this.posicion[0] = i;
