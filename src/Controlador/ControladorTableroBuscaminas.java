@@ -146,27 +146,27 @@ public class ControladorTableroBuscaminas implements MouseListener{
                     boolean ganador = casilla.revisarGanador2(mapaJugador);
                     if(ganador==true){//jugador gana
                         if(cantidadTotalMinas==15){
+                            JOptionPane.showMessageDialog(vt,"¡Has ganado!\n tu recomepensa es: "+ buscaminas.getRecompensaF());
                             try{
                                 Jugador.actualizarOro(buscaminas.getRecompensaF());
-                                JOptionPane.showMessageDialog(vt,"¡Has ganado!\n tu recomepensa es: "+ buscaminas.getRecompensaF());
                             }  
                             catch (SQLException ex) {
                                 Logger.getLogger(ControladorTableroBuscaminas.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         }
                         if(cantidadTotalMinas==40){
+                            JOptionPane.showMessageDialog(vt,"¡Has ganado!\n tu recomepensa es: "+ buscaminas.getRecompensaI());
                             try {
                                 Jugador.actualizarOro(buscaminas.getRecompensaI());
-                                JOptionPane.showMessageDialog(vt,"¡Has ganado!\n tu recomepensa es: "+ buscaminas.getRecompensaI());
                             } 
                             catch (SQLException ex) {
                                 Logger.getLogger(ControladorTableroBuscaminas.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         }
                         if(cantidadTotalMinas==100){
+                            JOptionPane.showMessageDialog(vt,"¡Has ganado!\n tu recomepensa es: "+ buscaminas.getRecompensaD());
                             try {
                                 Jugador.actualizarOro(buscaminas.getRecompensaD());
-                                JOptionPane.showMessageDialog(vt,"¡Has ganado!\n tu recomepensa es: "+ buscaminas.getRecompensaD());
                             }
                             catch (SQLException ex) {
                                 Logger.getLogger(ControladorTableroBuscaminas.class.getName()).log(Level.SEVERE, null, ex);

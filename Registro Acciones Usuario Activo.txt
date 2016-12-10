@@ -1490,3 +1490,5 @@
 2016/12/09 :: 19:53:09 = El usuario null ha salido del programa.
 2016/12/09 :: 20:02:58 = Se ha abierto el juego. 
 2016/12/09 :: 20:03:04 = El usuario null va a seleccionar una asignatura.
+2016/12/10 :: 04:20:30 = Se ha abierto el juego. 
+2016/12/10 :: 04:20:40 = El usuario null va a seleccionar una asignatura.

@@ -711,8 +711,9 @@ public class Personaje {
             //Coordenadas de la casilla a revisar
             int nuevaPosicionX;
             int nuevaPosicionY;
-            //Posicion [x-1,y] (Abajo)
+            //Posicion [x-1,y] (arriba)
             //Verificacion de que no se sale del rango
+            try{
             if(posicionX-1>=0 || posicionX-1<25){
                 nuevaPosicionX = posicionX-1;
                 nuevaPosicionY = posicionY;
@@ -754,13 +755,18 @@ public class Personaje {
                                 nuevoEstado.add(posicionActual);
                                 //Se añade como un nuevo estado abierto
                                 abierto.add(nuevoEstado);
+                                System.out.println("arribaaaaa");
                             }
                         }
                     }    
                 }
             }
-            //Posicion [x+1,y] (Arriba)
+            }
+            catch(ArrayIndexOutOfBoundsException e){
+            }
+            //Posicion [x+1,y] (Abajo)
             //Verificacion de que no se sale del rango
+            try{
             if(posicionX+1>=0 || posicionX+1<25){
                 nuevaPosicionX = posicionX+1;
                 nuevaPosicionY = posicionY;
@@ -802,13 +808,18 @@ public class Personaje {
                                 nuevoEstado.add(posicionActual);
                                 //Se añade como un nuevo estado abierto
                                 abierto.add(nuevoEstado);
+                                System.out.println("aabajooooooo");
                             }
                         }
                     }    
                 }
             }
+            }
+            catch(ArrayIndexOutOfBoundsException e){
+            }
             //Posicion [x,y-1] (Izquierda)
             //Verificacion de que no se sale del rango
+            try{
             if(posicionY-1>=0 || posicionY-1<25){
                 nuevaPosicionX = posicionX;
                 nuevaPosicionY = posicionY-1;
@@ -850,13 +861,18 @@ public class Personaje {
                                 nuevoEstado.add(posicionActual);
                                 //Se añade como un nuevo estado abierto
                                 abierto.add(nuevoEstado);
+                                System.out.println("izquierdaaaaaaa");
                             }
                         }
                     }    
                 }
             }
+            }
+            catch(ArrayIndexOutOfBoundsException e){
+            }
             //Posicion [x,y+1] (Derecha)
             //Verificacion de que no se sale del rango
+            try{
             if(posicionY+1>=0 || posicionY+1<25){
                 nuevaPosicionX = posicionX;
                 nuevaPosicionY = posicionY+1;
@@ -898,17 +914,37 @@ public class Personaje {
                                 nuevoEstado.add(posicionActual);
                                 //Se añade como un nuevo estado abierto
                                 abierto.add(nuevoEstado);
+                                System.out.println("derechaaaaa");
                             }
                         }
                     }    
                 }
+            }
+            }
+            catch(ArrayIndexOutOfBoundsException e){
             }
             //Luego de realizar las transiciones, se cierra el estado y se elimina de los abiertos
             cerrado.add(abierto.get(0));
             abierto.remove(0);
         }
         while(verificadorMaximo==true);
+        //LEER!!!---->Prints para saber que wea sucede con los estados.... conclucion, por alguna razon, las verificaciones de arriba me cagan el abrir un nuevo estado y agregarlo en mi casilla de abiertos(leer mas en explicacion de wsp)
+        for(int i=0; i<cerrado.size(); i++){
+            for(int j=0; j<cerrado.get(i).size(); j++){
+                
+                System.out.println("CERRADOSSSS Estado n°: "+i+" tiene 2 casillas , que son: [" + cerrado.get(i).get(j)[0]+","+cerrado.get(i).get(j)[1]+"]");
+                
+            }
+        }
+        for(int i=0; i<abierto.size(); i++){
+            for(int j=0; j<abierto.get(i).size(); j++){
+                
+                System.out.println("ABIERTOSSSS Estado n°: "+i+" tiene 2 casillas , que son: [" + abierto.get(i).get(j)[0]+","+abierto.get(i).get(j)[1]+"]");
+                
+            }
+        }
         //Se crea la lista con las posiciones de camino
+        /*
         ArrayList<int[]> ultimoEstado = cerrado.get(cerrado.size()-1);
         recorrido.add(ultimoEstado.get(0));
         this.obtenerRecorrido(ultimoEstado, cerrado, recorrido);
@@ -916,9 +952,10 @@ public class Personaje {
         ArrayList<int[]> recorridoFinal = new ArrayList();//recorrido desde el personaje de la Cpu hasta el enemigo
         for(int i=0; i<recorrido.size(); i++){
             recorridoFinal.add(recorrido.get(recorrido.size()-1));
-        }
-        return recorridoFinal;
+        }*/
+        return recorrido;
     }
+    
     //metodo recursivo que entrega el recorrido al reves del movimiento de la Cpu
     public void obtenerRecorrido(ArrayList<int[]> estado, ArrayList<ArrayList<int[]>> estados, ArrayList<int[]> recorrido){
         ArrayList<int[]> respuesta = new ArrayList();
@@ -926,7 +963,7 @@ public class Personaje {
         int[] anterior = estado.get(1);
         //Se agrega al recorrido
         recorrido.add(anterior);
-        for(int i=0; i<estados.size()-1; i++){
+        for(int i=0; i<estados.size(); i++){
             if(estados.get(i).get(0)[0]==anterior[0] || estados.get(i).get(0)[1] == anterior[1]){
                 respuesta.add(estados.get(0).get(0));
                 respuesta.add(estados.get(i).get(1));

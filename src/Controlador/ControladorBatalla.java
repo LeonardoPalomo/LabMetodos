@@ -217,7 +217,10 @@ public class ControladorBatalla implements ActionListener, MouseListener {
             }
             if(b.getOrdenTurnos()[cntTurno].getEsCpu()){
                 vb.disableButtons();
-                b.getOrdenTurnos()[cntTurno].moverCpu(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getTablero());
+                ArrayList<int[]> recorrido = b.getOrdenTurnos()[cntTurno].moverCpu(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getTablero());
+                for(int i= 0; i<b.getOrdenTurnos()[cntTurno].getMovActual(); i++){
+                    
+                }
             }
             else{
                 vb.enableButtons();
@@ -325,33 +328,13 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                                     alturaDef = b.getTablero(i,j).getAltura();
                                     if(alturaAtk > alturaDef || alturaDef - alturaAtk <= 2){
                                         //Se ejecuta el duelo
-                                        vb.setVisible(false);
-                                        cbc = new ControladorBatallaCortoAlcance(cntTurno,i,j,b);
-                                        /*vbc = new VistaBatallaCorta();
-                                        vbc.setVisible(true);
-                                        vbc.aListener(this);
-                                        int nivelAtacante = b.getOrdenTurnos()[cntTurno].getNivel();
-                                        int nivelAtacado = b.getTablero(i, j).getPersonaje().getNivel();
-                                        int visibles = b.ataquesVisibles(nivelAtacante, nivelAtacado);
-                                        ArrayList<Integer> eleccionCpu = b.getTablero(i, j).getPersonaje().ataquesCpu();
-                                        vbc.cambiarLabelEleccionCpu(eleccionCpu, visibles);
-                                        if(vbc.getBtnAceptar()==e.getSource()){
-                                            ArrayList<Integer> eleccionUsuario = vbc.getEleccionMovimientos();
-                                            int victorias = 0;
-                                            int derrotas = 0;
-                                            for(int k=0; k<eleccionUsuario.size(); k++){
-                                                int resultado = b.dueloTriangular(eleccionUsuario.get(k), eleccionCpu.get(k));
-                                                if(resultado == 1){
-                                                    victorias++;
-                                                }
-                                                else if(resultado == 2){
-                                                    derrotas++;
-                                                }
-                                            }
-                                        }*/
+                                        //vb.setVisible(false);
+                                        cbc = new ControladorBatallaCortoAlcance(cntTurno,i,j,b,vb);
                                     }
                                     break;
                                 case 2:
+                                    int visibles = b.ataquesVisibles(1, 7);
+                                    System.out.println("Visibles: "+visibles);
                                     boolean tieneArmaLargoAlcance = false;
                                     for(int arma=0; arma<2; arma++){
                                         if(b.getOrdenTurnos()[cntTurno].getEquipamiento()[arma].getTipo() == 1 && b.getOrdenTurnos()[cntTurno].getEquipamiento()[arma].getSubtipo() == 2){

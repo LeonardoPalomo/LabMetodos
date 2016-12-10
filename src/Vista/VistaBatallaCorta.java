@@ -380,9 +380,9 @@ public class VistaBatallaCorta extends javax.swing.JFrame {
     private javax.swing.JLabel stockM;
     // End of variables declaration//GEN-END:variables
 
-    public void cambiarLabelEleccionCpu(ArrayList<Integer> elecciones, int visibles){
+    public void cambiarLabelEleccionCpu(ArrayList<Integer> elecciones, boolean[] noVisibles){
         for(int eleccion=0; eleccion<elecciones.size(); eleccion++){
-            if(eleccion==0){
+            if(eleccion==0){//Si es la primera eleccion
                 if(elecciones.get(eleccion)==0){
                     eCpu1.setText("B");
                 }
@@ -396,7 +396,7 @@ public class VistaBatallaCorta extends javax.swing.JFrame {
                     eCpu1.setText("E");
                 }
             }
-            else if(eleccion==1){
+            else if(eleccion==1){//Si es la segunda eleccion
                 if(elecciones.get(eleccion)==0){
                     eCpu2.setText("B");
                 }
@@ -410,7 +410,7 @@ public class VistaBatallaCorta extends javax.swing.JFrame {
                     eCpu2.setText("E");
                 }
             }
-            else if(eleccion==2){
+            else if(eleccion==2){//Si es la tercera eleccion
                 if(elecciones.get(eleccion)==0){
                     eCpu3.setText("B");
                 }
@@ -424,7 +424,7 @@ public class VistaBatallaCorta extends javax.swing.JFrame {
                     eCpu3.setText("E");
                 }
             }
-            else if(eleccion==3){
+            else if(eleccion==3){//Si es la cuarta eleccion
                 if(elecciones.get(eleccion)==0){
                     eCpu4.setText("B");
                 }
@@ -438,7 +438,7 @@ public class VistaBatallaCorta extends javax.swing.JFrame {
                     eCpu4.setText("E");
                 }
             }
-            else if(eleccion==4){
+            else if(eleccion==4){//Si es la quinta eleccion
                 if(elecciones.get(eleccion)==0){
                     eCpu5.setText("B");
                 }
@@ -452,7 +452,7 @@ public class VistaBatallaCorta extends javax.swing.JFrame {
                     eCpu5.setText("E");
                 }
             }
-            else if(eleccion==5){
+            else if(eleccion==5){//Si es la sexta eleccion
                 if(elecciones.get(eleccion)==0){
                     eCpu6.setText("B");
                 }
@@ -466,7 +466,7 @@ public class VistaBatallaCorta extends javax.swing.JFrame {
                     eCpu6.setText("E");
                 }
             }
-            else if(eleccion==6){
+            else if(eleccion==6){//Si es la septima eleccion
                 if(elecciones.get(eleccion)==0){
                     eCpu7.setText("B");
                 }
@@ -481,15 +481,39 @@ public class VistaBatallaCorta extends javax.swing.JFrame {
                 }
             }
         }
-        int noVisibles = 7-visibles;
+        
+        if(noVisibles[0]==false){
+            eCpu1.setText("X");
+        }
+        if(noVisibles[1]==false){
+            eCpu2.setText("X");
+        }
+        if(noVisibles[2]==false){
+            eCpu3.setText("X");
+        }
+        if(noVisibles[3]==false){
+            eCpu4.setText("X");
+        }
+        if(noVisibles[4]==false){
+            eCpu5.setText("X");
+        }
+        if(noVisibles[5]==false){
+            eCpu6.setText("X");
+        }
+        if(noVisibles[6]==false){
+            eCpu7.setText("X");
+        }
+        
+        /*int noVisibles = 7-visibles;
         ArrayList<Integer> noMostradas = new ArrayList();
         rnd = new Random();
         for(int k=0; k<noVisibles; k++){
-            boolean verificador;
+            boolean verificador = true;
             int i;
             do{
                 i = (int)(rnd.nextDouble()*7 + 0);
-                if(noMostradas.contains(i)){
+                if(!noMostradas.contains(i)){
+                    noMostradas.add(i);
                     verificador = false;
                 }    
             }
@@ -515,7 +539,7 @@ public class VistaBatallaCorta extends javax.swing.JFrame {
             else if(i==6){
                 eCpu7.setText("X");
             }
-        }
+        }*/
     }
     public ArrayList<Integer> getEleccionMovimientos(){
         ArrayList<Integer> movimientos = new ArrayList();

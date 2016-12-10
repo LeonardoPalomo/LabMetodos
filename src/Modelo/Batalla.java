@@ -865,53 +865,72 @@ public class Batalla {
         }
         return 0;
     }
+    public boolean[] noVisibles(int visibles){
+        boolean[] visibilidad = new boolean[7];
+        ArrayList<Integer> aleatorios = new ArrayList(); 
+        for(int i=0; i<7; i++){
+            visibilidad[i] = true;
+        }
+        Random rnd = new Random();
+        int contador = 0;
+        do{
+            int i = (int)(rnd.nextDouble()*7+0);
+            if(!aleatorios.contains(i)){
+                aleatorios.add(i);
+                visibilidad[i] = false;
+                contador++;
+            }
+        }
+        while(contador<7-visibles);
+        return visibilidad;
+    }
     public int dueloTriangular(int atacante, int atacado){//0 es empate, 1 gana atacante, 2 gana atacado.
         if(atacante == 0 || atacado == 1){
             return 0;
         }
-        else if(atacante==0 || atacado== 1){
+        if(atacante==0 || atacado== 1){
             return 2;
         }
-        else if(atacante==0 || atacado== 2){
+        if(atacante==0 || atacado== 2){
             return 1;
         }
-        else if(atacante==0 || atacado== 3){
+        if(atacante==0 || atacado== 3){
             return 2;
         }
         if(atacante == 1 || atacado == 0){
             return 1;
         }
-        else if(atacante==1 || atacado== 1){
+        if(atacante==1 || atacado== 1){
             return 0;
         }
-        else if(atacante==1 || atacado== 2){
+        if(atacante==1 || atacado== 2){
             return 2;
         }
-        else if(atacante==1 || atacado== 3){
+        if(atacante==1 || atacado== 3){
             return 2;
         }
         if(atacante == 2 || atacado == 0){
             return 2;
         }
-        else if(atacante==2 || atacado== 1){
+        if(atacante==2 || atacado== 1){
             return 1;
         }
-        else if(atacante==2 || atacado== 2){
+        if(atacante==2 || atacado== 2){
             return 0;
         }
-        else if(atacante==2 || atacado== 2){
+        if(atacante==2 || atacado== 2){
             return 2;
         }
         if(atacante == 3 || atacado == 0){
             return 1;
         }
-        else if(atacante==3 || atacado== 1){
+        if(atacante==3 || atacado== 1){
             return 1;
         }
-        else if(atacante==3 || atacado== 2){
+        if(atacante==3 || atacado== 2){
             return 1;
         }
-        else if(atacante==3 || atacado== 3){
+        if(atacante==3 || atacado== 3){
             return 0;
         }
         return 0;
