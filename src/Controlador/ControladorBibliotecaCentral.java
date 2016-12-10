@@ -26,25 +26,25 @@ public class ControladorBibliotecaCentral implements ActionListener{
             ControladorVistaPrincipal cvp = new ControladorVistaPrincipal();
         }
         else if(vbc.getButtonAhorcado()==e.getSource()){
-            String iniciado = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha iniciado misión extra ahorcado";
+            String iniciado = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha iniciado Misión Extra: Ahorcado";
             ControladorPrincipal.registrarAccion(iniciado);
             vbc.setVisible(false);
             ControladorCategoria cc = new ControladorCategoria();
         }
         else if(vbc.getBotonBuscaminas()==e.getSource()){
-            String iniciado = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha iniciado misión extra buscaminas";
+            String iniciado = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha iniciado Misión Extra: Buscaminas";
             ControladorPrincipal.registrarAccion(iniciado);
             vbc.setVisible(false);
             ControladorBuscaminas cb = new ControladorBuscaminas();
         }
         else if(vbc.getBotonAdivinaLaPalabra()==e.getSource()){
-            String iniciado = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha iniciado misión extra adivina la palabra";
+            String iniciado = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha iniciado Misión Extra: Adivina la Palabra";
             ControladorPrincipal.registrarAccion(iniciado);
             vbc.setVisible(false);
             ControladorInicialAdivLaPal cialp = new ControladorInicialAdivLaPal();
         }
         else if(vbc.getBotonTresEnRaya()==e.getSource()){
-            String iniciado = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha iniciado misión extra tres en raya";
+            String iniciado = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha iniciado Misión Extra: Tres en Raya";
             ControladorPrincipal.registrarAccion(iniciado);
             vbc.setVisible(false);
             ControladorPrincipalTresEnRaya cp = new ControladorPrincipalTresEnRaya();

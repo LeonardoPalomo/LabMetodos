@@ -20,29 +20,40 @@ public class ControladorPrincipalAdivLaPal implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        String accion = "";
         if(vp.getBotonInstrucciones() == e.getSource()){
-            System.out.println("El usuario ha seleccionado: Instrucciones");
+            accion = "El usuario "+ControladorLogin.usuarioActivo+" ha seleccionado: Instrucciones";
+            System.out.println(accion);
+            ControladorPrincipal.registrarAccion(accion);
             vp.mostrarInstrucciones();
         }
         else if(vp.getBotonSalir() == e.getSource()){
-            System.out.println("El usuario ha seleccionado: Salir");
+            accion = "El usuario "+ControladorLogin.usuarioActivo+" ha seleccionado: Salir";
+            System.out.println(accion);
+            ControladorPrincipal.registrarAccion(accion);
             vp.dispose();
             ControladorBibliotecaCentral cbc = new ControladorBibliotecaCentral();
         }
         else if(vp.getBotonFacil() == e.getSource()){
-            System.out.println("El usuario ha seleccionado: Dificultad Fácil");
+            accion = "El usuario "+ControladorLogin.usuarioActivo+" ha seleccionado: Dificultad Fácil";
+            System.out.println(accion);
+            ControladorPrincipal.registrarAccion(accion);
             ControladorInicialAdivLaPal.dificultad = 1;
             vp.dispose();
             ControladorJuegoAdivLaPal cj = new ControladorJuegoAdivLaPal();
         }
         else if(vp.getBotonNormal() == e.getSource()){
-            System.out.println("El usuario ha seleccionado: Dificultad Normal");
+            accion = "El usuario "+ControladorLogin.usuarioActivo+" ha seleccionado: Dificultad Normal";
+            System.out.println(accion);
+            ControladorPrincipal.registrarAccion(accion);
             ControladorInicialAdivLaPal.dificultad = 2;
             vp.dispose();
             ControladorJuegoAdivLaPal cj = new ControladorJuegoAdivLaPal();
         }
         else if(vp.getBotonDificil() == e.getSource()){
-            System.out.println("El usuario ha seleccionado: Dificultad Difícil");
+            accion = "El usuario "+ControladorLogin.usuarioActivo+" ha seleccionado: Dificultad Difícil";
+            System.out.println(accion);
+            ControladorPrincipal.registrarAccion(accion);
             ControladorInicialAdivLaPal.dificultad = 3;
             vp.dispose();
             ControladorJuegoAdivLaPal cj = new ControladorJuegoAdivLaPal();

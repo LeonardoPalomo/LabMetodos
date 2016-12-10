@@ -66,7 +66,7 @@ public class ControladorAhorcado implements ActionListener{
                 
                 Object[] options = { "SI", "NO" }; //para el panel que aparece al terminar el juego
                 if(ahorcado.getVictoria() == 1){
-                    String cerrado = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ganado el ahorcado. Recompensa: "+ahorcado.getRecompensa();
+                    String cerrado = "El usuario "+Controlador.ControladorLogin.usuarioActivo+" ha ganado el ahorcado. Recompensa: "+ahorcado.getRecompensa();
                     ControladorPrincipal.registrarAccion(cerrado);
                     
                     va.setSituacion("Has ganado!");

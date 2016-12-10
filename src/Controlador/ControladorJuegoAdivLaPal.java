@@ -101,6 +101,8 @@ public class ControladorJuegoAdivLaPal implements ActionListener, KeyListener {
                     String msjeVictoria = "¡Has ganado! \nRecompensa: "+recompensa;
                     System.out.println(msjeVictoria);
                     JOptionPane.showMessageDialog(vj,msjeVictoria,"Victoria",JOptionPane.INFORMATION_MESSAGE);
+                    String accion = "El usuario "+ControladorLogin.usuarioActivo+" ha ganado el Adivina la Palabra. Recompensa: "+recompensa;
+                    ControladorPrincipal.registrarAccion(accion);
                     vj.dispose();
                     ControladorPrincipalAdivLaPal cp = new ControladorPrincipalAdivLaPal();
                 }
@@ -108,6 +110,8 @@ public class ControladorJuegoAdivLaPal implements ActionListener, KeyListener {
                     String msjeDerrota = "Has perdido :( \nLa palabra era "+palabraCpu;
                     System.out.println(msjeDerrota);
                     JOptionPane.showMessageDialog(vj,msjeDerrota,"Derrota",JOptionPane.INFORMATION_MESSAGE);
+                    String accion = "El usuario "+ControladorLogin.usuarioActivo+" ha perdido el Adivina la Palabra.";
+                    ControladorPrincipal.registrarAccion(accion);
                     vj.dispose();
                     ControladorPrincipalAdivLaPal cp = new ControladorPrincipalAdivLaPal();
                 }

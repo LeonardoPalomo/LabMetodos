@@ -41,6 +41,9 @@ public class ControladorLogin implements ActionListener,KeyListener{
                 }
                 else if(usuario.equals(Jugador.usuarioAdmin) && password.equals(Jugador.passAdmin)){
                     malla = 1;
+                    usuarioActivo = usuario;
+                    String inicioSesion = "El usuario "+usuarioActivo+" ha iniciado sesión.";
+                    ControladorPrincipal.registrarAccion(inicioSesion);
                     vl.dispose();
                     ControladorVistaPrincipal cvp = new ControladorVistaPrincipal();
                 }
