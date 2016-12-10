@@ -143,10 +143,7 @@ public class Jugador {
             int oroGuardado = resultados.getInt("ORO");
             resultados.close();
             stmt.close();
-            int oroFinal = 0;
-            if(oroGuardado >= oro){
-                oroFinal = oroGuardado + oro;
-            }
+            int oroFinal = oroGuardado + oro;
             final String consultaUpdateOro = "UPDATE USUARIO SET ORO = " + oroFinal + " WHERE NOMBRE_USUARIO = '"+ ControladorLogin.usuarioActivo + "'";   
             Statement stmt2 = conexion.crearConsulta();
             stmt2.executeUpdate(consultaUpdateOro);

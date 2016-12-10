@@ -1,14 +1,15 @@
 package Modelo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Ahorcado {
     
-    final private String[] ANIMAL = {"perro", "gato", "caballo"};
-    final private String[] CIUDAD = {"santiago", "rancagua", "iquique"};
-    final private String[] PAIS = {"chile", "argentina", "canada"};
+    final private String[] ANIMAL = {"perro", "gato", "caballo", "tortuga", "jirafa", "rinoceronte", "pez", "ornitorrinco"};
+    final private String[] CIUDAD = {"santiago", "rancagua", "iquique", "valdivia", "osorno", "valparaiso"};
+    final private String[] PAIS = {"chile", "argentina", "canada", "peru", "kazajistan", "bolivia"};
     final public String[][] PALABRA = {ANIMAL, CIUDAD, PAIS};
     private int intentos = 6;
     private int victoria = 0;
@@ -118,7 +119,7 @@ public class Ahorcado {
      * @return un arreglo de enteros, posicion corresponde al abecedario y el valor la cantidad de la letra
      */
     public int[] cantidadLetras(String[] palabras){
-        int[] cantidades = new int[25];
+        int[] cantidades = new int[26];
         int i;
         int j;
         String[] aux;
