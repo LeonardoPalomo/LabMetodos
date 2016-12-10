@@ -11,7 +11,7 @@ public class ControladorPrincipalAdivLaPal implements ActionListener {
     
     public ControladorPrincipalAdivLaPal(){
         
-        System.out.println("Generando vista principal...");
+        System.out.println("Generando vista principal: Adivina La Palabra...");
         vp = new VistaPrincipalAdivLaPal();
         vp.setVisible(true);
         vp.setLocationRelativeTo(null);

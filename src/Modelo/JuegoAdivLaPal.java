@@ -26,13 +26,13 @@ public class JuegoAdivLaPal {
         int recompensa = 0;
         switch(ControladorInicialAdivLaPal.dificultad){
             case 1:
-                recompensa = 500;
+                recompensa = 1000;
                 break;
             case 2:
-                recompensa = 750;
+                recompensa = 1250;
                 break;
             case 3:
-                recompensa = 1000;
+                recompensa = 1500;
                 break;
         }
         return recompensa;
@@ -69,24 +69,36 @@ public class JuegoAdivLaPal {
         char[][] resultado = new char[2][ControladorJuegoAdivLaPal.cantidadLetras];
         char[] letrasCorrectas = new char[ControladorJuegoAdivLaPal.cantidadLetras];
         char[] letrasEncontradas = new char[ControladorJuegoAdivLaPal.cantidadLetras];
-        ArrayList<Integer> indicesAdivinados = new ArrayList(); 
+        ArrayList<Character> letrasPorAdivinar = new ArrayList(); 
         for(int i=0; i<ControladorJuegoAdivLaPal.cantidadLetras; i++){
             if(intentoUsuario[i] == palabraSeparada[i]){
                 letrasCorrectas[i] = intentoUsuario[i];
                 System.out.println("Letra correcta = "+String.valueOf(letrasCorrectas[i]));
-                indicesAdivinados.add(i);
+                letrasPorAdivinar.add('\0');
+            }
+            else{
+                letrasPorAdivinar.add(palabraSeparada[i]);
             }
         }
-        for(int j=0;j<ControladorJuegoAdivLaPal.cantidadLetras;j++){
-            for(int k=0;k<ControladorJuegoAdivLaPal.cantidadLetras;k++){
-                if(intentoUsuario[j] == palabraSeparada[k]){
-                    if(!indicesAdivinados.contains(k)){
-                        letrasEncontradas[j] = intentoUsuario[j];
-                        System.out.println("Letra encontrada = "+String.valueOf(letrasEncontradas[j]));
-                        break;
-                    }
-                }  
-            }
+        char[] arrayAuxiliar = new char[intentoUsuario.length];
+        for(int k=0; k<arrayAuxiliar.length; k++){
+            String letraStr = letrasPorAdivinar.get(k).toString();
+            char letraChar = letraStr.charAt(0);
+            arrayAuxiliar[k] = letraChar;
+        }
+        System.out.println("Largo arrayAuxiliar= "+arrayAuxiliar.length);
+        for(int j=0;j<arrayAuxiliar.length;j++){
+            System.out.println("J="+j);
+            if(intentoUsuario[j] != palabraSeparada[j]){
+                if(letrasPorAdivinar.contains(intentoUsuario[j])){
+                    letrasEncontradas[j] = intentoUsuario[j];
+                    System.out.println("Letra encontrada = "+String.valueOf(letrasEncontradas[j]));
+                    System.out.println("Letra a remover= "+intentoUsuario[j]);
+                    System.out.println("Largo letras por adivinar= "+letrasPorAdivinar.size());
+                    Character ch = intentoUsuario[j];
+                    letrasPorAdivinar.remove(ch);
+                }
+            }  
         }
         resultado[0] = letrasCorrectas;
         resultado[1] = letrasEncontradas;

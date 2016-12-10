@@ -71,6 +71,7 @@ public class ControladorJuegoAdivLaPal implements ActionListener, KeyListener {
                     System.out.println("Letra intentada: "+String.valueOf(letra));
                 }
             }
+            System.out.println("Largo de intento: "+intentoUsuario.length);
             System.out.println(chequeo);
             if(chequeo){
                 char[][] resultado = new char[2][intentoUsuario.length];
