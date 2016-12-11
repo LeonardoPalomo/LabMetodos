@@ -221,6 +221,14 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                 for(int i= 0; i<b.getOrdenTurnos()[cntTurno].getMovActual(); i++){
                     
                 }
+                for(int i=0; i<recorrido.size(); i++){
+                    System.out.println("Movimiento"+i+": ["+ recorrido.get(i)[0]+","+recorrido.get(i)[1]+"]");
+                }
+                System.out.println("Largo del recorrido: "+ recorrido.size());
+                int capacidadM = b.getOrdenTurnos()[cntTurno].getMovActual();
+                if(capacidadM>0){
+                    
+                }
             }
             else{
                 vb.enableButtons();

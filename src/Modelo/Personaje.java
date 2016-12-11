@@ -685,6 +685,7 @@ public class Personaje {
             }
         }
     }
+    //Metodo que indica el recorrido que debe hacer la Cpu para alcanzar a un enemigo
     public ArrayList<int[]> moverCpu(int[] posicionCpu, Casilla[][] tablero){
         ArrayList<int[]> recorrido = new ArrayList();//Recorrido al reves(desde el personaje objetivo hasta la posicion de la Cpu)
         ArrayList<ArrayList<int[]>> abierto = new ArrayList();//Estados abiertos (Lista de listas de arreglos de enteros de largo 2) (Estado actual es el primer arreglo de enteros de cada lista de la lista)
@@ -967,7 +968,7 @@ public class Personaje {
             cerrado.add(abierto.get(0));
             abierto.remove(0);
         }
-        while(verificadorMaximo==true);
+        while(verificadorMaximo==false || abierto.size()==0);
         //LEER!!!---->Prints para saber que wea sucede con los estados.... conclucion, por alguna razon, las verificaciones de arriba me cagan el abrir un nuevo estado y agregarlo en mi casilla de abiertos(leer mas en explicacion de wsp)
         for(int i=0; i<cerrado.size(); i++){
             for(int j=0; j<cerrado.get(i).size(); j++){
@@ -984,15 +985,21 @@ public class Personaje {
             }
         }
         //Se crea la lista con las posiciones de camino
-        /*
+        if(abierto.size()==0){
+            System.out.println("No hay salida uwu");
+            return null;
+        }
         ArrayList<int[]> ultimoEstado = cerrado.get(cerrado.size()-1);
+        //Ultimo estado obtenido correctamente
+        System.out.println("Ultimo Estado(actual): "+ultimoEstado.get(0)[0]+","+ultimoEstado.get(0)[1]);
+        System.out.println("Ultimo Estado(Anterior): "+ultimoEstado.get(1)[0]+","+ultimoEstado.get(1)[1]);
         recorrido.add(ultimoEstado.get(0));
+
         this.obtenerRecorrido(ultimoEstado, cerrado, recorrido);
         //Se da vuelta las casillas recorrido
-        ArrayList<int[]> recorridoFinal = new ArrayList();//recorrido desde el personaje de la Cpu hasta el enemigo
-        for(int i=0; i<recorrido.size(); i++){
-            recorridoFinal.add(recorrido.get(recorrido.size()-1));
-        }*/
+        Collections.reverse(recorrido);//Funcion que da vuelta una lista
+        //Se elimina la posicion inicial del recorrido
+        recorrido.remove(0);
         return recorrido;
     }
     
@@ -1004,16 +1011,14 @@ public class Personaje {
         //Se agrega al recorrido
         recorrido.add(anterior);
         for(int i=0; i<estados.size(); i++){
-            if(estados.get(i).get(0)[0]==anterior[0] || estados.get(i).get(0)[1] == anterior[1]){
-                respuesta.add(estados.get(0).get(0));
-                respuesta.add(estados.get(i).get(1));
+            if(estados.get(i).get(0)[0]==anterior[0] && estados.get(i).get(0)[1] == anterior[1]){
+                respuesta = estados.get(i);
+                System.out.println("SE creo respuesta y es el estado n°: "+i);
             }
         }
         //Si no es el estado inicial, se llama de nuevo a la funcion
-        if(respuesta.get(0)[0]!=respuesta.get(1)[0]){//
-            if(respuesta.get(0)[1]!=respuesta.get(1)[1]){
-                this.obtenerRecorrido(respuesta, estados, recorrido);
-            }
+        if(respuesta.get(0)[0]!=respuesta.get(1)[0] || respuesta.get(0)[1]!=respuesta.get(1)[1]){//
+            this.obtenerRecorrido(respuesta, estados, recorrido);
         }
     }
     
