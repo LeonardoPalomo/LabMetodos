@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
-
+import java.util.Random;
 public class Jugador {
     
    private String nombre;
@@ -22,6 +22,7 @@ public class Jugador {
    private int rolPjPrincipal;
    private String pjSecundario;
    private int rolPjSecundario;
+   private int rd;
    
    public static String usuarioAdmin = "Admin";
    public static String passAdmin = "666";
@@ -231,4 +232,21 @@ public class Jugador {
             conexion.desconectar();
         }
     } 
+    public boolean donarJugador (String[] listaCpu , String[] listaJugador){
+   rd = new Random().nextInt(5);
+   int largo= listaJugador.length;
+   boolean comprobador =false;
+   String personajeObtenido= listaCpu[rd];
+   for(int i=0; i<largo;i++){
+       if(listaJugador[i]!=null){
+           
+       }else{
+           listaJugador[i]= personajeObtenido;
+           comprobador= true;
+           break;
+        }
+       
+    }
+   return comprobador;
+   }
 }
