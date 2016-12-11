@@ -216,6 +216,8 @@ public class ControladorBatalla implements ActionListener, MouseListener {
             this.puedeMover = true;
             this.ataco = false;
             this.seMovio = false;
+            this.esperaClickAtacar = false;
+            this.esperaClickMover = false;
             b.sumarTurno();
             if(cntTurno > b.getOrdenTurnos().length - 1){
                 cntTurno = 0;
@@ -249,8 +251,25 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                         break;
                 }
                 Personaje personajeActual = b.getOrdenTurnos()[cntTurno];
+                boolean comprobadorUltPos;
+                int auxiliarMov = personajeActual.getMovActual();
+                do{
+                    if(auxiliarMov > recorrido.size()){
+                        auxiliarMov = recorrido.size();
+                    }
+                    if(b.getTablero()[recorrido.get(auxiliarMov-1)[0]][recorrido.get(auxiliarMov-1)[1]].getCaminable()== false){
+                        System.out.println("Posicion de recorrido removida:"+b.getTablero()[recorrido.get(auxiliarMov-1)[0]][recorrido.get(auxiliarMov-1)[1]].getPosicion()[0]+","+b.getTablero()[recorrido.get(auxiliarMov-1)[0]][recorrido.get(auxiliarMov-1)[1]].getPosicion()[1]);
+                        recorrido.remove(auxiliarMov-1);
+                        comprobadorUltPos = true;
+                        auxiliarMov--;
+                        personajeActual.restarMovActual();
+                    }
+                    else{
+                        comprobadorUltPos = false;
+                    }
+                }while(comprobadorUltPos && auxiliarMov != 0);
                 for(b.getOrdenTurnos()[cntTurno].getMovActual();b.getOrdenTurnos()[cntTurno].getMovActual() > 0;posMover++){
-                    if(recorrido.get(recorrido.size()-1) == recorrido.get(posMover)){
+                    if(recorrido.size()-1 < posMover){
                         //Se le acaba el recorrido, es decir llega hasta el objetivo.
                         break;
                     }
@@ -299,6 +318,7 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                 if(capacidadM>0){
                     
                 }*/
+                System.out.println("Se movió a:"+personajeActual.getPosicion()[0]+","+personajeActual.getPosicion()[1]);
                 vb.getBtnEnd().setEnabled(true);
                 vb.getBtnEnd().doClick();
             }

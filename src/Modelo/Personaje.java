@@ -406,6 +406,10 @@ public class Personaje {
         this.posicion[1] = j;
     }
     
+    public void restarMovActual(){
+        this.movActual--;
+    }
+    
     /*
     public boolean tieneArmaLargoAlcance(){
         boolean comprobador = false;
@@ -1023,7 +1027,6 @@ public class Personaje {
             try{
                 int var = posicionX-1;
                 int varY = posicionY;
-                System.out.println("x-1:"+var+"; y:"+varY);
             if(posicionX-1>=0 && posicionX-1<25){
                 nuevaPosicionX = posicionX-1;
                 nuevaPosicionY = posicionY;
@@ -1034,7 +1037,6 @@ public class Personaje {
                     //System.out.println("caminable:"+tablero[nuevaPosicionX][nuevaPosicionY].getCaminable());
                     //if(tablero[nuevaPosicionX][nuevaPosicionY].getCaminable()==true){
                         //Verificacion en la casilla esta algun personaje enemigo
-                        System.out.println("disponible:"+tablero[nuevaPosicionX][nuevaPosicionY].getDisponible());
                         if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==false){
                             if(tablero[nuevaPosicionX][nuevaPosicionY].getPersonaje().getEsCpu()==false){
                                 verificadorMaximo = true;
@@ -1044,14 +1046,11 @@ public class Personaje {
                         if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==true){
                             //Verificacion de que no es estado abierto ni cerrado(no se ha pasado por ahi)
                             boolean verificador = true;
-                            System.out.println("tamaño abierto: "+abierto.size());
                             for(int i = 0; i<abierto.size(); i++){
-                                System.out.println("1er get abierto:"+abierto.get(i).get(0)[0]+"-"+abierto.get(i).get(0)[1]);
                                 if(abierto.get(i).get(0)[0]==nuevaPosicionX && abierto.get(i).get(0)[1]==nuevaPosicionY){
                                     verificador = false;
                                 }
                             }
-                            System.out.println("tamaño cerrado: "+cerrado.size());
                             for(int i = 0; i<cerrado.size(); i++){
                                 if(cerrado.get(i).get(0)[0]==nuevaPosicionX && cerrado.get(i).get(0)[1]==nuevaPosicionY){
                                     verificador = false;
@@ -1059,7 +1058,6 @@ public class Personaje {
                             }
                             //Fin verificacion
                             //-----------------
-                            System.out.println("verificador:"+verificador);
                             if(verificador==true){
                                 //Creacion de nuevo estado
                                 ArrayList<int[]> nuevoEstado = new ArrayList();
@@ -1072,7 +1070,7 @@ public class Personaje {
                                 nuevoEstado.add(posicionActual);
                                 //Se añade como un nuevo estado abierto
                                 abierto.add(nuevoEstado);
-                                System.out.println("arribaaaaa");
+                                //System.out.println("arribaaaaa");
                             }
                         }
                     //}    
@@ -1086,7 +1084,6 @@ public class Personaje {
             try{
                 int var = posicionX+1;
                 int varY = posicionY;
-                System.out.println("x+1:"+var+"; y:"+varY);
             if(posicionX+1>=0 && posicionX+1<25){
                 nuevaPosicionX = posicionX+1;
                 nuevaPosicionY = posicionY;
@@ -1097,7 +1094,6 @@ public class Personaje {
                     //System.out.println("caminable:"+tablero[nuevaPosicionX][nuevaPosicionY].getCaminable());
                     //if(tablero[nuevaPosicionX][nuevaPosicionY].getCaminable()==true){
                         //Verificacion en la casilla esta algun personaje enemigo
-                        System.out.println("disponible:"+tablero[nuevaPosicionX][nuevaPosicionY].getDisponible());
                         if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==false){
                             if(tablero[nuevaPosicionX][nuevaPosicionY].getPersonaje().getEsCpu()==false){
                                 verificadorMaximo = true;
@@ -1107,14 +1103,11 @@ public class Personaje {
                         if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==true){
                             //Verificacion de que no es estado abierto ni cerrado(no se ha pasado por ahi)
                             boolean verificador = true;
-                            System.out.println("tamaño abierto: "+abierto.size());
                             for(int i = 0; i<abierto.size(); i++){
-                                System.out.println("2do get abierto:"+abierto.get(i).get(0)[0]+"-"+abierto.get(i).get(0)[1]);
                                 if(abierto.get(i).get(0)[0]==nuevaPosicionX && abierto.get(i).get(0)[1]==nuevaPosicionY){
                                     verificador = false;
                                 }
                             }
-                            System.out.println("tamaño cerrado: "+cerrado.size());
                             for(int i = 0; i<cerrado.size(); i++){
                                 if(cerrado.get(i).get(0)[0]==nuevaPosicionX && cerrado.get(i).get(0)[1]==nuevaPosicionY){
                                     verificador = false;
@@ -1122,7 +1115,6 @@ public class Personaje {
                             }
                             //Fin verificacion
                             //-----------------
-                            System.out.println("verificador:"+verificador);
                             if(verificador==true){
                                 //Creacion de nuevo estado
                                 ArrayList<int[]> nuevoEstado = new ArrayList();
@@ -1135,7 +1127,7 @@ public class Personaje {
                                 nuevoEstado.add(posicionActual);
                                 //Se añade como un nuevo estado abierto
                                 abierto.add(nuevoEstado);
-                                System.out.println("aabajooooooo");
+                                //System.out.println("aabajooooooo");
                             }
                         }
                     //}    
@@ -1149,7 +1141,6 @@ public class Personaje {
             try{
                 int varY = posicionY-1;
                 int var = posicionX;
-                System.out.println("x:"+var+"; y-1:"+varY);
             if(posicionY-1>=0 && posicionY-1<25){
                 nuevaPosicionX = posicionX;
                 nuevaPosicionY = posicionY-1;
@@ -1166,18 +1157,14 @@ public class Personaje {
                             }
                         }
                         //Verificacion de si hay un personaje posicionado en la casilla
-                        System.out.println("disponible:"+tablero[nuevaPosicionX][nuevaPosicionY].getDisponible());
                         if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==true){
                             //Verificacion de que no es estado abierto ni cerrado(no se ha pasado por ahi)
                             boolean verificador = true;
-                            System.out.println("tamaño abierto: "+abierto.size());
                             for(int i = 0; i<abierto.size(); i++){
-                                System.out.println("3er get abierto:"+abierto.get(i).get(0)[0]+"-"+abierto.get(i).get(0)[1]);
                                 if(abierto.get(i).get(0)[0]==nuevaPosicionX && abierto.get(i).get(0)[1]==nuevaPosicionY){
                                     verificador = false;
                                 }
                             }
-                            System.out.println("tamaño cerrado: "+cerrado.size());
                             for(int i = 0; i<cerrado.size(); i++){
                                 if(cerrado.get(i).get(0)[0]==nuevaPosicionX && cerrado.get(i).get(0)[1]==nuevaPosicionY){
                                     verificador = false;
@@ -1185,7 +1172,6 @@ public class Personaje {
                             }
                             //Fin verificacion
                             //-----------------
-                            System.out.println("verificador:"+verificador);
                             if(verificador==true){
                                 //Creacion de nuevo estado
                                 ArrayList<int[]> nuevoEstado = new ArrayList();
@@ -1198,7 +1184,7 @@ public class Personaje {
                                 nuevoEstado.add(posicionActual);
                                 //Se añade como un nuevo estado abierto
                                 abierto.add(nuevoEstado);
-                                System.out.println("izquierdaaaaaaa");
+                                //System.out.println("izquierdaaaaaaa");
                             }
                         }
                     //}    
@@ -1212,7 +1198,6 @@ public class Personaje {
             try{
                 int varY = posicionY+1;
                 int var = posicionX;
-                System.out.println("x:"+var+"; y+1:"+varY);
             if(posicionY+1>=0 && posicionY+1<25){
                 nuevaPosicionX = posicionX;
                 nuevaPosicionY = posicionY+1;
@@ -1223,7 +1208,6 @@ public class Personaje {
                     //System.out.println("caminable:"+tablero[nuevaPosicionX][nuevaPosicionY].getCaminable());
                     //if(tablero[nuevaPosicionX][nuevaPosicionY].getCaminable()==true){
                         //Verificacion en la casilla esta algun personaje enemigo
-                        System.out.println("disponible:"+tablero[nuevaPosicionX][nuevaPosicionY].getDisponible());
                         if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==false){
                             if(tablero[nuevaPosicionX][nuevaPosicionY].getPersonaje().getEsCpu()==false){
                                 verificadorMaximo = true;
@@ -1233,14 +1217,11 @@ public class Personaje {
                         if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==true){
                             //Verificacion de que no es estado abierto ni cerrado(no se ha pasado por ahi)
                             boolean verificador = true;
-                            System.out.println("tamaño abierto: "+abierto.size());
                             for(int i = 0; i<abierto.size(); i++){
-                                System.out.println("4to get abierto:"+abierto.get(i).get(0)[0]+"-"+abierto.get(i).get(0)[1]);
                                 if(abierto.get(i).get(0)[0] == nuevaPosicionX && abierto.get(i).get(0)[1] == nuevaPosicionY){
                                     verificador = false;
                                 }
                             }
-                            System.out.println("tamaño cerrado: "+cerrado.size());
                             for(int i = 0; i<cerrado.size(); i++){
                                 if(cerrado.get(i).get(0)[0]==nuevaPosicionX && cerrado.get(i).get(0)[1]==nuevaPosicionY){
                                     verificador = false;
@@ -1248,7 +1229,6 @@ public class Personaje {
                             }
                             //Fin verificacion
                             //-----------------
-                            System.out.println("verificador:"+verificador);
                             if(verificador==true){
                                 //Creacion de nuevo estado
                                 ArrayList<int[]> nuevoEstado = new ArrayList();
@@ -1261,7 +1241,7 @@ public class Personaje {
                                 nuevoEstado.add(posicionActual);
                                 //Se añade como un nuevo estado abierto
                                 abierto.add(nuevoEstado);
-                                System.out.println("derechaaaaa");
+                                //System.out.println("derechaaaaa");
                             }
                         }
                     //}    
@@ -1279,14 +1259,14 @@ public class Personaje {
         for(int i=0; i<cerrado.size(); i++){
             for(int j=0; j<cerrado.get(i).size(); j++){
                 
-                System.out.println("CERRADOSSSS Estado n°: "+i+" tiene 2 casillas , que son: [" + cerrado.get(i).get(j)[0]+","+cerrado.get(i).get(j)[1]+"]");
+                //System.out.println("CERRADOSSSS Estado n°: "+i+" tiene 2 casillas , que son: [" + cerrado.get(i).get(j)[0]+","+cerrado.get(i).get(j)[1]+"]");
                 
             }
         }
         for(int i=0; i<abierto.size(); i++){
             for(int j=0; j<abierto.get(i).size(); j++){
                 
-                System.out.println("ABIERTOSSSS Estado n°: "+i+" tiene 2 casillas , que son: [" + abierto.get(i).get(j)[0]+","+abierto.get(i).get(j)[1]+"]");
+                //System.out.println("ABIERTOSSSS Estado n°: "+i+" tiene 2 casillas , que son: [" + abierto.get(i).get(j)[0]+","+abierto.get(i).get(j)[1]+"]");
                 
             }
         }
@@ -1297,8 +1277,8 @@ public class Personaje {
         }
         ArrayList<int[]> ultimoEstado = cerrado.get(cerrado.size()-1);
         //Ultimo estado obtenido correctamente
-        System.out.println("Ultimo Estado(actual): "+ultimoEstado.get(0)[0]+","+ultimoEstado.get(0)[1]);
-        System.out.println("Ultimo Estado(Anterior): "+ultimoEstado.get(1)[0]+","+ultimoEstado.get(1)[1]);
+        //System.out.println("Ultimo Estado(actual): "+ultimoEstado.get(0)[0]+","+ultimoEstado.get(0)[1]);
+        //System.out.println("Ultimo Estado(Anterior): "+ultimoEstado.get(1)[0]+","+ultimoEstado.get(1)[1]);
         recorrido.add(ultimoEstado.get(0));
 
         this.obtenerRecorrido(ultimoEstado, cerrado, recorrido);
@@ -1349,18 +1329,15 @@ public class Personaje {
             try{
                 int var = posicionX-1;
                 int varY = posicionY;
-                System.out.println("x-1:"+var+"; y:"+varY);
             if(posicionX-1>=0 && posicionX-1<25){
                 nuevaPosicionX = posicionX-1;
                 nuevaPosicionY = posicionY;
                 //Verificacion de la altura.
-                System.out.println("dif altura:"+abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura())));
                 if(abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura())) <= 2){
                     //Verificacion de que si se puede caminar sobre ella no necesaria ya que es un mago.
                     //System.out.println("caminable:"+tablero[nuevaPosicionX][nuevaPosicionY].getCaminable());
                     //if(tablero[nuevaPosicionX][nuevaPosicionY].getCaminable()==true){
                         //Verificacion en la casilla esta algun personaje enemigo
-                        System.out.println("disponible:"+tablero[nuevaPosicionX][nuevaPosicionY].getDisponible());
                         if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==false){
                             if(tablero[nuevaPosicionX][nuevaPosicionY].getPersonaje().getEsCpu()==false){
                                 verificadorMaximo = true;
@@ -1370,14 +1347,11 @@ public class Personaje {
                         if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==true){
                             //Verificacion de que no es estado abierto ni cerrado(no se ha pasado por ahi)
                             boolean verificador = true;
-                            System.out.println("tamaño abierto: "+abierto.size());
                             for(int i = 0; i<abierto.size(); i++){
-                                System.out.println("1er get abierto:"+abierto.get(i).get(0)[0]+"-"+abierto.get(i).get(0)[1]);
                                 if(abierto.get(i).get(0)[0]==nuevaPosicionX && abierto.get(i).get(0)[1]==nuevaPosicionY){
                                     verificador = false;
                                 }
                             }
-                            System.out.println("tamaño cerrado: "+cerrado.size());
                             for(int i = 0; i<cerrado.size(); i++){
                                 if(cerrado.get(i).get(0)[0]==nuevaPosicionX && cerrado.get(i).get(0)[1]==nuevaPosicionY){
                                     verificador = false;
@@ -1385,7 +1359,6 @@ public class Personaje {
                             }
                             //Fin verificacion
                             //-----------------
-                            System.out.println("verificador:"+verificador);
                             if(verificador==true){
                                 //Creacion de nuevo estado
                                 ArrayList<int[]> nuevoEstado = new ArrayList();
@@ -1398,7 +1371,7 @@ public class Personaje {
                                 nuevoEstado.add(posicionActual);
                                 //Se añade como un nuevo estado abierto
                                 abierto.add(nuevoEstado);
-                                System.out.println("arribaaaaa");
+                                //System.out.println("arribaaaaa");
                             }
                         }
                     //}    
@@ -1412,18 +1385,15 @@ public class Personaje {
             try{
                 int var = posicionX+1;
                 int varY = posicionY;
-                System.out.println("x+1:"+var+"; y:"+varY);
             if(posicionX+1>=0 && posicionX+1<25){
                 nuevaPosicionX = posicionX+1;
                 nuevaPosicionY = posicionY;
                 //Verificacion de la altura.
-                System.out.println("dif altura:"+abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura())));
                 if(abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura())) <= 2){
                     //Verificacion de que si se puede caminar sobre ellano necesaria ya que es un mago.
                     //System.out.println("caminable:"+tablero[nuevaPosicionX][nuevaPosicionY].getCaminable());
                     //if(tablero[nuevaPosicionX][nuevaPosicionY].getCaminable()==true){
                         //Verificacion en la casilla esta algun personaje enemigo
-                        System.out.println("disponible:"+tablero[nuevaPosicionX][nuevaPosicionY].getDisponible());
                         if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==false){
                             if(tablero[nuevaPosicionX][nuevaPosicionY].getPersonaje().getEsCpu()==false){
                                 verificadorMaximo = true;
@@ -1433,14 +1403,11 @@ public class Personaje {
                         if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==true){
                             //Verificacion de que no es estado abierto ni cerrado(no se ha pasado por ahi)
                             boolean verificador = true;
-                            System.out.println("tamaño abierto: "+abierto.size());
                             for(int i = 0; i<abierto.size(); i++){
-                                System.out.println("2do get abierto:"+abierto.get(i).get(0)[0]+"-"+abierto.get(i).get(0)[1]);
                                 if(abierto.get(i).get(0)[0]==nuevaPosicionX && abierto.get(i).get(0)[1]==nuevaPosicionY){
                                     verificador = false;
                                 }
                             }
-                            System.out.println("tamaño cerrado: "+cerrado.size());
                             for(int i = 0; i<cerrado.size(); i++){
                                 if(cerrado.get(i).get(0)[0]==nuevaPosicionX && cerrado.get(i).get(0)[1]==nuevaPosicionY){
                                     verificador = false;
@@ -1448,7 +1415,6 @@ public class Personaje {
                             }
                             //Fin verificacion
                             //-----------------
-                            System.out.println("verificador:"+verificador);
                             if(verificador==true){
                                 //Creacion de nuevo estado
                                 ArrayList<int[]> nuevoEstado = new ArrayList();
@@ -1461,7 +1427,7 @@ public class Personaje {
                                 nuevoEstado.add(posicionActual);
                                 //Se añade como un nuevo estado abierto
                                 abierto.add(nuevoEstado);
-                                System.out.println("aabajooooooo");
+                                //System.out.println("aabajooooooo");
                             }
                         }
                     //}    
@@ -1475,12 +1441,10 @@ public class Personaje {
             try{
                 int varY = posicionY-1;
                 int var = posicionX;
-                System.out.println("x:"+var+"; y-1:"+varY);
             if(posicionY-1>=0 && posicionY-1<25){
                 nuevaPosicionX = posicionX;
                 nuevaPosicionY = posicionY-1;
                 //Verificacion de la altura.
-                System.out.println("dif altura:"+abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura())));
                 if(abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura())) <= 2){
                     //Verificacion de que si se puede caminar sobre ellano necesaria ya que es un mago.
                     //System.out.println("caminable:"+tablero[nuevaPosicionX][nuevaPosicionY].getCaminable());
@@ -1492,18 +1456,14 @@ public class Personaje {
                             }
                         }
                         //Verificacion de si hay un personaje posicionado en la casilla
-                        System.out.println("disponible:"+tablero[nuevaPosicionX][nuevaPosicionY].getDisponible());
                         if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==true){
                             //Verificacion de que no es estado abierto ni cerrado(no se ha pasado por ahi)
                             boolean verificador = true;
-                            System.out.println("tamaño abierto: "+abierto.size());
                             for(int i = 0; i<abierto.size(); i++){
-                                System.out.println("3er get abierto:"+abierto.get(i).get(0)[0]+"-"+abierto.get(i).get(0)[1]);
                                 if(abierto.get(i).get(0)[0]==nuevaPosicionX && abierto.get(i).get(0)[1]==nuevaPosicionY){
                                     verificador = false;
                                 }
                             }
-                            System.out.println("tamaño cerrado: "+cerrado.size());
                             for(int i = 0; i<cerrado.size(); i++){
                                 if(cerrado.get(i).get(0)[0]==nuevaPosicionX && cerrado.get(i).get(0)[1]==nuevaPosicionY){
                                     verificador = false;
@@ -1511,7 +1471,6 @@ public class Personaje {
                             }
                             //Fin verificacion
                             //-----------------
-                            System.out.println("verificador:"+verificador);
                             if(verificador==true){
                                 //Creacion de nuevo estado
                                 ArrayList<int[]> nuevoEstado = new ArrayList();
@@ -1524,7 +1483,7 @@ public class Personaje {
                                 nuevoEstado.add(posicionActual);
                                 //Se añade como un nuevo estado abierto
                                 abierto.add(nuevoEstado);
-                                System.out.println("izquierdaaaaaaa");
+                                //System.out.println("izquierdaaaaaaa");
                             }
                         }
                     //}    
@@ -1538,18 +1497,15 @@ public class Personaje {
             try{
                 int varY = posicionY+1;
                 int var = posicionX;
-                System.out.println("x:"+var+"; y+1:"+varY);
             if(posicionY+1>=0 && posicionY+1<25){
                 nuevaPosicionX = posicionX;
                 nuevaPosicionY = posicionY+1;
                 //Verificacion de la altura.
-                System.out.println("dif altura:"+abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura())));
                 if(abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura())) <= 2){
                     //Verificacion de que si se puede caminar sobre ellano necesaria ya que es un mago.
                     //System.out.println("caminable:"+tablero[nuevaPosicionX][nuevaPosicionY].getCaminable());
                     //if(tablero[nuevaPosicionX][nuevaPosicionY].getCaminable()==true){
                         //Verificacion en la casilla esta algun personaje enemigo
-                        System.out.println("disponible:"+tablero[nuevaPosicionX][nuevaPosicionY].getDisponible());
                         if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==false){
                             if(tablero[nuevaPosicionX][nuevaPosicionY].getPersonaje().getEsCpu()==false){
                                 verificadorMaximo = true;
@@ -1559,14 +1515,11 @@ public class Personaje {
                         if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==true){
                             //Verificacion de que no es estado abierto ni cerrado(no se ha pasado por ahi)
                             boolean verificador = true;
-                            System.out.println("tamaño abierto: "+abierto.size());
                             for(int i = 0; i<abierto.size(); i++){
-                                System.out.println("4to get abierto:"+abierto.get(i).get(0)[0]+"-"+abierto.get(i).get(0)[1]);
                                 if(abierto.get(i).get(0)[0] == nuevaPosicionX && abierto.get(i).get(0)[1] == nuevaPosicionY){
                                     verificador = false;
                                 }
                             }
-                            System.out.println("tamaño cerrado: "+cerrado.size());
                             for(int i = 0; i<cerrado.size(); i++){
                                 if(cerrado.get(i).get(0)[0]==nuevaPosicionX && cerrado.get(i).get(0)[1]==nuevaPosicionY){
                                     verificador = false;
@@ -1574,7 +1527,6 @@ public class Personaje {
                             }
                             //Fin verificacion
                             //-----------------
-                            System.out.println("verificador:"+verificador);
                             if(verificador==true){
                                 //Creacion de nuevo estado
                                 ArrayList<int[]> nuevoEstado = new ArrayList();
@@ -1587,7 +1539,7 @@ public class Personaje {
                                 nuevoEstado.add(posicionActual);
                                 //Se añade como un nuevo estado abierto
                                 abierto.add(nuevoEstado);
-                                System.out.println("derechaaaaa");
+                                //System.out.println("derechaaaaa");
                             }
                         }
                     //}    
@@ -1605,14 +1557,14 @@ public class Personaje {
         for(int i=0; i<cerrado.size(); i++){
             for(int j=0; j<cerrado.get(i).size(); j++){
                 
-                System.out.println("CERRADOSSSS Estado n°: "+i+" tiene 2 casillas , que son: [" + cerrado.get(i).get(j)[0]+","+cerrado.get(i).get(j)[1]+"]");
+                //System.out.println("CERRADOSSSS Estado n°: "+i+" tiene 2 casillas , que son: [" + cerrado.get(i).get(j)[0]+","+cerrado.get(i).get(j)[1]+"]");
                 
             }
         }
         for(int i=0; i<abierto.size(); i++){
             for(int j=0; j<abierto.get(i).size(); j++){
                 
-                System.out.println("ABIERTOSSSS Estado n°: "+i+" tiene 2 casillas , que son: [" + abierto.get(i).get(j)[0]+","+abierto.get(i).get(j)[1]+"]");
+                //System.out.println("ABIERTOSSSS Estado n°: "+i+" tiene 2 casillas , que son: [" + abierto.get(i).get(j)[0]+","+abierto.get(i).get(j)[1]+"]");
                 
             }
         }
@@ -1623,8 +1575,8 @@ public class Personaje {
         }
         ArrayList<int[]> ultimoEstado = cerrado.get(cerrado.size()-1);
         //Ultimo estado obtenido correctamente
-        System.out.println("Ultimo Estado(actual): "+ultimoEstado.get(0)[0]+","+ultimoEstado.get(0)[1]);
-        System.out.println("Ultimo Estado(Anterior): "+ultimoEstado.get(1)[0]+","+ultimoEstado.get(1)[1]);
+        //System.out.println("Ultimo Estado(actual): "+ultimoEstado.get(0)[0]+","+ultimoEstado.get(0)[1]);
+        //System.out.println("Ultimo Estado(Anterior): "+ultimoEstado.get(1)[0]+","+ultimoEstado.get(1)[1]);
         recorrido.add(ultimoEstado.get(0));
 
         this.obtenerRecorrido(ultimoEstado, cerrado, recorrido);
