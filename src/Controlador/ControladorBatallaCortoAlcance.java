@@ -22,6 +22,7 @@ public class ControladorBatallaCortoAlcance implements ActionListener{
     public ControladorBatallaCortoAlcance(int cntTurno, int i, int j, Batalla b, VistaBatalla vista){
         this.vb = vista;
         this.b = b;
+        vb.setVisible(false);
         vbc = new VistaBatallaCorta();
         vbc.setVisible(true);
         vbc.setLocationRelativeTo(null);

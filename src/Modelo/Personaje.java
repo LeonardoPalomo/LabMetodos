@@ -695,7 +695,7 @@ public class Personaje {
         eInicial.add(inicial);
         eInicial.add(inicial);//Se agrega 2 veces por que no hay estado anterior al inicial
         abierto.add(eInicial);//Se agrega el primer estado
-        //Se crea un vericficador de que si en alguna transicion se llega a algun personaje enemigo
+        //Se crea un verificador de que si en alguna transicion se llega a algun personaje enemigo
         boolean verificadorMaximo = false;
         do{
             //Se obtiene el primer elemento de la lista de estados abiertos
@@ -714,14 +714,20 @@ public class Personaje {
             //Posicion [x-1,y] (arriba)
             //Verificacion de que no se sale del rango
             try{
-            if(posicionX-1>=0 || posicionX-1<25){
+                int var = posicionX-1;
+                int varY = posicionY;
+                System.out.println("x-1:"+var+"; y:"+varY);
+            if(posicionX-1>=0 && posicionX-1<25){
                 nuevaPosicionX = posicionX-1;
                 nuevaPosicionY = posicionY;
                 //Verificacion de la altura.
-                if(abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura()))<2){
+                System.out.println("dif altura:"+abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura())));
+                if(abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura())) <= 2){
                     //Verificacion de que si se puede caminar sobre ella.
+                    System.out.println("caminable:"+tablero[nuevaPosicionX][nuevaPosicionY].getCaminable());
                     if(tablero[nuevaPosicionX][nuevaPosicionY].getCaminable()==true){
                         //Verificacion en la casilla esta algun personaje enemigo
+                        System.out.println("disponible:"+tablero[nuevaPosicionX][nuevaPosicionY].getDisponible());
                         if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==false){
                             if(tablero[nuevaPosicionX][nuevaPosicionY].getPersonaje().getEsCpu()==false){
                                 verificadorMaximo = true;
@@ -731,18 +737,22 @@ public class Personaje {
                         if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==true){
                             //Verificacion de que no es estado abierto ni cerrado(no se ha pasado por ahi)
                             boolean verificador = true;
+                            System.out.println("tamaño abierto: "+abierto.size());
                             for(int i = 0; i<abierto.size(); i++){
-                                if(abierto.get(i).get(0)[0]==nuevaPosicionX || abierto.get(i).get(0)[1]==nuevaPosicionY){
+                                System.out.println("1er get abierto:"+abierto.get(i).get(0)[0]+"-"+abierto.get(i).get(0)[1]);
+                                if(abierto.get(i).get(0)[0]==nuevaPosicionX && abierto.get(i).get(0)[1]==nuevaPosicionY){
                                     verificador = false;
                                 }
                             }
+                            System.out.println("tamaño cerrado: "+cerrado.size());
                             for(int i = 0; i<cerrado.size(); i++){
-                                if(cerrado.get(i).get(0)[0]==nuevaPosicionX || cerrado.get(i).get(0)[1]==nuevaPosicionY){
+                                if(cerrado.get(i).get(0)[0]==nuevaPosicionX && cerrado.get(i).get(0)[1]==nuevaPosicionY){
                                     verificador = false;
                                 }
                             }
                             //Fin verificacion
                             //-----------------
+                            System.out.println("verificador:"+verificador);
                             if(verificador==true){
                                 //Creacion de nuevo estado
                                 ArrayList<int[]> nuevoEstado = new ArrayList();
@@ -767,14 +777,20 @@ public class Personaje {
             //Posicion [x+1,y] (Abajo)
             //Verificacion de que no se sale del rango
             try{
-            if(posicionX+1>=0 || posicionX+1<25){
+                int var = posicionX+1;
+                int varY = posicionY;
+                System.out.println("x+1:"+var+"; y:"+varY);
+            if(posicionX+1>=0 && posicionX+1<25){
                 nuevaPosicionX = posicionX+1;
                 nuevaPosicionY = posicionY;
                 //Verificacion de la altura.
-                if(abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura()))<2){
+                System.out.println("dif altura:"+abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura())));
+                if(abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura())) <= 2){
                     //Verificacion de que si se puede caminar sobre ella.
+                    System.out.println("caminable:"+tablero[nuevaPosicionX][nuevaPosicionY].getCaminable());
                     if(tablero[nuevaPosicionX][nuevaPosicionY].getCaminable()==true){
                         //Verificacion en la casilla esta algun personaje enemigo
+                        System.out.println("disponible:"+tablero[nuevaPosicionX][nuevaPosicionY].getDisponible());
                         if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==false){
                             if(tablero[nuevaPosicionX][nuevaPosicionY].getPersonaje().getEsCpu()==false){
                                 verificadorMaximo = true;
@@ -784,18 +800,22 @@ public class Personaje {
                         if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==true){
                             //Verificacion de que no es estado abierto ni cerrado(no se ha pasado por ahi)
                             boolean verificador = true;
+                            System.out.println("tamaño abierto: "+abierto.size());
                             for(int i = 0; i<abierto.size(); i++){
-                                if(abierto.get(i).get(0)[0]==nuevaPosicionX || abierto.get(i).get(0)[1]==nuevaPosicionY){
+                                System.out.println("2do get abierto:"+abierto.get(i).get(0)[0]+"-"+abierto.get(i).get(0)[1]);
+                                if(abierto.get(i).get(0)[0]==nuevaPosicionX && abierto.get(i).get(0)[1]==nuevaPosicionY){
                                     verificador = false;
                                 }
                             }
+                            System.out.println("tamaño cerrado: "+cerrado.size());
                             for(int i = 0; i<cerrado.size(); i++){
-                                if(cerrado.get(i).get(0)[0]==nuevaPosicionX || cerrado.get(i).get(0)[1]==nuevaPosicionY){
+                                if(cerrado.get(i).get(0)[0]==nuevaPosicionX && cerrado.get(i).get(0)[1]==nuevaPosicionY){
                                     verificador = false;
                                 }
                             }
                             //Fin verificacion
                             //-----------------
+                            System.out.println("verificador:"+verificador);
                             if(verificador==true){
                                 //Creacion de nuevo estado
                                 ArrayList<int[]> nuevoEstado = new ArrayList();
@@ -820,12 +840,17 @@ public class Personaje {
             //Posicion [x,y-1] (Izquierda)
             //Verificacion de que no se sale del rango
             try{
-            if(posicionY-1>=0 || posicionY-1<25){
+                int varY = posicionY-1;
+                int var = posicionX;
+                System.out.println("x:"+var+"; y-1:"+varY);
+            if(posicionY-1>=0 && posicionY-1<25){
                 nuevaPosicionX = posicionX;
                 nuevaPosicionY = posicionY-1;
                 //Verificacion de la altura.
-                if(abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura()))<2){
+                System.out.println("dif altura:"+abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura())));
+                if(abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura())) <= 2){
                     //Verificacion de que si se puede caminar sobre ella.
+                    System.out.println("caminable:"+tablero[nuevaPosicionX][nuevaPosicionY].getCaminable());
                     if(tablero[nuevaPosicionX][nuevaPosicionY].getCaminable()==true){
                         //Verificacion en la casilla esta algun personaje enemigo
                         if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==false){
@@ -834,21 +859,26 @@ public class Personaje {
                             }
                         }
                         //Verificacion de si hay un personaje posicionado en la casilla
+                        System.out.println("disponible:"+tablero[nuevaPosicionX][nuevaPosicionY].getDisponible());
                         if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==true){
                             //Verificacion de que no es estado abierto ni cerrado(no se ha pasado por ahi)
                             boolean verificador = true;
+                            System.out.println("tamaño abierto: "+abierto.size());
                             for(int i = 0; i<abierto.size(); i++){
-                                if(abierto.get(i).get(0)[0]==nuevaPosicionX || abierto.get(i).get(0)[1]==nuevaPosicionY){
+                                System.out.println("3er get abierto:"+abierto.get(i).get(0)[0]+"-"+abierto.get(i).get(0)[1]);
+                                if(abierto.get(i).get(0)[0]==nuevaPosicionX && abierto.get(i).get(0)[1]==nuevaPosicionY){
                                     verificador = false;
                                 }
                             }
+                            System.out.println("tamaño cerrado: "+cerrado.size());
                             for(int i = 0; i<cerrado.size(); i++){
-                                if(cerrado.get(i).get(0)[0]==nuevaPosicionX || cerrado.get(i).get(0)[1]==nuevaPosicionY){
+                                if(cerrado.get(i).get(0)[0]==nuevaPosicionX && cerrado.get(i).get(0)[1]==nuevaPosicionY){
                                     verificador = false;
                                 }
                             }
                             //Fin verificacion
                             //-----------------
+                            System.out.println("verificador:"+verificador);
                             if(verificador==true){
                                 //Creacion de nuevo estado
                                 ArrayList<int[]> nuevoEstado = new ArrayList();
@@ -873,14 +903,20 @@ public class Personaje {
             //Posicion [x,y+1] (Derecha)
             //Verificacion de que no se sale del rango
             try{
-            if(posicionY+1>=0 || posicionY+1<25){
+                int varY = posicionY+1;
+                int var = posicionX;
+                System.out.println("x:"+var+"; y+1:"+varY);
+            if(posicionY+1>=0 && posicionY+1<25){
                 nuevaPosicionX = posicionX;
                 nuevaPosicionY = posicionY+1;
                 //Verificacion de la altura.
-                if(abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura()))<2){
+                System.out.println("dif altura:"+abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura())));
+                if(abs((tablero[posicionX][posicionY].getAltura())-(tablero[nuevaPosicionX][nuevaPosicionY].getAltura())) <= 2){
                     //Verificacion de que si se puede caminar sobre ella.
+                    System.out.println("caminable:"+tablero[nuevaPosicionX][nuevaPosicionY].getCaminable());
                     if(tablero[nuevaPosicionX][nuevaPosicionY].getCaminable()==true){
                         //Verificacion en la casilla esta algun personaje enemigo
+                        System.out.println("disponible:"+tablero[nuevaPosicionX][nuevaPosicionY].getDisponible());
                         if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==false){
                             if(tablero[nuevaPosicionX][nuevaPosicionY].getPersonaje().getEsCpu()==false){
                                 verificadorMaximo = true;
@@ -890,18 +926,22 @@ public class Personaje {
                         if(tablero[nuevaPosicionX][nuevaPosicionY].getDisponible()==true){
                             //Verificacion de que no es estado abierto ni cerrado(no se ha pasado por ahi)
                             boolean verificador = true;
+                            System.out.println("tamaño abierto: "+abierto.size());
                             for(int i = 0; i<abierto.size(); i++){
-                                if(abierto.get(i).get(0)[0]==nuevaPosicionX || abierto.get(i).get(0)[1]==nuevaPosicionY){
+                                System.out.println("4to get abierto:"+abierto.get(i).get(0)[0]+"-"+abierto.get(i).get(0)[1]);
+                                if(abierto.get(i).get(0)[0] == nuevaPosicionX && abierto.get(i).get(0)[1] == nuevaPosicionY){
                                     verificador = false;
                                 }
                             }
+                            System.out.println("tamaño cerrado: "+cerrado.size());
                             for(int i = 0; i<cerrado.size(); i++){
-                                if(cerrado.get(i).get(0)[0]==nuevaPosicionX || cerrado.get(i).get(0)[1]==nuevaPosicionY){
+                                if(cerrado.get(i).get(0)[0]==nuevaPosicionX && cerrado.get(i).get(0)[1]==nuevaPosicionY){
                                     verificador = false;
                                 }
                             }
                             //Fin verificacion
                             //-----------------
+                            System.out.println("verificador:"+verificador);
                             if(verificador==true){
                                 //Creacion de nuevo estado
                                 ArrayList<int[]> nuevoEstado = new ArrayList();
