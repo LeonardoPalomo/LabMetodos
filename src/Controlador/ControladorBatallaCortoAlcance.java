@@ -67,8 +67,11 @@ public class ControladorBatallaCortoAlcance implements ActionListener{
         int cntM = 0;
         int cntA = 0;
         int cntE = 0;
+        int mePasePo=4;//Valor que no representa nada
         ArrayList<Integer> el = vbc.getEleccionMovimientos();
         for(int k=0; k<el.size(); k++){
+            System.out.println("Movimiento "+k+" = "+el.get(k));
+            System.out.println("--------");
             if(el.get(k)==0){
                 cntB++;
             }
@@ -78,15 +81,41 @@ public class ControladorBatallaCortoAlcance implements ActionListener{
             else if(el.get(k)==2){
                 cntA++;
             }
-            else if(el.get(k)==2){
+            else if(el.get(k)==3){
                 cntE++;
             }
         }
-        if(cntE>stockEspecial || cntB>stockBajo || cntM>stockMedio || cntA>stockAlto){
+        if(cntE>stockEspecial){
             verificador = false;
+            mePasePo = 3;
         }
+        else if(cntB>stockBajo){
+            verificador = false;
+            mePasePo = 0;
+        }
+        else if(cntM>stockMedio){
+            verificador = false;
+            mePasePo = 1;
+        }
+        else if(cntA>stockAlto){
+            verificador = false;
+            mePasePo = 2;
+        }
+        
         if(verificador==false){
-            JOptionPane.showMessageDialog(vbc,"Has excedido el limite de stock de algun ataque");
+            if(mePasePo==0){
+                JOptionPane.showMessageDialog(vbc,"Has excedido el limite de stock de ataque Bajo");
+            }
+            else if(mePasePo==1){
+                JOptionPane.showMessageDialog(vbc,"Has excedido el limite de stock de ataque Medio");
+            }
+            else if(mePasePo==2){
+                JOptionPane.showMessageDialog(vbc,"Has excedido el limite de stock de ataque Alto");
+            }
+            else if(mePasePo==3){
+                JOptionPane.showMessageDialog(vbc,"Has excedido el limite de stock de ataque Especial");
+            }
+            //JOptionPane.showMessageDialog(vbc,"Has excedido el limite de stock de ataque ");
         }
         if(verificador == true){
             if(vbc.getBtnAceptar()==e.getSource()){
