@@ -64,9 +64,8 @@ public class Batalla {
                 break;
         }
         for(int i=0; i<25; i++){
-            int numeroA = numeroRandom.nextInt(3)+1;
             for(int j=0; j<25; j++){
-                int numero = 0;
+                int numero;
                 numero = numeroRandom.nextInt(3)+1;
                 switch(numero){
                     case 1://Pone un suelo
