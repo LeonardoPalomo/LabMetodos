@@ -141,6 +141,7 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                         vb.marcarCasilla(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getOrdenTurnos()[cntTurno].getEsCpu());
                         if(b.getOrdenTurnos()[cntTurno].getEsCpu()){
                             //Comienza el cpu
+                            
                             //Al terminar sus acciones, finaliza su turno
                             vb.getBtnEnd().setEnabled(true);
                             vb.getBtnEnd().doClick();
