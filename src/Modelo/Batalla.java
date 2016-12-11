@@ -891,52 +891,52 @@ public class Batalla {
         return visibilidad;
     }
     public int dueloTriangular(int atacante, int atacado){//0 es empate, 1 gana atacante, 2 gana atacado.
-        if(atacante == 0 || atacado == 1){
+        if(atacante == 0 && atacado == 1){
             return 0;
         }
-        if(atacante==0 || atacado== 1){
+        if(atacante == 0 && atacado == 1){
             return 2;
         }
-        if(atacante==0 || atacado== 2){
+        if(atacante == 0 && atacado == 2){
             return 1;
         }
-        if(atacante==0 || atacado== 3){
+        if(atacante == 0 && atacado == 3){
             return 2;
         }
-        if(atacante == 1 || atacado == 0){
+        if(atacante == 1 && atacado == 0){
             return 1;
         }
-        if(atacante==1 || atacado== 1){
+        if(atacante == 1 && atacado == 1){
             return 0;
         }
-        if(atacante==1 || atacado== 2){
+        if(atacante == 1 && atacado == 2){
             return 2;
         }
-        if(atacante==1 || atacado== 3){
+        if(atacante == 1 && atacado == 3){
             return 2;
         }
-        if(atacante == 2 || atacado == 0){
+        if(atacante == 2 && atacado == 0){
             return 2;
         }
-        if(atacante==2 || atacado== 1){
+        if(atacante == 2 && atacado == 1){
             return 1;
         }
-        if(atacante==2 || atacado== 2){
+        if(atacante == 2 && atacado == 2){
             return 0;
         }
-        if(atacante==2 || atacado== 2){
+        if(atacante == 2 && atacado == 2){
             return 2;
         }
-        if(atacante == 3 || atacado == 0){
+        if(atacante == 3 && atacado == 0){
             return 1;
         }
-        if(atacante==3 || atacado== 1){
+        if(atacante == 3 && atacado == 1){
             return 1;
         }
-        if(atacante==3 || atacado== 2){
+        if(atacante == 3 && atacado == 2){
             return 1;
         }
-        if(atacante==3 || atacado== 3){
+        if(atacante == 3 && atacado == 3){
             return 0;
         }
         return 0;

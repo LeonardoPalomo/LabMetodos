@@ -541,7 +541,7 @@ public class VistaBatallaCorta extends javax.swing.JFrame {
             }
         }*/
     }
-    public ArrayList<Integer> getEleccionMovimientos(){
+    public ArrayList<Integer> getEleccionMovimientos(){//Bajo=0, Medio=1, Alto=2; Especial=3
         ArrayList<Integer> movimientos = new ArrayList();
         if(eleccion1.getSelectedItem().toString()== "B"){
             movimientos.add(0);
@@ -628,6 +628,12 @@ public class VistaBatallaCorta extends javax.swing.JFrame {
             movimientos.add(3);
         }
         return movimientos;
+    }
+    public void cambiarStocks(int bajo, int medio, int alto, int especial){
+        stockB.setText("x"+bajo);
+        stockM.setText("x"+medio);
+        stockA.setText("x"+alto);
+        stockE.setText("x"+especial);
     }
     public void aListener(ActionListener a){
         btnAceptar.addActionListener(a);
