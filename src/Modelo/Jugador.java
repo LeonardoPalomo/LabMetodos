@@ -12,16 +12,18 @@ public class Jugador {
    private int id;
    private String contrasena;
    private int oro;
-   private Malla malla;
-   private int tipoMalla;//no va
+   private int malla;
    private int[] asigAprobadas;
    private ArrayList<Personaje> personajes;
    private Item[] inventario;
-   private boolean tipo;//no va
    private String pjPrincipal;
    private int rolPjPrincipal;
+   private int subrolPjPrincipal;
    private String pjSecundario;
    private int rolPjSecundario;
+   private int subrolPjSecundario;
+   private int victorias;
+   private int derrotas;
    private int rd;
    
    public static String usuarioAdmin = "Admin";
@@ -32,14 +34,19 @@ public class Jugador {
         this.contrasena = password;
     }
     
-    public Jugador(String nombre, String password, int malla, String pjPrincipal, int rolPjPrincipal, String pjSecundario, int rolPjSecundario){
+    public Jugador(String nombre, String password, int malla, String pjPrincipal, int rolPjPrincipal, int subrolPjPrincipal, String pjSecundario, int rolPjSecundario, int subrolPjSecundario, int oro, int victorias, int derrotas){
         this.nombre = nombre;
         this.contrasena = password;
-        this.tipoMalla = malla;
+        this.malla = malla;
         this.pjPrincipal = pjPrincipal;
         this.rolPjPrincipal = rolPjPrincipal;
+        this.subrolPjPrincipal = subrolPjPrincipal;
         this.pjSecundario = pjSecundario;
         this.rolPjSecundario = rolPjSecundario;
+        this.subrolPjSecundario = subrolPjSecundario;
+        this.oro = oro;
+        this.victorias = victorias;
+        this.derrotas = derrotas;
     }
 
     public String getNombre() {
@@ -58,7 +65,7 @@ public class Jugador {
         return oro;
     }
 
-    public Malla getMalla() {
+    public int getMalla() {
         return malla;
     }
 
@@ -72,10 +79,6 @@ public class Jugador {
 
     public Item[] getInventario() {
         return inventario;
-    }
-
-    public boolean isTipo() {
-        return tipo;
     }
     
     public void setNombre(String nombre) {
@@ -114,8 +117,6 @@ public class Jugador {
         }
     }
    
-    public void registrarDatos(String username, String password, int rolPjPrincipal, int rolPjAmigo, int malla) {}
-   
     public void comprar(Item objeto) {}
    
     public void usarItem(Item item) {}
@@ -126,7 +127,7 @@ public class Jugador {
         Conexion conexion = new Conexion();
         boolean resultado = conexion.conectar();
         Statement stmt = conexion.crearConsulta();
-        final String consulta = "INSERT INTO USUARIO (NOMBRE_USUARIO,CONTRASEÑA,MALLA,PJ_PRINCIPAL,ROL_PJ_PRINCIPAL,PJ_SECUNDARIO,ROL_PJ_SECUNDARIO) VALUES " + "('" + this.nombre + "','" + this.contrasena + "'," + this.tipoMalla + ",'" + this.pjPrincipal + "'," + this.rolPjPrincipal + ",'" + this.pjSecundario + "'," + this.rolPjSecundario + ")";
+        final String consulta = "INSERT INTO USUARIO (NOMBRE_USUARIO,CONTRASEÑA,MALLA,PJ_PRINCIPAL,ROL_PJ_PRINCIPAL,SUBROL_PJ_PRINCIPAL,PJ_SECUNDARIO,ROL_PJ_SECUNDARIO,SUBROL_PJ_SECUNDARIO) VALUES " + "('" + this.nombre + "','" + this.contrasena + "'," + this.malla + ",'" + this.pjPrincipal + "'," + this.rolPjPrincipal + "," + this.subrolPjPrincipal + ",'" + this.pjSecundario + "'," + this.rolPjSecundario + "," + this.subrolPjSecundario + ")";
         stmt.executeUpdate(consulta);
         stmt.close();
     }
@@ -161,7 +162,7 @@ public class Jugador {
         Conexion conexion = new Conexion();
         boolean resultado = conexion.conectar();
         Statement stmt = conexion.crearConsulta();
-        final String consulta = "SELECT NOMBRE_USUARIO,CONTRASEÑA FROM USUARIO WHERE NOMBRE_USUARIO = '" + nombre +"'";        
+        final String consulta = "SELECT NOMBRE_USUARIO,CONTRASEÑA,MALLA,PJ_PRINCIPAL,ROL_PJ_PRINCIPAL,SUBROL_PJ_PRINCIPAL,PJ_SECUNDARIO,ROL_PJ_SECUNDARIO,SUBROL_PJ_SECUNDARIO,ORO,VICTORIAS,DERROTAS FROM USUARIO WHERE NOMBRE_USUARIO = '" + nombre +"'";        
         
         ResultSet resultados;
         resultados = stmt.executeQuery(consulta);
@@ -169,17 +170,26 @@ public class Jugador {
         if (resultados.next()==true) {
             String nombre2 = resultados.getString("NOMBRE_USUARIO");
             String password = resultados.getString("CONTRASEÑA");
+            int malla = resultados.getInt("MALLA");
+            String pjPrinc = resultados.getString("PJ_PRINCIPAL");
+            int rolPjPr = resultados.getInt("ROL_PJ_PRINCIPAL");
+            int subrolPjPr = resultados.getInt("SUBROL_PJ_PRINCIPAL");
+            String pjSecun = resultados.getString("PJ_SECUNDARIO");
+            int rolPjSe = resultados.getInt("ROL_PJ_SECUNDARIO");
+            int subrolPjSe = resultados.getInt("SUBROL_PJ_SECUNDARIO");
+            int oro = resultados.getInt("ORO");
+            int victorias = resultados.getInt("VICTORIAS");
+            int derrotas = resultados.getInt("DERROTAS");
             resultados.close();
             stmt.close();
             conexion.desconectar();
-            return new Jugador(nombre2, password);
+            return new Jugador(nombre2, password,malla,pjPrinc,rolPjPr,subrolPjPr,pjSecun,rolPjSe,subrolPjSe,oro,victorias,derrotas);
         }
         else {
             //System.out.println("No Existe");
             conexion.desconectar();
             return null;
-        }
-        
+        }     
     }
     
     public static boolean obtener(String nombre) throws SQLException{
@@ -193,16 +203,17 @@ public class Jugador {
         
         return resultados.next();
     }
+    
    public static void actualizarJugadas(int valor) throws SQLException {
         Conexion conexion = new Conexion();
         boolean resultado = conexion.conectar();
         Statement stmt = conexion.crearConsulta();
         String consulta = "";
         if (valor ==0){
-            consulta = "SELECT VICTORIA FROM USUARIO WHERE NOMBRE_USUARIO = '" + ControladorLogin.usuarioActivo +"'";
+            consulta = "SELECT VICTORIAS FROM USUARIO WHERE NOMBRE_USUARIO = '" + ControladorLogin.usuarioActivo +"'";
         }
         else{
-            consulta = "SELECT DERROTA FROM USUARIO WHERE NOMBRE_USUARIO = '" + ControladorLogin.usuarioActivo +"'";    
+            consulta = "SELECT DERROTAS FROM USUARIO WHERE NOMBRE_USUARIO = '" + ControladorLogin.usuarioActivo +"'";    
         }
         ResultSet resultados;
         resultados = stmt.executeQuery(consulta);
@@ -210,12 +221,12 @@ public class Jugador {
         String columnyu="";
         if (resultados.next()==true) {
             if(valor==0){
-                resultadoGuardado = resultados.getInt("VICTORIA");
-                columnyu="VICTORIA";
+                resultadoGuardado = resultados.getInt("VICTORIAS");
+                columnyu="VICTORIAS";
             }
             else{
-                resultadoGuardado = resultados.getInt("DERROTA");
-                columnyu="DERROTA";
+                resultadoGuardado = resultados.getInt("DERROTAS");
+                columnyu="DERROTAS";
             }
             resultados.close();
             stmt.close();
@@ -233,20 +244,20 @@ public class Jugador {
         }
     } 
     public boolean donarJugador (String[] listaCpu , String[] listaJugador){
-   rd = new Random().nextInt(5);
-   int largo= listaJugador.length;
-   boolean comprobador =false;
-   String personajeObtenido= listaCpu[rd];
-   for(int i=0; i<largo;i++){
-       if(listaJugador[i]!=null){
-           
-       }else{
-           listaJugador[i]= personajeObtenido;
-           comprobador= true;
-           break;
-        }
-       
+        rd = new Random().nextInt(5);
+        int largo= listaJugador.length;
+        boolean comprobador =false;
+        String personajeObtenido= listaCpu[rd];
+        for(int i=0; i<largo;i++){
+            if(listaJugador[i]!=null){
+
+            }else{
+                listaJugador[i]= personajeObtenido;
+                comprobador= true;
+                break;
+             }
+
+         }
+        return comprobador;
     }
-   return comprobador;
-   }
 }

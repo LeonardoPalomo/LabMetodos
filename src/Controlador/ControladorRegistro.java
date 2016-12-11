@@ -34,6 +34,30 @@ public class ControladorRegistro implements ActionListener{
                 System.out.println("Hay campos sin llenar, no se puede realizar el registro");
                 JOptionPane.showMessageDialog(vr,"Debe llenar todos los campos.","ERROR: Campos vacíos",JOptionPane.ERROR_MESSAGE);
             }
+            else if(vr.getPjPrincipal().equalsIgnoreCase(vr.getPjSecundario())){
+                System.out.println("El nombre del Pj Principal y del Pj Secundario deben ser diferentes");
+                JOptionPane.showMessageDialog(vr,"Los nombres de los personajes deben ser diferentes entre sí.","ERROR: Nombres iguales",JOptionPane.ERROR_MESSAGE);
+            }
+            else if(vr.getUsuario().length() > 12){
+                System.out.println("El nombre del usuario es muy largo");
+                JOptionPane.showMessageDialog(vr,"El nombre de usuario debe tener hasta 12 caracteres máximo.","ERROR: Exceso de caracteres",JOptionPane.ERROR_MESSAGE);
+                vr.clearUsuario();
+            }
+            else if(vr.getPassword().length() > 12){
+                System.out.println("La contraseña es muy larga");
+                JOptionPane.showMessageDialog(vr,"La contraseña debe tener hasta 12 caracteres máximo.","ERROR: Exceso de caracteres",JOptionPane.ERROR_MESSAGE);
+                vr.clearPassword();
+            }
+            else if(vr.getPjPrincipal().length() > 12){
+                System.out.println("El nombre del personaje principal es muy largo");
+                JOptionPane.showMessageDialog(vr,"Los nombres de personajes deben tener hasta 12 caracteres máximo.","ERROR: Exceso de caracteres",JOptionPane.ERROR_MESSAGE);
+                vr.clearPjPrincipal();
+            }
+            else if(vr.getPjSecundario().length() > 12){
+                System.out.println("El nombre del personaje secundario es muy largo");
+                JOptionPane.showMessageDialog(vr,"Los nombres de personajes deben tener hasta 12 caracteres máximo.","ERROR: Exceso de caracteres",JOptionPane.ERROR_MESSAGE);
+                vr.clearPjSecundario();
+            }
             else{
                 try {
                     conexion = new Conexion();
@@ -49,7 +73,7 @@ public class ControladorRegistro implements ActionListener{
                             JOptionPane.showMessageDialog(null,intentoRegistro1);
                         }
                         else{
-                            usuario = new Jugador(vr.getUsuario(), vr.getPassword(), vr.getSeleccionMalla(), vr.getPjPrincipal(), vr.getSeleccionRolPrincipal(), vr.getPjSecundario(), vr.getSeleccionRolSecundario());
+                            usuario = new Jugador(vr.getUsuario(), vr.getPassword(), vr.getSeleccionMalla(), vr.getPjPrincipal(), vr.getSeleccionRolPrincipal(), vr.getSeleccionSubrolPrincipal(), vr.getPjSecundario(), vr.getSeleccionRolSecundario(), vr.getSeleccionSubrolSecundario(),0,0,0);
                             usuario.save();
                             String registroExitoso = "El usuario "+vr.getUsuario()+" fue registrado exitosamente.";
                             ControladorPrincipal.registrarAccion(registroExitoso);

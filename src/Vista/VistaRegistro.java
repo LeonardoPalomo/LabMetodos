@@ -75,13 +75,13 @@ public class VistaRegistro extends javax.swing.JFrame {
 
         jLabel8.setText("Rol personaje principal");
 
-        rolPjPrincipal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Guerrero", "Arquero", "Ninja", "Mago" }));
+        rolPjPrincipal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Guerrero", "Arquero", "Ninja", "Mago Humanista", "Mago Tecnólogo", "Mago Médico" }));
 
         jLabel9.setText("Nombre amigo");
 
         jLabel10.setText("Rol amigo");
 
-        rolPjSecundario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Guerrero", "Arquero", "Ninja", "Mago" }));
+        rolPjSecundario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Guerrero", "Arquero", "Ninja", "Mago Humanista", "Mago Tecnólogo", "Mago Médico" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -252,7 +252,7 @@ public class VistaRegistro extends javax.swing.JFrame {
             return 1;
         }
         else if(malla.getSelectedItem().toString()=="Ingeniería de Ejecución en Computación e Informática"){
-           return 3;
+           return 2;
         }
         else{
             return 0;
@@ -264,13 +264,34 @@ public class VistaRegistro extends javax.swing.JFrame {
             return 1;
         }
         else if(rolPjPrincipal.getSelectedItem().toString()=="Arquero"){
-           return 3;
+           return 2;
         }
         else if(rolPjPrincipal.getSelectedItem().toString()=="Ninja"){
-           return 5;
+           return 3;
         }
-        else if(rolPjPrincipal.getSelectedItem().toString()=="Mago"){
-           return 7;
+        else if(rolPjPrincipal.getSelectedItem().toString()=="Mago Humanista"){
+           return 4;
+        }
+        else if(rolPjPrincipal.getSelectedItem().toString()=="Mago Tecnólogo"){
+           return 4;
+        }
+        else if(rolPjPrincipal.getSelectedItem().toString()=="Mago Médico"){
+           return 4;
+        }
+        else{
+            return 0;
+        }
+    }
+    
+    public int getSeleccionSubrolPrincipal(){
+        if(rolPjPrincipal.getSelectedItem().toString()=="Mago Humanista"){
+           return 1;
+        }
+        else if(rolPjPrincipal.getSelectedItem().toString()=="Mago Tecnólogo"){
+           return 2;
+        }
+        else if(rolPjPrincipal.getSelectedItem().toString()=="Mago Médico"){
+           return 3;
         }
         else{
             return 0;
@@ -282,16 +303,51 @@ public class VistaRegistro extends javax.swing.JFrame {
             return 1;
         }
         else if(rolPjSecundario.getSelectedItem().toString()=="Arquero"){
-           return 3;
+           return 2;
         }
         else if(rolPjSecundario.getSelectedItem().toString()=="Ninja"){
-           return 5;
+           return 3;
         }
-        else if(rolPjSecundario.getSelectedItem().toString()=="Mago"){
-           return 7;
+        else if(rolPjSecundario.getSelectedItem().toString()=="Mago Humanista"){
+           return 4;
+        }
+        else if(rolPjSecundario.getSelectedItem().toString()=="Mago Tecnólogo"){
+           return 4;
+        }
+        else if(rolPjSecundario.getSelectedItem().toString()=="Mago Médico"){
+           return 4;
         }
         else{
             return 0;
         }
     }
+    
+    public int getSeleccionSubrolSecundario(){
+        if(rolPjSecundario.getSelectedItem().toString()=="Mago Humanista"){
+           return 1;
+        }
+        else if(rolPjSecundario.getSelectedItem().toString()=="Mago Tecnólogo"){
+           return 2;
+        }
+        else if(rolPjSecundario.getSelectedItem().toString()=="Mago Médico"){
+           return 3;
+        }
+        else{
+            return 0;
+        }
+    }
+    
+    public void clearUsuario(){
+        this.usuario.setText("");
+    }
+    public void clearPassword(){
+        this.password.setText("");
+    }
+    public void clearPjPrincipal(){
+        this.pjPrincipal.setText("");
+    }
+    public void clearPjSecundario(){
+        this.pjSecundario.setText("");
+    }
+    
 }

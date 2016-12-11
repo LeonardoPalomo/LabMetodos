@@ -15,9 +15,12 @@ import javax.swing.JOptionPane;
 public class ControladorLogin implements ActionListener,KeyListener{
     
     private Jugador jugadorPrueba;
+    public static Jugador jugadorLogueado;
     private VistaLogin vl;
     public static String usuarioActivo;
     public static int malla;
+    public static int victorias;
+    public static int derrotas;
     
     public ControladorLogin(){
             vl = new VistaLogin();
@@ -54,10 +57,10 @@ public class ControladorLogin implements ActionListener,KeyListener{
                             jugadorPrueba = new Jugador(comprobadorUsuario.getNombre(),comprobadorUsuario.getPassword());
                             if (jugadorPrueba.existeUsuario(usuario)){
                                 if(jugadorPrueba.verificarDatos(usuario,password)){
+                                    jugadorLogueado = comprobadorUsuario;
                                     usuarioActivo = usuario;
                                     String inicioSesion = "El usuario "+usuarioActivo+" ha iniciado sesión.";
-                                    //Malla se obtiene de BDD, por ahora es 1 (civil)
-                                    malla = 1;
+                                    malla = jugadorLogueado.getMalla();
                                     ControladorPrincipal.registrarAccion(inicioSesion);
                                     vl.dispose();
                                     ControladorVistaPrincipal cvp = new ControladorVistaPrincipal();

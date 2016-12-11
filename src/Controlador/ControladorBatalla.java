@@ -11,10 +11,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 public class ControladorBatalla implements ActionListener, MouseListener {
     private VistaBatalla vb;
@@ -96,7 +100,7 @@ public class ControladorBatalla implements ActionListener, MouseListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e){
         if (e.getActionCommand()=="Cancelar"){
             if(ultPosClick[0] != -1 && ultPosClick[1] != -1){
                 vb.marcarZona(ultPosClick[0], ultPosClick[1], ultPosClick[0], ultPosClick[1], Color.WHITE);
@@ -131,11 +135,21 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                         vb.getbtnCancelar().setEnabled(false);
                         vb.desmarcarZona(0,0,24,3);
                         vb.eliminarBordesEscenario();
-                        vb.enableButtons();
-                        vb.getBtnSurrender().setEnabled(true);
                         String turnoActual = b.getOrdenTurnos()[cntTurno].getNombre();
                         vb.setTextArea("Turno "+(b.getTurno()+1)+" - Turno de "+turnoActual);
+                        System.out.println("Turno "+(b.getTurno()+1)+" - Turno de "+turnoActual);
                         vb.marcarCasilla(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getOrdenTurnos()[cntTurno].getEsCpu());
+                        if(b.getOrdenTurnos()[cntTurno].getEsCpu()){
+                            //Comienza el cpu
+                            //Al terminar sus acciones, finaliza su turno
+                            vb.getBtnEnd().setEnabled(true);
+                            vb.getBtnEnd().doClick();
+                        }
+                        else{
+                            //Comienza el jugador
+                            vb.enableButtons();
+                            vb.getBtnSurrender().setEnabled(true);
+                        }   
                     }
                     else{
                         b.informarUbicarPjs(vb,this.pjsJugador[cantPjsUbicados]);
@@ -208,6 +222,7 @@ public class ControladorBatalla implements ActionListener, MouseListener {
             String turnoActual = b.getOrdenTurnos()[cntTurno].getNombre();
             b.getOrdenTurnos()[cntTurno].recuperarMana();
             vb.setTextArea("Turno "+(b.getTurno()+1)+" - Turno de "+turnoActual);
+            System.out.println("Turno "+(b.getTurno()+1)+" - Turno de "+turnoActual);
             vb.marcarCasilla(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getOrdenTurnos()[cntTurno].getEsCpu());
             if(cntTurno == 0){
                 vb.eliminarBordesCasilla(b.getOrdenTurnos()[b.getOrdenTurnos().length-1].getPosicion());
@@ -217,18 +232,74 @@ public class ControladorBatalla implements ActionListener, MouseListener {
             }
             if(b.getOrdenTurnos()[cntTurno].getEsCpu()){
                 vb.disableButtons();
-                ArrayList<int[]> recorrido = b.getOrdenTurnos()[cntTurno].moverCpu(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getTablero());
-                for(int i= 0; i<b.getOrdenTurnos()[cntTurno].getMovActual(); i++){
-                    
+                ArrayList<int[]> recorrido = new ArrayList();
+                int rol = b.getOrdenTurnos()[cntTurno].getRol();
+                int posMover = 0;
+                switch(rol){
+                    case 1:
+                    case 2:
+                        recorrido = b.getOrdenTurnos()[cntTurno].moverCpu(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getTablero());
+                        break;
+                    case 3:
+                        recorrido = b.getOrdenTurnos()[cntTurno].moverCpuNinja(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getTablero());
+                        break;
+                    case 4:
+                        recorrido = b.getOrdenTurnos()[cntTurno].moverCpuMago(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getTablero());
+                        break;
                 }
-                for(int i=0; i<recorrido.size(); i++){
+                Personaje personajeActual = b.getOrdenTurnos()[cntTurno];
+                for(b.getOrdenTurnos()[cntTurno].getMovActual();b.getOrdenTurnos()[cntTurno].getMovActual() > 0;posMover++){
+                    if(recorrido.get(recorrido.size()-1) == recorrido.get(posMover)){
+                        //Se le acaba el recorrido, es decir llega hasta el objetivo.
+                        break;
+                    }
+                    else{
+                        int iAnterior = b.getOrdenTurnos()[cntTurno].getPosicion()[0];
+                        int jAnterior = b.getOrdenTurnos()[cntTurno].getPosicion()[1];
+                        String ruta = "";
+                        boolean busquedaRuta = false;
+                        if(rol == 1 || rol == 2){
+                            if(personajeActual.mover(recorrido.get(posMover)[0],recorrido.get(posMover)[1],true)){
+                                busquedaRuta = true;
+                            }
+                        }
+                        else if(rol == 3){
+                            if(personajeActual.mover(recorrido.get(posMover)[0],recorrido.get(posMover)[1],true)){
+                                busquedaRuta = true;
+                            }
+                        }
+                        else{
+                            if(personajeActual.mover(recorrido.get(posMover)[0],recorrido.get(posMover)[1],true)){
+                                busquedaRuta = true;
+                            }
+                        }
+                        if(busquedaRuta){
+                            ruta = b.ubicarPersonaje(b.getOrdenTurnos()[cntTurno],recorrido.get(posMover)[0],recorrido.get(posMover)[1]);
+                        }
+                        if(!ruta.equals("")){
+                            vb.ponerImagenTablero(ruta,recorrido.get(posMover)[0],recorrido.get(posMover)[1]);
+                            vb.marcarCasilla(recorrido.get(posMover)[0],recorrido.get(posMover)[1],false);
+                            vb.ponerImagenTablero(b.ponerRutaImagenesTerreno(iAnterior, jAnterior),iAnterior,jAnterior);
+                            vb.eliminarBordesCasilla(iAnterior,jAnterior);
+                            b.getTablero(iAnterior, jAnterior).setPersonaje();
+                            String movimiento = "Movimiento realizado.";
+                            System.out.println(movimiento);
+                            vb.setTextArea(movimiento);
+                            vb.repaint();
+                            vb.revalidate();
+                        }
+                    }
+                }
+                /*for(int i=0; i<recorrido.size(); i++){
                     System.out.println("Movimiento"+i+": ["+ recorrido.get(i)[0]+","+recorrido.get(i)[1]+"]");
                 }
                 System.out.println("Largo del recorrido: "+ recorrido.size());
                 int capacidadM = b.getOrdenTurnos()[cntTurno].getMovActual();
                 if(capacidadM>0){
                     
-                }
+                }*/
+                vb.getBtnEnd().setEnabled(true);
+                vb.getBtnEnd().doClick();
             }
             else{
                 vb.enableButtons();
