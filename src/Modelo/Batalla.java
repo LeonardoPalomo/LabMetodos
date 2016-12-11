@@ -64,6 +64,7 @@ public class Batalla {
                 break;
         }
         for(int i=0; i<25; i++){
+            int numeroA = numeroRandom.nextInt(3)+1;
             for(int j=0; j<25; j++){
                 int numero = 0;
                 numero = numeroRandom.nextInt(3)+1;
@@ -75,9 +76,15 @@ public class Batalla {
                             break;
                         }
                     case 2://Pone un rio
-                        if(cntRio < maxRio){
-                            cntRio++;
-                            tablero[i][j].setTerreno(2);
+                        if((j > 3 && j < 21) && (i < 10 || i > 14)){
+                            if(cntRio < maxRio){
+                                cntRio++;
+                                tablero[i][j].setTerreno(2);
+                                break;
+                            }
+                        }
+                        else{
+                            tablero[i][j].setTerreno(1);
                             break;
                         }
                     case 3://Pone un bosque
