@@ -891,7 +891,8 @@ public class Batalla {
         return visibilidad;
     }
     public int dueloTriangular(int atacante, int atacado){//0 es empate, 1 gana atacante, 2 gana atacado.
-        if(atacante == 0 && atacado == 1){
+        //Para ataques: 0 es bajo, 1 es medio, 2 es alto, 3 es especial
+        if(atacante == 0 && atacado == 0){
             return 0;
         }
         if(atacante == 0 && atacado == 1){
@@ -924,7 +925,7 @@ public class Batalla {
         if(atacante == 2 && atacado == 2){
             return 0;
         }
-        if(atacante == 2 && atacado == 2){
+        if(atacante == 2 && atacado == 3){
             return 2;
         }
         if(atacante == 3 && atacado == 0){
@@ -939,6 +940,8 @@ public class Batalla {
         if(atacante == 3 && atacado == 3){
             return 0;
         }
-        return 0;
+        else{
+            return 0;
+        }
     }
 }
