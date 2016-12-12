@@ -447,6 +447,10 @@ public class Personaje {
         return daños;
     }
     public ArrayList<Integer> ataquesCpu(){
+        int stockGeneralBajo = this.stock[0];
+        int stockGeneralMedio = this.stock[1]; 
+        int stockGeneralAlto = this.stock[2]; 
+        int stockGeneralEspecial = this.stock[3]; 
         Random rnd = new Random();
         ArrayList<Integer> eleccion = new ArrayList();
         for(int k=0; k<7; k++){
@@ -462,6 +466,10 @@ public class Personaje {
             this.stock[i] = this.stock[i] - 1;
             eleccion.add(i);
         }
+        this.stock[0] = stockGeneralBajo;
+        this.stock[1] = stockGeneralMedio;
+        this.stock[2] = stockGeneralAlto;
+        this.stock[3] = stockGeneralEspecial;
         return eleccion;
    }
     /*

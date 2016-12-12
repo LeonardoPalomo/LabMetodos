@@ -1718,3 +1718,12 @@
 2016/12/11 :: 23:33:36 = Se ha abierto el juego. 
 2016/12/11 :: 23:33:41 = El usuario Admin ha iniciado sesión.
 2016/12/11 :: 23:33:43 = El usuario Admin va a seleccionar una asignatura.
+2016/12/12 :: 00:17:38 = Se ha abierto el juego. 
+2016/12/12 :: 00:17:45 = El usuario Admin ha iniciado sesión.
+2016/12/12 :: 00:17:48 = El usuario Admin va a seleccionar una asignatura.
+2016/12/12 :: 00:29:24 = Se ha abierto el juego. 
+2016/12/12 :: 00:29:29 = El usuario Admin ha iniciado sesión.
+2016/12/12 :: 00:29:31 = El usuario Admin va a seleccionar una asignatura.
+2016/12/12 :: 00:49:46 = Se ha abierto el juego. 
+2016/12/12 :: 00:49:52 = El usuario Admin ha iniciado sesión.
+2016/12/12 :: 00:49:53 = El usuario Admin va a seleccionar una asignatura.
