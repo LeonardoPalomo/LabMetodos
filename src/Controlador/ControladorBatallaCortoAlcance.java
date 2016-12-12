@@ -37,6 +37,10 @@ public class ControladorBatallaCortoAlcance implements ActionListener{
         this.cntTurno = cntTurno;
         int nivelAtacante = b.getOrdenTurnos()[cntTurno].getNivel();
         int nivelAtacado = b.getTablero(i, j).getPersonaje().getNivel();
+        vbc.setHpPj(b.getOrdenTurnos()[cntTurno].getHpActual(),b.getOrdenTurnos()[cntTurno].getHpTotal());
+        vbc.setHpCpu(b.getTablero(i, j).getPersonaje().getHpActual(),b.getTablero(i, j).getPersonaje().getHpTotal());
+        vbc.setImgPj(b.ponerRutaPjSinFondo(b.getOrdenTurnos()[cntTurno]));
+        vbc.setImgCpu(b.ponerRutaPjSinFondo(b.getTablero(i, j).getPersonaje()));
         int visibles = b.ataquesVisibles(nivelAtacante, nivelAtacado);
         ArrayList<Integer> eleccionCpu = b.getTablero(i, j).getPersonaje().ataquesCpu();
         this.eleccionCpu = eleccionCpu;
