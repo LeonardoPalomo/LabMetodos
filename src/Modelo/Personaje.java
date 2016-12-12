@@ -2552,7 +2552,7 @@ public class Personaje {
             }
         }
         return masChalla;
-    }
+    }  
     public void resetMov(){
         this.movActual = this.movTotal;
     }

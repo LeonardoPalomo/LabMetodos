@@ -321,6 +321,16 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                 System.out.println("Se movió a:"+personajeActual.getPosicion()[0]+","+personajeActual.getPosicion()[1]);
                 vb.getBtnEnd().setEnabled(true);
                 vb.getBtnEnd().doClick();
+                int[] objetivo = personajeActual.personajeMasChalla(b.getTablero()); 
+                if(personajeActual.getPosicion()[0]- objetivo[0]<=8){
+                    if(personajeActual.getPosicion()[0]- objetivo[0]>=5){
+                        if(personajeActual.getPosicion()[1]- objetivo[1]<=8){
+                            if(personajeActual.getPosicion()[1]- objetivo[1]>=5){
+                                //Aca poner que ataque a larga distancia
+                            }
+                        }
+                    }
+                }
             }
             else{
                 vb.enableButtons();
