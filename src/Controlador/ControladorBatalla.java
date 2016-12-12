@@ -241,7 +241,7 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                 switch(rol){
                     case 1:
                     case 2:
-                        recorrido = b.getOrdenTurnos()[cntTurno].moverCpu(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getTablero());
+                        recorrido = b.getOrdenTurnos()[cntTurno].moverCpu(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getTablero(),b.getOrdenTurnos()[cntTurno].personajeMasChalla(b.getTablero()));
                         break;
                     case 3:
                         recorrido = b.getOrdenTurnos()[cntTurno].moverCpuNinja(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getTablero());
