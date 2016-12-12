@@ -141,7 +141,82 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                         vb.marcarCasilla(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getOrdenTurnos()[cntTurno].getEsCpu());
                         if(b.getOrdenTurnos()[cntTurno].getEsCpu()){
                             //Comienza el cpu
-                            
+                            vb.disableButtons();
+                            ArrayList<int[]> recorrido = new ArrayList();
+                            int rol = b.getOrdenTurnos()[cntTurno].getRol();
+                            int posMover = 0;
+                            switch(rol){
+                                case 1:
+                                case 2:
+                                    recorrido = b.getOrdenTurnos()[cntTurno].moverCpu(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getTablero(),b.getOrdenTurnos()[cntTurno].personajeMasChalla(b.getTablero()));
+                                    break;
+                                case 3:
+                                    recorrido = b.getOrdenTurnos()[cntTurno].moverCpuNinja(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getTablero());
+                                    break;
+                                case 4:
+                                    recorrido = b.getOrdenTurnos()[cntTurno].moverCpuMago(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getTablero());
+                                    break;
+                            }
+                            Personaje personajeActual = b.getOrdenTurnos()[cntTurno];
+                            boolean comprobadorUltPos;
+                            int auxiliarMov = personajeActual.getMovActual();
+                            do{
+                                if(auxiliarMov > recorrido.size()){
+                                    auxiliarMov = recorrido.size();
+                                }
+                                if(b.getTablero()[recorrido.get(auxiliarMov-1)[0]][recorrido.get(auxiliarMov-1)[1]].getCaminable()== false){
+                                    //System.out.println("Posicion de recorrido removida:"+b.getTablero()[recorrido.get(auxiliarMov-1)[0]][recorrido.get(auxiliarMov-1)[1]].getPosicion()[0]+","+b.getTablero()[recorrido.get(auxiliarMov-1)[0]][recorrido.get(auxiliarMov-1)[1]].getPosicion()[1]);
+                                    recorrido.remove(auxiliarMov-1);
+                                    comprobadorUltPos = true;
+                                    auxiliarMov--;
+                                    personajeActual.restarMovActual();
+                                }
+                                else{
+                                    comprobadorUltPos = false;
+                                }
+                            }while(comprobadorUltPos && auxiliarMov != 0);
+                            for(b.getOrdenTurnos()[cntTurno].getMovActual();b.getOrdenTurnos()[cntTurno].getMovActual() > 0;posMover++){
+                                if(recorrido.size()-1 < posMover){
+                                    //Se le acaba el recorrido, es decir llega hasta el objetivo.
+                                    break;
+                                }
+                                else{
+                                    int iAnterior = b.getOrdenTurnos()[cntTurno].getPosicion()[0];
+                                    int jAnterior = b.getOrdenTurnos()[cntTurno].getPosicion()[1];
+                                    String ruta1 = "";
+                                    boolean busquedaRuta = false;
+                                    if(rol == 1 || rol == 2){
+                                        if(personajeActual.mover(recorrido.get(posMover)[0],recorrido.get(posMover)[1],true)){
+                                            busquedaRuta = true;
+                                        }
+                                    }
+                                    else if(rol == 3){
+                                        if(personajeActual.mover(recorrido.get(posMover)[0],recorrido.get(posMover)[1],true)){
+                                            busquedaRuta = true;
+                                        }
+                                    }
+                                    else{
+                                        if(personajeActual.mover(recorrido.get(posMover)[0],recorrido.get(posMover)[1],true)){
+                                            busquedaRuta = true;
+                                        }
+                                    }
+                                    if(busquedaRuta){
+                                        ruta1 = b.ubicarPersonaje(b.getOrdenTurnos()[cntTurno],recorrido.get(posMover)[0],recorrido.get(posMover)[1]);
+                                    }
+                                    if(!ruta1.equals("")){
+                                        vb.ponerImagenTablero(ruta1,recorrido.get(posMover)[0],recorrido.get(posMover)[1]);
+                                        vb.marcarCasilla(recorrido.get(posMover)[0],recorrido.get(posMover)[1],false);
+                                        vb.ponerImagenTablero(b.ponerRutaImagenesTerreno(iAnterior, jAnterior),iAnterior,jAnterior);
+                                        vb.eliminarBordesCasilla(iAnterior,jAnterior);
+                                        b.getTablero(iAnterior, jAnterior).setPersonaje();
+                                        String movimiento = "Movimiento realizado.";
+                                        System.out.println(movimiento);
+                                        vb.setTextArea(movimiento);
+                                        vb.repaint();
+                                        vb.revalidate();
+                                    }
+                                }
+                            }
                             //Al terminar sus acciones, finaliza su turno
                             vb.getBtnEnd().setEnabled(true);
                             vb.getBtnEnd().doClick();
