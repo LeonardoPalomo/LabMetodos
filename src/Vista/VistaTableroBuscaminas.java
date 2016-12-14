@@ -11,6 +11,8 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -207,9 +209,30 @@ public class VistaTableroBuscaminas extends javax.swing.JFrame {
     public void posicionarMina(int i, int j, int opcion){
         if(opcion == 0){
             mapa1[i][j].setText("x");
+            
+            String ruta = "";
+            ImageIcon img = null;
+            switch(rango){
+            case 10:
+                ruta = "src/Imagen/Buscaminas/minaFacil.png";
+                img = new ImageIcon(ruta);
+                break;
+            case 20:
+                ruta = "src/Imagen/Buscaminas/minaNormal.png";
+                img = new ImageIcon(ruta);
+                break;
+            case 30:
+                ruta = "src/Imagen/Buscaminas/minaDificil.png";
+                img = new ImageIcon(ruta);
+                break;
+            }
+            mapa1[i][j].setIcon(img);
         }
         else if(opcion == 1){
             mapa1[i][j].setText("");
+            JButton boton = new JButton();
+            Icon icono = boton.getIcon();
+            mapa1[i][j].setIcon(icono);
         }
     }
     public void mostrar(int i, int j, int numero, boolean opcion){

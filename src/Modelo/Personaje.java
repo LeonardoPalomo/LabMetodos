@@ -969,7 +969,6 @@ public class Personaje {
         else{//Si el compadre esta rodeado
             return this.moverCpu(posicionCpu, tablero);
         }
-        //LEER!!!---->Prints para saber que wea sucede con los estados.... conclucion, por alguna razon, las verificaciones de arriba me cagan el abrir un nuevo estado y agregarlo en mi casilla de abiertos(leer mas en explicacion de wsp)
         for(int i=0; i<cerrado.size(); i++){
             for(int j=0; j<cerrado.get(i).size(); j++){
                 
@@ -1251,7 +1250,6 @@ public class Personaje {
             abierto.remove(0);
         }
         while(verificadorMaximo==false || abierto.size()==0);
-        //LEER!!!---->Prints para saber que wea sucede con los estados.... conclucion, por alguna razon, las verificaciones de arriba me cagan el abrir un nuevo estado y agregarlo en mi casilla de abiertos(leer mas en explicacion de wsp)
         for(int i=0; i<cerrado.size(); i++){
             for(int j=0; j<cerrado.get(i).size(); j++){
                 
@@ -1593,7 +1591,6 @@ public class Personaje {
         else{//Si el compadre esta rodeado
             return this.moverCpuMago(posicionCpu, tablero);
         }
-        //LEER!!!---->Prints para saber que wea sucede con los estados.... conclucion, por alguna razon, las verificaciones de arriba me cagan el abrir un nuevo estado y agregarlo en mi casilla de abiertos(leer mas en explicacion de wsp)
         for(int i=0; i<cerrado.size(); i++){
             for(int j=0; j<cerrado.get(i).size(); j++){
                 
@@ -1890,7 +1887,6 @@ public class Personaje {
             abierto.remove(0);
         }
         while(verificadorMaximo==false || abierto.size()==0);
-        //LEER!!!---->Prints para saber que wea sucede con los estados.... conclucion, por alguna razon, las verificaciones de arriba me cagan el abrir un nuevo estado y agregarlo en mi casilla de abiertos(leer mas en explicacion de wsp)
         for(int i=0; i<cerrado.size(); i++){
             for(int j=0; j<cerrado.get(i).size(); j++){
                 
@@ -2212,7 +2208,6 @@ public class Personaje {
         else{//Si el compadre esta rodeado
             return this.moverCpuNinja(posicionCpu, tablero);
         }
-        //LEER!!!---->Prints para saber que wea sucede con los estados.... conclucion, por alguna razon, las verificaciones de arriba me cagan el abrir un nuevo estado y agregarlo en mi casilla de abiertos(leer mas en explicacion de wsp)
         for(int i=0; i<cerrado.size(); i++){
             for(int j=0; j<cerrado.get(i).size(); j++){
                 
@@ -2250,7 +2245,7 @@ public class Personaje {
         return recorrido;
     }
     
-    //SObrecarga
+    //Sobrecarga
     public ArrayList<int[]> moverCpuNinja(int[] posicionCpu, Casilla[][] tablero){
         ArrayList<int[]> recorrido = new ArrayList();//Recorrido al reves(desde el personaje objetivo hasta la posicion de la Cpu)
         ArrayList<ArrayList<int[]>> abierto = new ArrayList();//Estados abiertos (Lista de listas de arreglos de enteros de largo 2) (Estado actual es el primer arreglo de enteros de cada lista de la lista)
@@ -2506,7 +2501,6 @@ public class Personaje {
             abierto.remove(0);
         }
         while(verificadorMaximo==false || abierto.size()==0);
-        //LEER!!!---->Prints para saber que wea sucede con los estados.... conclucion, por alguna razon, las verificaciones de arriba me cagan el abrir un nuevo estado y agregarlo en mi casilla de abiertos(leer mas en explicacion de wsp)
         for(int i=0; i<cerrado.size(); i++){
             for(int j=0; j<cerrado.get(i).size(); j++){
                 

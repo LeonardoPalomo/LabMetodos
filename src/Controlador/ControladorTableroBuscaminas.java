@@ -65,19 +65,14 @@ public class ControladorTableroBuscaminas implements MouseListener{
            for (int i=0; i<rango; i++){
                for(int j=0; j<rango; j++){
                     if(i == aleatorioX && j == aleatorioY){
-                        System.out.println("tengo una mina en:"+i+","+j);
                         mapaResuelto[i][j] = 9;
-                        //System.out.println(""+ mapaResuelto[i][j]);
-                        
                     }
                 }
             }
         }
        for(int i=0; i<rango; i++){
            for(int j=0;j<rango; j++){
-                //System.out.println(""+ mapa1[i][j].getPosicionX());
                 casilla.marcarNumero(i, j, mapaResuelto);
-                System.out.println("Estado casilla: "+i+","+j+" valor: "+mapaResuelto[i][j]);
             }
        }
     }   
@@ -153,7 +148,6 @@ public class ControladorTableroBuscaminas implements MouseListener{
                             }
                         }
                         else if(mapaJugador[i][j].getEstadoMina() == true){//si en la casilla hay una mina posicionada por el jugador
-                            System.out.println("Que waaa");
                             vt.posicionarMina(i, j, 1);//Se quita una mina
                             mapaJugador[i][j].setEstadoMina(false);//Se le indica al mapa que se quito la mina
                             mapaJugador[i][j].setEstado(false);
