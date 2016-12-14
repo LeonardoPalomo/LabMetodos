@@ -197,6 +197,3 @@ public class ControladorTableroBuscaminas implements MouseListener{
     public void mouseExited(MouseEvent e) {
     }
 }
-//El mapa1 es el panel con botones que presiona el usuario
-//El mapa 2 es un mapa logico que segun los eventos ocurridos en el mapa1, conserva sus estados
-//El mapa 3 es el mapa con las resuelto, el contenido de cada casilla en el

@@ -1727,3 +1727,8 @@
 2016/12/12 :: 00:49:46 = Se ha abierto el juego. 
 2016/12/12 :: 00:49:52 = El usuario Admin ha iniciado sesión.
 2016/12/12 :: 00:49:53 = El usuario Admin va a seleccionar una asignatura.
+2016/12/14 :: 11:45:47 = Se ha abierto el juego. 
+2016/12/14 :: 11:46:07 = El usuario Admin ha iniciado sesión.
+2016/12/14 :: 11:46:09 = El usuario Admin va a seleccionar una asignatura.
+2016/12/14 :: 11:46:53 = El usuario Admin va a seleccionar una asignatura.
+2016/12/14 :: 11:48:23 = El usuario Admin ha accedido a biblioteca central.
