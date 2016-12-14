@@ -12,6 +12,7 @@ import Modelo.Jugador;
 import Vista.VistaTableroBuscaminas;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
@@ -21,6 +22,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -90,6 +93,7 @@ public class ControladorTableroBuscaminas implements MouseListener{
         for(int i=0; i<rango; i++){
             for(int j=0; j<rango; j++){
                 if(e.getSource() == vt.getMapa1()[i][j]){
+                    //System.out.println("tamaño casilla: "+vt.getMapa1()[i][j].getSize());
                     if (e.getModifiers() == InputEvent.BUTTON1_MASK){//Descubrir
                         System.out.println(i+","+j);
                         System.out.println(""+mapaResuelto[i][j]);
@@ -112,6 +116,23 @@ public class ControladorTableroBuscaminas implements MouseListener{
                             }
                         }
                         else if(mapaResuelto[i][j] == 9){//Si el jugador presiona una casilla que contiene una mina, pierde.
+                            String ruta = "";
+                            ImageIcon img = null;
+                            switch(rango){
+                                case 10:
+                                    ruta = "src/Imagen/Buscaminas/minaFacil.png";
+                                    img = new ImageIcon(ruta);
+                                    break;
+                                case 20:
+                                    ruta = "src/Imagen/Buscaminas/minaNormal.png";
+                                    img = new ImageIcon(ruta);
+                                    break;
+                                case 30:
+                                    ruta = "src/Imagen/Buscaminas/minaDificil.png";
+                                    img = new ImageIcon(ruta);
+                                    break;
+                            }
+                            vt.getMapa1()[i][j].setIcon(img);
                             JOptionPane.showMessageDialog(vt,"Has perdido");
                             System.out.println("Se acabo el juego");
                             vt.dispose();

@@ -214,10 +214,16 @@ public class VistaTableroBuscaminas extends javax.swing.JFrame {
     }
     public void mostrar(int i, int j, int numero, boolean opcion){
         if(opcion == true){//Si hay un numero
-            mapa1[i][j].setText("" + numero);
+            if(numero!=0){
+                mapa1[i][j].setText("" + numero);
+            }
+            else{
+                mapa1[i][j].setEnabled(false);
+            }
         }
-        else if(opcion == false){//Si no hay nada
-            mapa1[i][j].setText("0");
+        else if(numero==0){//Si no hay nada
+            mapa1[i][j].setText("");
+            mapa1[i][j].setBackground(Color.BLACK);
         }
     }
     public boolean estadoGanador(){
