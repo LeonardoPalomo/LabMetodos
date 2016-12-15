@@ -90,8 +90,8 @@ public class ControladorTableroBuscaminas implements MouseListener{
                 if(e.getSource() == vt.getMapa1()[i][j]){
                     //System.out.println("tamaño casilla: "+vt.getMapa1()[i][j].getSize());
                     if (e.getModifiers() == InputEvent.BUTTON1_MASK){//Descubrir
-                        System.out.println(i+","+j);
-                        System.out.println(""+mapaResuelto[i][j]);
+                        //System.out.println(i+","+j);
+                        //System.out.println(""+mapaResuelto[i][j]);
                         if(mapaResuelto[i][j]<9 && mapaResuelto[i][j]>0){//Si hay un numero
                             vt.mostrar(i, j, mapaResuelto[i][j], true);
                             mapaJugador[i][j].setEstado(true);//Se indica que la casilla ha sido descubierta

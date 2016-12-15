@@ -189,9 +189,9 @@ public class VistaTableroBuscaminas extends javax.swing.JFrame {
                 Panel.add(mapa1[i][j]);
             }
         }
-        System.out.println(this.mapa1[0][0].getPreferredSize());
-        System.out.println(this.mapa1[0][0].getMaximumSize());
-        System.out.println(this.mapa1[0][0].getMinimumSize());
+        //System.out.println(this.mapa1[0][0].getPreferredSize());
+        //System.out.println(this.mapa1[0][0].getMaximumSize());
+        //System.out.println(this.mapa1[0][0].getMinimumSize());
     return mapa1;
     }
     

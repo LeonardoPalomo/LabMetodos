@@ -151,10 +151,10 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                                     recorrido = b.getOrdenTurnos()[cntTurno].moverCpu(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getTablero(),b.getOrdenTurnos()[cntTurno].personajeMasChalla(b.getTablero()));
                                     break;
                                 case 3:
-                                    recorrido = b.getOrdenTurnos()[cntTurno].moverCpuNinja(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getTablero());
+                                    recorrido = b.getOrdenTurnos()[cntTurno].moverCpuNinja(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getTablero(),b.getOrdenTurnos()[cntTurno].personajeMasChalla(b.getTablero()));
                                     break;
                                 case 4:
-                                    recorrido = b.getOrdenTurnos()[cntTurno].moverCpuMago(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getTablero());
+                                    recorrido = b.getOrdenTurnos()[cntTurno].moverCpuMago(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getTablero(),b.getOrdenTurnos()[cntTurno].personajeMasChalla(b.getTablero()));
                                     break;
                             }
                             Personaje personajeActual = b.getOrdenTurnos()[cntTurno];
@@ -319,10 +319,10 @@ public class ControladorBatalla implements ActionListener, MouseListener {
                         recorrido = b.getOrdenTurnos()[cntTurno].moverCpu(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getTablero(),b.getOrdenTurnos()[cntTurno].personajeMasChalla(b.getTablero()));
                         break;
                     case 3:
-                        recorrido = b.getOrdenTurnos()[cntTurno].moverCpuNinja(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getTablero());
+                        recorrido = b.getOrdenTurnos()[cntTurno].moverCpuNinja(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getTablero(),b.getOrdenTurnos()[cntTurno].personajeMasChalla(b.getTablero()));
                         break;
                     case 4:
-                        recorrido = b.getOrdenTurnos()[cntTurno].moverCpuMago(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getTablero());
+                        recorrido = b.getOrdenTurnos()[cntTurno].moverCpuMago(b.getOrdenTurnos()[cntTurno].getPosicion(),b.getTablero(),b.getOrdenTurnos()[cntTurno].personajeMasChalla(b.getTablero()));
                         break;
                 }
                 Personaje personajeActual = b.getOrdenTurnos()[cntTurno];
