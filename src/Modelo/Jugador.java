@@ -132,6 +132,13 @@ public class Jugador {
         stmt.close();
     }
     
+    public void savePjsRegistro() throws SQLException{
+        Conexion conexion = new Conexion();
+        boolean resultado = conexion.conectar();
+        Statement stmt = conexion.crearConsulta();
+        final String consulta = "INSERT INTO PERSONAJES";
+    }
+    
     public static void actualizarOro(int oro) throws SQLException {
         Conexion conexion = new Conexion();
         boolean resultado = conexion.conectar();
