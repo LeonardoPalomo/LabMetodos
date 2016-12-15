@@ -1,6 +1,7 @@
 
 package Vista;
 
+import Controlador.ControladorPrincipal;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
@@ -14,6 +15,7 @@ public class VistaBatallaCorta extends javax.swing.JFrame {
 
     public VistaBatallaCorta() {
         initComponents();
+        this.setTitle(ControladorPrincipal.titulo);
     }
 
     @SuppressWarnings("unchecked")

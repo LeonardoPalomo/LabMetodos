@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.ControladorPrincipal;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
@@ -19,6 +20,7 @@ public class VistaBibliotecaCentral extends javax.swing.JFrame {
      */
     public VistaBibliotecaCentral() {
         initComponents();
+        this.setTitle(ControladorPrincipal.titulo);
     }
 
     /**

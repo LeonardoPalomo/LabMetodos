@@ -14,6 +14,7 @@ public class ControladorBatallaCortoAlcance implements ActionListener{
     private VistaBatallaCorta vbc;
     private VistaBatalla vb;
     private Batalla b;
+    private ControladorBatalla cb;
     private int i;
     private int j;
     int stockBajo;
@@ -24,9 +25,10 @@ public class ControladorBatallaCortoAlcance implements ActionListener{
     private int cntTurno;
     private int dañoAtacado;
     private int dañoAtacante;
-    public ControladorBatallaCortoAlcance(int cntTurno, int i, int j, Batalla b, VistaBatalla vista){
+    public ControladorBatallaCortoAlcance(int cntTurno, int i, int j, Batalla b, VistaBatalla vista, ControladorBatalla cb){
         this.vb = vista;
         this.b = b;
+        this.cb = cb;
         vb.setVisible(false);
         vbc = new VistaBatallaCorta();
         vbc.setVisible(true);
@@ -138,8 +140,6 @@ public class ControladorBatallaCortoAlcance implements ActionListener{
                 ArrayList<Integer> damages = b.getOrdenTurnos()[cntTurno].atacarCerca(b.getTablero(i,j).getPersonaje(), victorias, derrotas);
                 this.dañoAtacante = damages.get(0);
                 this.dañoAtacado = damages.get(1);
-            
-
                 int hpRestanteAtacado = b.getTablero(i,j).getPersonaje().aplicarDaño(dañoAtacado);
                 String dañoRecibidoAtacado = b.getTablero(i,j).getPersonaje().getNombre()+" recibe "+dañoAtacado+" puntos de daño.";
                 System.out.println(dañoRecibidoAtacado);
@@ -152,6 +152,7 @@ public class ControladorBatallaCortoAlcance implements ActionListener{
             
                 vbc.dispose();
                 vb.setVisible(true);
+                this.cb.comprobarPartida();
             }    
         }
     }

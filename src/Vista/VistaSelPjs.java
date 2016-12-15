@@ -1,6 +1,7 @@
 
 package Vista;
 
+import Controlador.ControladorPrincipal;
 import Modelo.Personaje;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class VistaSelPjs extends javax.swing.JFrame {
 
     public VistaSelPjs() {
         initComponents();
-
+        this.setTitle(ControladorPrincipal.titulo);
     }
 
     @SuppressWarnings("unchecked")

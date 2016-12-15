@@ -32,8 +32,27 @@ public class Batalla {
   
     public void terminarTurno() {}
 
-    public int verificarGanador(Personaje[] pjsJugador, Personaje[] pjsCpu) {
-       return 0;
+    public boolean verificarGanador() {
+        boolean finBatalla = false;
+        boolean hayCpu = false;
+        boolean hayJugador = false;
+        for(int i=0; i<ordenTurnos.length; i++){
+            if(ordenTurnos[i] != null){
+                if(ordenTurnos[i].getEsCpu()){
+                    hayCpu = true;
+                }
+                else{
+                    hayJugador = true;
+                }
+            }
+        }
+        if(hayCpu != hayJugador){
+            finBatalla = true;
+        }
+        else{
+            finBatalla = false;
+        }
+        return finBatalla;
     }
 /**
  * Funcion que dependiendo del area de la asignatura genera una cantidad aleatoria de bosques, rios y montañas
@@ -807,34 +826,35 @@ public class Batalla {
 
     public ArrayList<Personaje> revisarMuertes(){
         ArrayList<Personaje> pjsMuertos = new ArrayList();
-        for(Personaje pj:ordenTurnos){
-            if(pj.getHpActual() == 0){
-                pjsMuertos.add(pj);
+        for(int i=0; i<ordenTurnos.length; i++){
+            if(ordenTurnos[i] != null){
+                if(ordenTurnos[i].getHpActual() == 0){
+                    pjsMuertos.add(ordenTurnos[i]);
+                }
             }
         }
         return pjsMuertos;
     }
     
-    public void retirarMuertos(ArrayList<Personaje> pjsMuertos){
-        ArrayList<Personaje> personajesCpu = new ArrayList(Arrays.asList(this.pjsCpu));
-        ArrayList<Personaje> personajesJugador = new ArrayList(Arrays.asList(this.pjsJugador));
-        ArrayList<Personaje> ordenTurnosArrayList =new ArrayList(Arrays.asList(this.ordenTurnos));
+    public ArrayList<String> retirarMuertos(ArrayList<Personaje> pjsMuertos){
+        ArrayList<Personaje> ordenTurnosAList;
+        ordenTurnosAList = new ArrayList(Arrays.asList(this.ordenTurnos));
+        ArrayList<String> rutas = new ArrayList(pjsMuertos.size());
         for(Personaje pj:pjsMuertos){
-            if(pj.getEsCpu()){
-                personajesCpu.remove(pj);
+            if(ordenTurnosAList.contains(pj)){
+                int indice = ordenTurnosAList.indexOf(pj);
+                int[] pos = ordenTurnos[indice].getPosicion();
+                this.tablero[pos[0]][pos[1]].setPersonaje();
+                this.tablero[pos[0]][pos[1]].setDisponible(true);
+                ordenTurnos[indice] = null;
+                String ruta = this.ponerRutaImagenesTerreno(pos[0],pos[1]);
+                ruta = ruta + "-" + pos[0] + "-" + pos[1];
+                rutas.add(ruta);
             }
-            else{
-                personajesJugador.remove(pj);
-            }
-            ordenTurnosArrayList.remove(pj);
         }
-        this.pjsCpu = new Personaje[personajesCpu.size()];
-        personajesCpu.toArray(this.pjsCpu);
-        this.pjsJugador = new Personaje[personajesJugador.size()];
-        personajesJugador.toArray(this.pjsJugador);
-        this.ordenTurnos = new Personaje[ordenTurnosArrayList.size()];
-        ordenTurnosArrayList.toArray(this.ordenTurnos);
+        return rutas;
     }
+    
     public int ataquesVisibles(int nivelAtacante,int nivelAtacado){
         if(nivelAtacante == nivelAtacado){//Niveles iguales
             return 2;

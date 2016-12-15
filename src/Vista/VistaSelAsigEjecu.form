@@ -7,6 +7,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -202,7 +203,7 @@
                                       <Component id="jLabel12" min="-2" pref="78" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="asig1" pref="89" max="32767" attributes="0"/>
+                                  <Component id="asig1" pref="87" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -861,7 +862,7 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="evalGestProy" alignment="0" pref="99" max="32767" attributes="0"/>
+                              <Component id="evalGestProy" alignment="0" max="32767" attributes="0"/>
                               <Component id="diseñoBdd" alignment="0" pref="0" max="32767" attributes="0"/>
                               <Component id="orgaComp" alignment="0" pref="0" max="32767" attributes="0"/>
                               <Component id="fingeso" alignment="0" pref="0" max="32767" attributes="0"/>

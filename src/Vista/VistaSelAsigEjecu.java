@@ -1,6 +1,7 @@
 
 package Vista;
 
+import Controlador.ControladorPrincipal;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
@@ -8,6 +9,7 @@ public class VistaSelAsigEjecu extends javax.swing.JFrame {
 
     public VistaSelAsigEjecu() {
         initComponents();
+        this.setTitle(ControladorPrincipal.titulo);
     }
 
     @SuppressWarnings("unchecked")
